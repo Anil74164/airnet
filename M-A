@@ -1,0 +1,6 @@
+
+JAVA_HOME=/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME
+
+
+

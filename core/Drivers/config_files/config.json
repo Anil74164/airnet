@@ -1,0 +1,13 @@
+{
+  "airveda": {
+  "url" :"https://dashboard.airveda.com/api/token/",
+        "email": "airveda@cstep.in",
+        "password": "airveda123!@#"
+       
+ 
+    },
+    "respirer": {
+      "api": "your_respirer_api_key",
+      "url": "https://api.respirer.io/"
+    }
+}
