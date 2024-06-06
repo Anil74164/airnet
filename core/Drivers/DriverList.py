@@ -1,10 +1,7 @@
 from core.Drivers.AirVeda import AirVeda
 
+driverList = {
+    "airveda" : AirVeda
+}
 
-class driverList:
-    @staticmethod
-    def driver():
-        drivers = {}
-        drivers['airveda'] = AirVeda
-        return drivers
 

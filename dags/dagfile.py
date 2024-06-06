@@ -5,7 +5,7 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import os
  
- #Define the Python function to execute the PySpark job
+#Define the Python function to execute the PySpark job
 def Data_Ingestion_job():
      # Execute the PySpark script using spark-submit
      os.system("spark-submit --master local[*] ./core/pyspark/DataIngestion.py")
@@ -14,7 +14,7 @@ def Data_Ingestion_job():
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2024, 1, 1),
+    'start_date': datetime.now(),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,

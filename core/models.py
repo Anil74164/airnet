@@ -4,6 +4,7 @@ from django.contrib.gis.db import models as gismodels
 import datetime
  
  
+
 class db_Role(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -130,6 +131,11 @@ class db_DeviceModel(models.Model):
 class db_MANUFACTURER(models.Model):
     id=models.AutoField(primary_key=True)
     name= models.CharField(max_length=255,null=True)
+    auth_url=models.CharField(max_length=2000,null=True)
+    api_or_pass=models.CharField(max_length=50,null=True)
+    data_url=models.CharField(max_length=2000)
+    access_id=models.CharField(max_length=50,null=True)
+    access_key=models.CharField(max_length=100,null=True)
     email= models.CharField(max_length=255,null=True)
     address= models.TextField(max_length=1000,null=True)
     person_name= models.CharField(max_length=255,null=True)
@@ -173,7 +179,7 @@ class db_DEVICE(models.Model):
     sim_number =  models.CharField(max_length=45)
     
     address = models.TextField(max_length=1000)
-    parameters = models.CharField(max_length=100)
+    parameters = models.CharField(max_length=1000)
     
     altitude = models.DecimalField(max_digits=9,decimal_places=6)
     install_dt = models.DateTimeField()
@@ -396,5 +402,6 @@ class db_missing_data(models.Model):
     parameter=models.CharField(max_length=255)
     device_id = models.ForeignKey(db_DEVICE, on_delete=models.CASCADE)
     error_code=models.CharField(max_length=255)
-    status = models.IntegerField()
+    status = models.IntegerField(default=0)
+    received_dt=models.DateTimeField(null=True)
     

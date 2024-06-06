@@ -23,24 +23,25 @@ data = list(all_device)
 def fetchDeviceDict(data):
     device_Dict={} 
     for device in data:
-        if device.manufacturer_id.name in device_Dict.keys():
-            device_Dict[device.manufacturer_id.name ].append(device)
+        if device.manufacturer_id in device_Dict.keys():
+            device_Dict[device.manufacturer_id ].append(device)
         else:
-            device_Dict[device.manufacturer_id.name]=[]
-            device_Dict[device.manufacturer_id.name ].append(device)
+            device_Dict[device.manufacturer_id]=[]
+            device_Dict[device.manufacturer_id ].append(device)
     return device_Dict     
 
 device_Dict=fetchDeviceDict(data)  
     
-from core.Drivers.DriverList import driverList
-drivers=driverList.driver()
+from core.Drivers.DriverList import driverList as drivers
+
 
 all_data = {}
 for i in device_Dict.keys():
-    obj = drivers[i]()
+    
+    obj = drivers[i.name](manufacturer_obj=i)
     da=obj.fetch(device_Dict[i])
     print(da)
-    da.to_csv('data.csv', index=False)
+    
     
 
     

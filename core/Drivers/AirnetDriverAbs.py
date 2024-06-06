@@ -24,9 +24,10 @@ class AirnetDriverAbs(ABC):
     _all_df = None
     _df_all_list=[]
     
+    
     @abstractmethod
-    def __init__(self ):
-        pass
+    def __init__(self,manufacturer_obj):
+        self.manufacturer_obj=manufacturer_obj
     @abstractmethod
     def preprocess(self, deviceObj):
         pass
@@ -45,6 +46,7 @@ class AirnetDriverAbs(ABC):
         return requests.post(request['_url'], data=request['_payload'], headers=request['_headers'])
 
     # This is not abstract method.
+    # TODO:recive parameter start and end time
     def fetch(self, deviceObj=None):
         self.preprocess(deviceObj)
         if len(self._df_list) > 0:
@@ -66,4 +68,7 @@ class AirnetDriverAbs(ABC):
         pass
     @abstractmethod
     def handleDF(self, deviceObj,request):
+        pass
+    # TODO:
+    def add_missing_data(self):
         pass

@@ -16,8 +16,9 @@ spark = SparkSession.builder \
  
 from core.Drivers.AirnetDriverAbs import AirnetDriverAbs
 class AirVeda(AirnetDriverAbs):
-    def __init__(self,id_token="",refresh_token=None,device_id=None,param=None):
-        super().__init__()
+    def __init__(self,manufacturer_obj,id_token="",refresh_token=None,device_id=None,param=None):
+        super().__init__(manufacturer_obj)
+        
         self.fmt = "%Y-%m-%d %H:%M:%S"
         self.start_time= datetime.now()
         self.end_time= datetime.now()
@@ -32,19 +33,19 @@ class AirVeda(AirnetDriverAbs):
         self._payload = { 'refreshToken' : self.refresh_token,
                          'deviceId'    : self.device_id,
                          'pollutant': self.param,
-                        'startTime'   : self.start_time.strftime(self.fmt),
-                        'endTime'     : self.end_time.strftime(self.fmt)}
+                        'startTime'   : self.start_time,
+                        'endTime'     : self.end_time}
         self._restprotocol['prefix'] = 'https'
         self._restprotocol['hostname'] = ''
         self._changeColumns = { 'from' : ['pm_2_5'], 'to' : ['pm25'] }
 
 
     def preprocess(self, deviceObj):
-        config=self.fetchConfigFile()
-        air=config['airveda']
-        self.auth_url=air['url']
-        self._authentication={'email':air['email'],'password':air["password"]}
-        response = requests.post(self.auth_url, data=self._authentication)
+        self.manufacturer_obj.email       
+     
+        
+        self._authentication={'email': self.manufacturer_obj.email,'password': self.manufacturer_obj.api_or_pass}
+        response = requests.post(self.manufacturer_obj.auth_url, data=self._authentication)
         response_data = response.json()
         self.id_token = response_data['idToken']
         self.refresh_token = response_data.get('refreshToken')
@@ -52,16 +53,23 @@ class AirVeda(AirnetDriverAbs):
         self.device_id =[]
         self._requestList=[]
         paramListStr=None
-        self.start_time=datetime(2024,1,1,3,5)
-        self.end_time=datetime(2024,1,4,3,5)
+        self.end_time=datetime.now()
+        self.start_time=self.end_time-timedelta(minutes=15)
+        # self.start_time.strftime(self.fmt)
+        # self.end_time.strftime(self.fmt)
+        # print(self.end_time)
+        # print(self.start_time)
+        
         for dev in deviceObj:
             self.device_id=dev.device_id
             paramListStr=dev.parameters
             paramList=paramListStr.split(",")
-            paramList=['no2','so2']
+            paramList=["so2Voltages", "no2Voltages", "ozoneVoltages", "coVoltages", "pm25_base", "pm10_base"]
+            print(paramList)
             self._df=None
             self._df_list=[]
             self.time_added = False
+            
             for param in paramList:
                 req = {}
                 
@@ -92,7 +100,7 @@ class AirVeda(AirnetDriverAbs):
             else:
                 self._df = pd.DataFrame()
                 
-            print(self._df)
+            
             
             
             self._df_all_list.append(self._df)
@@ -112,12 +120,7 @@ class AirVeda(AirnetDriverAbs):
         db_AirNet_Raw_Response.objects.create(request_url=request['_url'],manufacturer=deviceObj.manufacturer_id.name ,data=self._http_response.json(),http_code=self._http_response.status_code,pollutant=request['param']).save()
        
         
-        json_string = self._http_response.text
-        json_data = json.loads(json_string)
-
-        for reading in json_data['readings']:
-            reading[request['param']] = reading.pop('value')
-            
+        
         
         # readings_df = spark.createDataFrame(json_data['readings'])
       
@@ -133,9 +136,9 @@ class AirVeda(AirnetDriverAbs):
         #     self._df = self._df.join(readings_df,(self._df['DeviceID']==readings_df['DeviceID']) & (self._df['time']==readings_df['time']),'left')
 
         df = pd.DataFrame(self._http_response.json())
-        print(df.columns)
+        
         df = df['readings'].apply(pd.Series)
-        print(df)
+        # TODO: 
         if len(df) == 0:
             print(f"No data found for device_id {deviceObj.device_id} and parameter {request['param']}. "
                             f"for {request['_payload']['startTime']} to {request['_payload']['startTime']}")
@@ -144,14 +147,12 @@ class AirVeda(AirnetDriverAbs):
         if not self.time_added:
             self._df_list.append(df[['time']])  # Add 'time' column only once
             self.time_added = True
-        updated_json_data = json.dumps(json_data, indent=4,ensure_ascii=False)
-        db_AirNet_Raw.objects.create(manufacturer=deviceObj.manufacturer_id.name,data_raw=updated_json_data).save()
         
-        df.columns = ['{}{}'.format(c, '' if c == 'time' else '_' + request['param']) for c in df.columns]
+        df.columns = ['{}'.format( c if c == 'time' else  request['param']) for c in df.columns]
         df.set_index('time', inplace=True)
         df.reset_index(drop=True, inplace=True)
         
-        print(df)
+        
         self._df_list.append(df)
        
         
