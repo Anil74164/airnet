@@ -10,7 +10,7 @@ import DjangoSetup
  
 class AirnetDriverAbs(ABC):
     _restprotocol = { "prefix" : "https", "hostname" : "", "port":"", "path" : ""}
-    _httpMethod = "GET"
+    _fetch_method = "GET"
     _payload = {}
     _headers = {}
     _authentication = None
@@ -18,10 +18,10 @@ class AirnetDriverAbs(ABC):
     _http_response = None
     _df = None
     _expiry_duration=None
-    _requestList=[]
+    
     _df_list=[]
     time_added = False
-    _all_df = None
+    _df_all = None
     _df_all_list=[]
     
     
@@ -31,12 +31,6 @@ class AirnetDriverAbs(ABC):
     @abstractmethod
     def preprocess(self, deviceObj):
         pass
-
-
-    def fetchConfigFile(self):   
-        with open("./core/Drivers/config_files/config.json",'r') as f:         
-            config = json.load(f)    
-        return config
 
     def restGET(self, request, deviceObj):
         response = requests.get(self._url)
@@ -49,26 +43,35 @@ class AirnetDriverAbs(ABC):
     # TODO:recive parameter start and end time
     def fetch(self, deviceObj=None):
         self.preprocess(deviceObj)
-        if len(self._df_list) > 0:
-            self._df_all = pd.concat(self._df_all_list, ignore_index=True)
-            
-        else:
-            self._df_all = pd.DataFrame()
-    
-            
-
-        
-
-    
-        # self.handleDF(deviceObj,request)   
+        self.process(deviceObj)
+        self.postprocess(deviceObj)
         return self._df_all
         
     @abstractmethod
-    def postprocess(self, deviceObj,request):
+    def postprocess(self, deviceObj):
         pass
     @abstractmethod
-    def handleDF(self, deviceObj,request):
+    def process(self,deviceObj):
+        pass
+    @abstractmethod
+    def handleDF(self):
+        
         pass
     # TODO:
     def add_missing_data(self):
         pass
+    
+    def co2_cov(self,key):
+        self._df_all['key']=self._df_all['key']*0.873
+ 
+    def so2_cov(self,key):
+        self._df_all['key']=self._df_all['key']*0.381
+ 
+    def no2_cov(self,key):
+        self._df_all['key']=self._df_all['key']*0.531
+ 
+    def no_cov(self,key):
+        self._df_all['key']=self._df_all['key']*0.813
+ 
+    def o3_cov(self,key):
+        self._df_all['key']=self._df_all['key']*0.510

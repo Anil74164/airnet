@@ -20,9 +20,9 @@ class AirVeda(AirnetDriverAbs):
         super().__init__(manufacturer_obj)
         
         self.fmt = "%Y-%m-%d %H:%M:%S"
-        self.start_time= datetime.now()
-        self.end_time= datetime.now()
-        self._httpMethod = "POST"
+        self.start_time= None
+        self.end_time= None
+        self._fetch_method = "POST"
         self.id_token=id_token
         self.refresh_token=refresh_token
         self.device_id=device_id
@@ -50,16 +50,16 @@ class AirVeda(AirnetDriverAbs):
         self.id_token = response_data['idToken']
         self.refresh_token = response_data.get('refreshToken')
         self._expiry_duration = response_data['expiresIn']
-        self.device_id =[]
-        self._requestList=[]
-        paramListStr=None
         self.end_time=datetime.now()
         self.start_time=self.end_time-timedelta(minutes=15)
-        # self.start_time.strftime(self.fmt)
-        # self.end_time.strftime(self.fmt)
-        # print(self.end_time)
-        # print(self.start_time)
+        print(self.start_time)
+        print(self.end_time)
         
+        
+        
+            
+               
+    def process(self,deviceObj):
         for dev in deviceObj:
             self.device_id=dev.device_id
             paramListStr=dev.parameters
@@ -72,7 +72,6 @@ class AirVeda(AirnetDriverAbs):
             
             for param in paramList:
                 req = {}
-                
                 req['param']=param
                 start_time=self.start_time
                 end_time=self.end_time
@@ -85,59 +84,50 @@ class AirVeda(AirnetDriverAbs):
                 req['_headers'] = {'Authorization' : 'Bearer ' +self.id_token}
                 req['_url']="https://data.airveda.com/api/data/voltage_data/"
                 # self._requestList.append(req)
-                if self._httpMethod =='POST':
+                if self._fetch_method =='POST':
                     response=self.restPOST(req, deviceObj)
                 else:
                 
                     response=self.restGET(req, deviceObj)
                 self._http_response=response
                 
-                self.postprocess(dev,req)
+                self.creating_df(dev,req)
                 
             if len(self._df_list) > 0:
                 self._df = pd.concat(self._df_list, axis=1)
                 self._df['device_id'] = dev.device_id
             else:
                 self._df = pd.DataFrame()
-                
-            
-            
             
             self._df_all_list.append(self._df)
-            
-            
-               
-            
-            
-    @staticmethod
-    def get_ColumnReplacement():
-        _changeColumns = {'from': ['pm_2_5'], 'to': ['pm25']}
-        return _changeColumns
-    
-    def handleDF(self,deviceObj,request):
-        pass
-    def postprocess(self, deviceObj,request):
+    def get_ColumnReplacement(self):
+        _changeColumns = {'value_pm25_base': 'pm2_5_r', 'value_pm10_base': 'pm10_r'}
+        diff_column={'so2_nv':['WorkingElectrodeVoltage_so2Voltages','AuxilliaryElectrodeVoltage_so2Voltages'],
+                     'no2_nv':['WorkingElectrodeVoltage_no2Voltages','AuxilliaryElectrodeVoltage_no2Voltages'],
+                     'o3_nv':['WorkingElectrodeVoltage_ozoneVoltages','AuxilliaryElectrodeVoltage_ozoneVoltages'],
+                     'co_nv':['WorkingElectrodeVoltage_coVoltages','AuxilliaryElectrodeVoltage_coVoltages']
+                    }
+        for column in _changeColumns.keys():
+            if column in self._df_all.columns:
+                self._df_all.rename(columns={column:_changeColumns[column]}, inplace=True)
+        print(self._df_all.columns)
+        
+        for column in diff_column:
+            if diff_column[column][0] in self._df_all:
+                self._df_all[column] = self._df_all[diff_column[column][0]] - self._df_all[diff_column[column][1]]
+                self._df_all=self._df_all.drop(columns=[diff_column[column][0], diff_column[column][1]])
+        
+    def handleDF(self):
+        dict1={'co2':'co2_cov','no2':'no2_cov','so2':'so2_cov','no':'no_cov','o3':'o3_cov'}
+        for column in self._df_all.columns:
+            if column in dict1:
+              self.dict1[column](self._df_all,column)
+    def creating_df(self, deviceObj,request):
         db_AirNet_Raw_Response.objects.create(request_url=request['_url'],manufacturer=deviceObj.manufacturer_id.name ,data=self._http_response.json(),http_code=self._http_response.status_code,pollutant=request['param']).save()
-       
-        
-        
-        
-        # readings_df = spark.createDataFrame(json_data['readings'])
-      
-        # readings_df = readings_df.withColumn("DeviceID", lit(json_data['DeviceID']))
-        
-        # readings_df = readings_df.withColumnRenamed("value", request['param'])
-
-     
-        
-        # if(self._df==None):
-        #     self._df=readings_df
-        # else:
-        #     self._df = self._df.join(readings_df,(self._df['DeviceID']==readings_df['DeviceID']) & (self._df['time']==readings_df['time']),'left')
 
         df = pd.DataFrame(self._http_response.json())
-        
-        df = df['readings'].apply(pd.Series)
+        print(self._http_response.json())
+        df=df['readings'].apply(pd.Series)
         # TODO: 
         if len(df) == 0:
             print(f"No data found for device_id {deviceObj.device_id} and parameter {request['param']}. "
@@ -145,14 +135,25 @@ class AirVeda(AirnetDriverAbs):
             return 
         df['time'] = pd.to_datetime(df['time'], format="%Y-%m-%d %H:%M:%S")
         if not self.time_added:
-            self._df_list.append(df[['time']])  # Add 'time' column only once
+            self._df_list.append(df[['time']]) 
             self.time_added = True
         
-        df.columns = ['{}'.format( c if c == 'time' else  request['param']) for c in df.columns]
+        df.columns = ['{}{}'.format(c,'' if c == 'time' else  '_'+request['param']) for c in df.columns]
         df.set_index('time', inplace=True)
         df.reset_index(drop=True, inplace=True)
         
         
         self._df_list.append(df)
        
+    def postprocess(self, deviceObj):
+        if len(self._df_list) > 0:
+            self._df_all = pd.concat(self._df_all_list)
+            
+        else:
+           self._df_all = pd.DataFrame()
+        
+           
+    def standardization_df(self):
+        self.get_ColumnReplacement()
+        self.handleDF()
         

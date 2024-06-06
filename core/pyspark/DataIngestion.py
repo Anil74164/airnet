@@ -41,6 +41,14 @@ for i in device_Dict.keys():
     obj = drivers[i.name](manufacturer_obj=i)
     da=obj.fetch(device_Dict[i])
     print(da)
+    obj.standardization_df()
+    print(obj._df_all)
+    obj._df_all.to_csv('output.csv', index=False)
+    
+    
+    
+    
+    
     
     
 
