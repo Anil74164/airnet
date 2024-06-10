@@ -64,7 +64,8 @@ class AirVeda(AirnetDriverAbs):
             self.device_id=dev.device_id
             paramListStr=dev.parameters
             paramList=paramListStr.split(",")
-            paramList=["so2Voltages", "no2Voltages", "ozoneVoltages", "coVoltages", "pm25_base", "pm10_base"]
+            paramList.append("o4")
+            paramList.append("so10")
             print(paramList)
             self._df=None
             self._df_list=[]
@@ -123,15 +124,14 @@ class AirVeda(AirnetDriverAbs):
             if column in dict1:
               self.dict1[column](self._df_all,column)
     def creating_df(self, deviceObj,request):
-        db_AirNet_Raw_Response.objects.create(request_url=request['_url'],manufacturer=deviceObj.manufacturer_id.name ,data=self._http_response.json(),http_code=self._http_response.status_code,pollutant=request['param']).save()
+        self.insert_raw_response(req_url=request['_url'],manufacturer_name=deviceObj.manufacturer_id.name ,param=request['param'])
 
         df = pd.DataFrame(self._http_response.json())
         print(self._http_response.json())
         df=df['readings'].apply(pd.Series)
         # TODO: 
         if len(df) == 0:
-            print(f"No data found for device_id {deviceObj.device_id} and parameter {request['param']}. "
-                            f"for {request['_payload']['startTime']} to {request['_payload']['startTime']}")
+            self.add_missing_data(device=deviceObj,param=request['param'],error_code=self._http_response.status_code)
             return 
         df['time'] = pd.to_datetime(df['time'], format="%Y-%m-%d %H:%M:%S")
         if not self.time_added:
