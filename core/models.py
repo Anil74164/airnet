@@ -132,6 +132,7 @@ class db_MANUFACTURER(models.Model):
     id=models.AutoField(primary_key=True)
     name= models.CharField(max_length=255,null=True)
     auth_url=models.CharField(max_length=2000,null=True)
+    cal_url=models.CharField(max_length=2000,null=True)
     api_or_pass=models.CharField(max_length=50,null=True)
     data_url=models.CharField(max_length=2000)
     access_id=models.CharField(max_length=50,null=True)
@@ -357,7 +358,7 @@ class db_AirNet_Aggregated(models.Model):
     end_time=models.DateTimeField()
     
 class db_manufacturer_calibrated_data(models.Model):
-    date_time = models.DateTimeField()
+    time = models.DateTimeField()
     id = models.AutoField(primary_key=True)
     o3_ppb=models.FloatField(null=True)
     so2_ppb=models.FloatField(null=True)
@@ -371,6 +372,8 @@ class db_manufacturer_calibrated_data(models.Model):
     device_id = models.ForeignKey(db_DEVICE, on_delete=models.CASCADE)
     pm10=models.FloatField(null=True)
     ozone=models.FloatField(null=True)
+    temperature=models.FloatField(null=True)
+    humidity=models.FloatField(null=True)
       
 
 

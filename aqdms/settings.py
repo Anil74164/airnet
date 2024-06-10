@@ -154,7 +154,7 @@ LOGGING = {
 'disable_existing_loggers': False,
 'handlers': {
     'file': {
-        'level': 'ERROR',
+        'level': 'DEBUG',
         'class': 'logging.FileHandler',
         'formatter': 'verbose',
         'filename': './logs/Django_log.log',  
@@ -163,7 +163,7 @@ LOGGING = {
         'level': 'DEBUG',
         'class': 'logging.FileHandler',
         'formatter': 'verbose',
-        'filename': '.F',
+        'filename': './logs/Django_log1.log',
     },
 },
 'loggers': {
