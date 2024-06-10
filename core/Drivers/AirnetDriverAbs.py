@@ -58,10 +58,9 @@ class AirnetDriverAbs(ABC):
     def process(self,deviceObj):
         pass
     @abstractmethod
-    def handleDF(self):
-        
+    def handleDF(self):        
         pass
-    # TODO:
+
     def add_missing_data(self,device,param,error_code):
         if device in self._missing_data_dict.keys():
             self._missing_data_dict[device].append({param:error_code})

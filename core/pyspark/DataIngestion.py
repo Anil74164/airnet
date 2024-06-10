@@ -44,8 +44,7 @@ for i in device_Dict.keys():
     obj.standardization_df()
     print(obj._df_all)
     print(obj._missing_data_dict)
-    obj._df_all.to_csv('output.csv', index=False)
-    obj.store_missing_data_info()
+
     obj.store_std_data()
     
     

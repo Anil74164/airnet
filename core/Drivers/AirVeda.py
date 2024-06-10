@@ -50,8 +50,9 @@ class AirVeda(AirnetDriverAbs):
         self.id_token = response_data['idToken']
         self.refresh_token = response_data.get('refreshToken')
         self._expiry_duration = response_data['expiresIn']
-        self.end_time=datetime.now()
-        self.start_time=self.end_time-timedelta(minutes=15)
+        self.end_time = datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0)
+        self.start_time =datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0) - timedelta(minutes=15) 
+    
         print(self.start_time)
         print(self.end_time)
         
@@ -83,7 +84,7 @@ class AirVeda(AirnetDriverAbs):
                             'endTime'     : end_time.strftime(self.fmt)}
             
                 req['_headers'] = {'Authorization' : 'Bearer ' +self.id_token}
-                req['_url']="https://data.airveda.com/api/data/voltage_data/"
+                req['_url']=self.manufacturer_obj.data_url
                 # self._requestList.append(req)
                 if self._fetch_method =='POST':
                     response=self.restPOST(req, deviceObj)

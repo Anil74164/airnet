@@ -351,8 +351,8 @@ class db_AirNet_Aggregated(models.Model):
     pm1 = models.FloatField(null=True)
     no=models.FloatField(null=True)
     no_nv=models.FloatField(null=True)
-    status = models.IntegerField()
-    date_time = models.DateTimeField()
+    status = models.IntegerField(default=0)
+    time = models.DateTimeField(null=True)
     start_time=models.DateTimeField()
     end_time=models.DateTimeField()
     
