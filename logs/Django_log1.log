@@ -785,3 +785,283 @@
 [81 rows x 8 columns]
 2024-06-10 19:45:51,170 [INFO] DataIngestion 11826 125458693533696 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
 2024-06-10 19:45:52,609 [INFO] DataIngestion 11826 125458693533696 Stored standardized data for manufacturer: airveda
+2024-06-11 05:04:47,458 [INFO] DataIngestion 10125 131567914172416 Processing devices for manufacturer: airveda
+2024-06-11 05:04:48,337 [INFO] AirVeda 10125 131567914172416 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:04:48,730 [INFO] AirVeda 10125 131567914172416 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:04:51,168 [INFO] AirVeda 10125 131567914172416 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:04:53,430 [INFO] AirVeda 10125 131567914172416 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:04:59,748 [INFO] DataIngestion 10125 131567914172416 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:04:59,775 [INFO] DataIngestion 10125 131567914172416 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:04:59,776 [INFO] DataIngestion 10125 131567914172416 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:05:01,590 [INFO] DataIngestion 10125 131567914172416 Stored standardized data for manufacturer: airveda
+2024-06-11 05:05:22,727 [INFO] DataIngestion 10270 124360812494848 Processing devices for manufacturer: airveda
+2024-06-11 05:05:23,911 [INFO] AirVeda 10270 124360812494848 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:05:24,355 [INFO] AirVeda 10270 124360812494848 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:26,731 [INFO] AirVeda 10270 124360812494848 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:28,949 [INFO] AirVeda 10270 124360812494848 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:35,177 [INFO] DataIngestion 10270 124360812494848 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:05:35,190 [INFO] DataIngestion 10270 124360812494848 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:05:35,190 [INFO] DataIngestion 10270 124360812494848 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:05:36,516 [INFO] DataIngestion 10270 124360812494848 Stored standardized data for manufacturer: airveda
+2024-06-11 05:05:47,207 [INFO] DataIngestion 10408 125570383564800 Processing devices for manufacturer: airveda
+2024-06-11 05:05:47,774 [INFO] AirVeda 10408 125570383564800 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:05:48,100 [INFO] AirVeda 10408 125570383564800 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:50,107 [INFO] AirVeda 10408 125570383564800 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:52,212 [INFO] AirVeda 10408 125570383564800 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:05:57,080 [INFO] DataIngestion 10408 125570383564800 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:05:57,089 [INFO] DataIngestion 10408 125570383564800 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:05:57,090 [INFO] DataIngestion 10408 125570383564800 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:05:58,048 [INFO] DataIngestion 10408 125570383564800 Stored standardized data for manufacturer: airveda
+2024-06-11 05:06:33,327 [INFO] DataIngestion 10581 137946579447808 Processing devices for manufacturer: airveda
+2024-06-11 05:06:33,969 [INFO] AirVeda 10581 137946579447808 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:06:34,305 [INFO] AirVeda 10581 137946579447808 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:06:37,375 [INFO] AirVeda 10581 137946579447808 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:06:39,845 [INFO] AirVeda 10581 137946579447808 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:06:48,013 [INFO] DataIngestion 10581 137946579447808 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:06:48,033 [INFO] DataIngestion 10581 137946579447808 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:06:48,034 [INFO] DataIngestion 10581 137946579447808 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:06:49,327 [INFO] DataIngestion 10581 137946579447808 Stored standardized data for manufacturer: airveda
+2024-06-11 05:07:03,710 [INFO] DataIngestion 10723 123653448876032 Processing devices for manufacturer: airveda
+2024-06-11 05:07:04,392 [INFO] AirVeda 10723 123653448876032 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:07:04,837 [INFO] AirVeda 10723 123653448876032 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:07,280 [INFO] AirVeda 10723 123653448876032 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:09,866 [INFO] AirVeda 10723 123653448876032 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:15,604 [INFO] DataIngestion 10723 123653448876032 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:07:15,623 [INFO] DataIngestion 10723 123653448876032 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:07:15,623 [INFO] DataIngestion 10723 123653448876032 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:07:16,671 [INFO] DataIngestion 10723 123653448876032 Stored standardized data for manufacturer: airveda
+2024-06-11 05:07:26,600 [INFO] DataIngestion 10873 130854518898688 Processing devices for manufacturer: airveda
+2024-06-11 05:07:27,327 [INFO] AirVeda 10873 130854518898688 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:07:27,637 [INFO] AirVeda 10873 130854518898688 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:30,320 [INFO] AirVeda 10873 130854518898688 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:33,001 [INFO] AirVeda 10873 130854518898688 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:07:40,169 [INFO] DataIngestion 10873 130854518898688 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:07:40,190 [INFO] DataIngestion 10873 130854518898688 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:07:40,190 [INFO] DataIngestion 10873 130854518898688 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:07:42,020 [INFO] DataIngestion 10873 130854518898688 Stored standardized data for manufacturer: airveda
+2024-06-11 05:08:06,520 [INFO] DataIngestion 11079 131988870242304 Processing devices for manufacturer: airveda
+2024-06-11 05:08:07,164 [INFO] AirVeda 11079 131988870242304 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:08:07,693 [INFO] AirVeda 11079 131988870242304 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:08:10,574 [INFO] AirVeda 11079 131988870242304 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:08:12,979 [INFO] AirVeda 11079 131988870242304 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:08:19,528 [INFO] DataIngestion 11079 131988870242304 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:08:19,556 [INFO] DataIngestion 11079 131988870242304 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:08:19,556 [INFO] DataIngestion 11079 131988870242304 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:08:21,370 [INFO] DataIngestion 11079 131988870242304 Stored standardized data for manufacturer: airveda
+2024-06-11 05:08:58,982 [INFO] DataIngestion 11561 127606619590656 Processing devices for manufacturer: airveda
+2024-06-11 05:08:59,517 [INFO] AirVeda 11561 127606619590656 Start time: 2024-06-11 04:45:00, End time: 2024-06-11 05:00:00
+2024-06-11 05:08:59,802 [INFO] AirVeda 11561 127606619590656 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:09:01,875 [INFO] AirVeda 11561 127606619590656 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:09:04,126 [INFO] AirVeda 11561 127606619590656 Processing parameters: ['so2Voltages', 'no2Voltages', 'ozoneVoltages', 'coVoltages', 'pm25_base', 'pm10_base', 'o4', 'so10']
+2024-06-11 05:09:08,929 [INFO] DataIngestion 11561 127606619590656 Fetched data:                   time  ...   device_id
+0  2024-06-11 04:45:24  ...  1210230117
+1  2024-06-11 04:45:54  ...  1210230117
+2  2024-06-11 04:46:25  ...  1210230117
+3  2024-06-11 04:46:55  ...  1210230117
+4  2024-06-11 04:47:25  ...  1210230117
+..                 ...  ...         ...
+24 2024-06-11 04:57:49  ...  1210230137
+25 2024-06-11 04:58:19  ...  1210230137
+26 2024-06-11 04:58:49  ...  1210230137
+27 2024-06-11 04:59:19  ...  1210230137
+28 2024-06-11 04:59:49  ...  1210230137
+
+[89 rows x 12 columns]
+2024-06-11 05:09:08,939 [INFO] DataIngestion 11561 127606619590656 Standardized DataFrame:                   time  pm2_5_r  pm10_r  ... no2_nv  o3_nv  co_nv
+0  2024-06-11 04:45:24        5       7  ...    -14   15.0    112
+1  2024-06-11 04:45:54        6       9  ...    -17   16.0    110
+2  2024-06-11 04:46:25        6      10  ...    -18   13.0    118
+3  2024-06-11 04:46:55        7       7  ...    -16   16.0    108
+4  2024-06-11 04:47:25        4       5  ...    -17   13.0     90
+..                 ...      ...     ...  ...    ...    ...    ...
+24 2024-06-11 04:57:49        3       3  ...    -19   -4.0    128
+25 2024-06-11 04:58:19        2       2  ...     -4    4.0     82
+26 2024-06-11 04:58:49        3       3  ...     -5   -3.0     99
+27 2024-06-11 04:59:19        4       4  ...     -4    4.0    161
+28 2024-06-11 04:59:49        5       8  ...      1    8.0    157
+
+[89 rows x 8 columns]
+2024-06-11 05:09:08,949 [INFO] DataIngestion 11561 127606619590656 Missing data dictionary: {<db_DEVICE: db_DEVICE object (1210230117)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230136)>: [{'o4': 200}, {'so10': 200}], <db_DEVICE: db_DEVICE object (1210230137)>: [{'o4': 200}, {'so10': 200}]}
+2024-06-11 05:09:10,251 [INFO] DataIngestion 11561 127606619590656 Stored standardized data for manufacturer: airveda
