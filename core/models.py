@@ -203,7 +203,9 @@ class db_DEVICE(models.Model):
     @staticmethod
     def getAllDevice():
         return db_DEVICE.objects.all()
-    
+    @staticmethod
+    def get_active_devices():
+        return db_DEVICE.objects.filter(status=1)
     
     
 class db_Parameter(models.Model):

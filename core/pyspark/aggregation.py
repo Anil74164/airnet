@@ -1,6 +1,4 @@
 
-
-
 import DjangoSetup
 from core.models import db_std_data, db_AirNet_Aggregated
 from datetime import datetime, timedelta 
@@ -19,15 +17,21 @@ def main():
         data = list(queryset)
         df = pd.DataFrame(data)
         
-        selected_cols1 = ['pm2_5_r','pm10_r','so2_nv','no2_nv','o3_nv','co_nv','device_id_id','time']
-        selected_df1 = df[selected_cols1]
+        if len(df)>0:
+            selected_cols1 = ['pm2_5_r','pm10_r','so2_nv','no2_nv','o3_nv','co_nv','device_id_id','time']
+            selected_df1 = df[selected_cols1]
+            counts = len(selected_df1)
+            print(counts)
+            avg_df = selected_df1.groupby(['device_id_id']).mean().reset_index()
         
-        avg_df = selected_df1.groupby(['device_id_id']).mean().reset_index()
-        
-        avg_df['start_time'] = df.groupby('device_id_id')['time'].transform('min')
-        avg_df['end_time'] = df.groupby('device_id_id')['time'].transform('max')
-        
-        store_aggregated_data(avg_df)
+            avg_df['start_time'] = df.groupby('device_id_id')['time'].transform('min')
+            avg_df['end_time'] = df.groupby('device_id_id')['time'].transform('max')
+            if counts<=11:
+                avg_df=avg_df[['start_time','end_time','device_id_id']]
+
+            store_aggregated_data(avg_df)
+        else:
+            print(f"There is no data for {start_time} and {end_time}")
         
     
     except Exception as e:

@@ -9,6 +9,7 @@ import DjangoSetup
 from RawData.models import db_AirNet_Raw_Response
 from core.models import db_missing_data, db_std_data, db_DEVICE,db_manufacturer_calibrated_data
 logger=logging.getLogger('workspace')
+import pytz
 
 class AirnetDriverAbs(ABC):
     _restprotocol = {"prefix": "https", "hostname": "", "port": "", "path": ""}
@@ -34,7 +35,7 @@ class AirnetDriverAbs(ABC):
         self.manufacturer_obj = manufacturer_obj
 
     @abstractmethod
-    def preprocess(self, deviceObj):
+    def preprocess(self,start,end,deviceObj):
         pass
 
     def restGET(self, request, deviceObj):
@@ -51,12 +52,12 @@ class AirnetDriverAbs(ABC):
         except Exception as e:
             logger.error(f"Error in restPOST: {e}")
             raise
-
-    def fetch(self, deviceObj=None):
+    # TODO: START AND END TIME, PARAMETER
+    def fetch(self,start,end,param=None, deviceObj=None):
         try:
             print("fetch")
-            self.preprocess(deviceObj)
-            self.process(deviceObj)
+            self.preprocess(deviceObj=deviceObj,start=start,end=end)
+            self.process(deviceObj=deviceObj,dag_param=param)
             self.postprocess(deviceObj)
             self.store_missing_data_info()
             return self._df_all
@@ -69,7 +70,10 @@ class AirnetDriverAbs(ABC):
         pass
 
     @abstractmethod
-    def process(self, deviceObj):
+    def process(self, deviceObj,dag_param):
+        pass
+    @abstractmethod
+    def standardize_df(self):
         pass
 
     @abstractmethod
@@ -147,6 +151,7 @@ class AirnetDriverAbs(ABC):
 
     def store_std_data(self):
         try:
+            
             for _, row in self._df_all.iterrows():
                 device_obj = db_DEVICE.objects.get(device_id=row['device_id'])
                 del row['device_id']
@@ -164,6 +169,6 @@ class AirnetDriverAbs(ABC):
                      **row
                 ).save()
         except Exception as e:
-            logger.error(f"Error in store_std_data: {e}")
+            logger.warning(f"Error in store_std_data: {e}")
             raise
     

@@ -10,6 +10,7 @@ from pyspark.sql.functions import col, explode, lit, struct
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, ArrayType
 from RawData.models import db_AirNet_Raw, db_AirNet_Raw_Response
 import DjangoSetup
+import pytz
 
 spark = SparkSession.builder \
         .appName("Django Spark Integration") \
@@ -48,7 +49,7 @@ class AirVeda(AirnetDriverAbs):
         
 
 
-    def preprocess(self, deviceObj):
+    def preprocess(self,start,end,deviceObj):
         print("preprocess")
         try:
             self._authentication = {
@@ -63,22 +64,37 @@ class AirVeda(AirnetDriverAbs):
             self.id_token = response_data['idToken']
             self.refresh_token = response_data.get('refreshToken')
             self._expiry_duration = response_data['expiresIn']
-            self.end_time = datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0)
-            self.start_time = self.end_time - timedelta(minutes=15)
+            # end = datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0)
+            # start = end - timedelta(minutes=15) 
+            self.start_time=start
+            self.end_time=end
+            print(self.start_time)
+            print(self.end_time)
+            # self.start_time = self.start_time.astimezone(pytz.utc)
+            # self.end_time = self.end_time.astimezone(pytz.utc)
+            print(self.start_time)
+            print(self.end_time)
+            
             logger.info(f"Start time: {self.start_time}, End time: {self.end_time}")
         except Exception as e:
             logger.error(f"Error in preprocess: {e}")
 
-    def process(self, deviceObj):
+    def process(self, deviceObj,dag_param):
         print("process")
-        
+        print(deviceObj)
+        print(dag_param)
         for dev in deviceObj:
             self.fetch_cal(deviceObj=dev)
             self.device_id = dev.device_id
-            paramListStr = dev.parameters
-            paramList = paramListStr.split(",")
+            if len(dag_param)!=0:
+                paramList=dag_param
+            else:
+                paramListStr = dev.parameters
+                paramList = paramListStr.split(",")
+
             paramList.append("o4")
             paramList.append("so10")
+            print(paramList)
             logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
             self.time_added = False
@@ -96,7 +112,9 @@ class AirVeda(AirnetDriverAbs):
                     '_headers': {'Authorization': 'Bearer ' + self.id_token},
                     '_url': self.manufacturer_obj.data_url
                 }
+                
                 response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
+
                 self._http_response = response
                 self.creating_df(dev, req)
 
@@ -120,6 +138,8 @@ class AirVeda(AirnetDriverAbs):
 
     def creating_df(self, deviceObj, request):
         try:
+
+            print("inside df create")
             self.insert_raw_response(req_url=request['_url'], manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
             df = pd.DataFrame(self._http_response.json())
             df = df['readings'].apply(pd.Series)
@@ -137,6 +157,7 @@ class AirVeda(AirnetDriverAbs):
             df.set_index('time', inplace=True)
             df.reset_index(drop=True, inplace=True)
             self._df_list.append(df)
+            print(df)
         except Exception as e:
             logger.error(f"Error in creating_df: {e}")
 
@@ -146,6 +167,8 @@ class AirVeda(AirnetDriverAbs):
                 self._df_all = pd.concat(self._df_all_list)
             else:
                 self._df_all = pd.DataFrame()
+
+        
 
         except Exception as e:
             logger.error(f"Error in postprocess: {e}")
@@ -179,10 +202,11 @@ class AirVeda(AirnetDriverAbs):
         except Exception as e:
             logger.error(f"Error in handleDF: {e}")
 
-    def standardization_df(self):
+    def standardize_df(self):
         try:
             self.get_ColumnReplacement()
             self.handleDF()
+            self.store_std_data()
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
 
