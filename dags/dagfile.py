@@ -1,10 +1,13 @@
-
 import time
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils.task_group import TaskGroup
 from datetime import datetime, timedelta
 import os
+import logging
+ 
+logger=logging.getLogger('workspace')
+ 
  
 # Define the timeit decorator
 def timeit(func):
@@ -13,12 +16,12 @@ def timeit(func):
         start_time_str = time.strftime('%Y%m%d:%H%M%S', time.localtime(start))
         result = func(*args, **kwargs)
         end = time.time()
-        print(f"{start_time_str} {func.__name__} took {str((end - start) * 1000)} milliseconds")
+        logger.info(f"{start_time_str} {func.__name__} took {str((end - start) * 1000)} milliseconds")
         return result
     return wrapper
  
 @timeit
-def execute_spark_program(**kwargs):
+def dataingestion_program(**kwargs):
     try:
         now = datetime.now()
         rounded_minute = (now.minute // 15) * 15
@@ -32,24 +35,24 @@ def execute_spark_program(**kwargs):
         result = os.system(command)
         
         if result != 0:
-            print(f"Command failed with exit code {result}")
+            logger.error(f"Command failed with exit code {result}")
         else:
-            print("Command executed successfully")
+            logger.info("Command executed successfully")
     except OSError as e:
-        print(f"OSError: {e.strerror}")
+        logger.error(f"OSError: {e.strerror}")
  
 @timeit
-def aggregation(**kwargs):
+def aggregation_program(**kwargs):
     try:
         command = "spark-submit --master local[*] ./core/pyspark/aggregation.py"
         result = os.system(command)
         
         if result != 0:
-            print(f"Command failed with exit code {result}")
+            logger.error(f"Command failed with exit code {result}")
         else:
-            print("Command executed successfully")
+            logger.info("Command executed successfully")
     except OSError as e:
-        print(f"OSError: {e.strerror}")
+        logger.error(f"OSError: {e.strerror}")
  
 default_args = {
     'owner': 'airflow',
@@ -62,22 +65,22 @@ default_args = {
 }
  
 dag = DAG(
-    'main_data_processing_dag',
+    'data_fetch_dag',
     default_args=default_args,
-    description='A DAG for data processing',
+    description='A DAG for data fetching',
     schedule_interval=timedelta(minutes=15),  # Run every 15 minute
 )
  
 # Task to execute the PySpark job
-execute_pyspark_job_task = PythonOperator(
-    task_id='execute_pyspark_job',
-    python_callable=execute_spark_program,
+dataingestion_task = PythonOperator(
+    task_id='DataIngestion',
+    python_callable=dataingestion_program,
     dag=dag,
 )
  
 aggregation_task = PythonOperator(
-        task_id='aggregation',
-        python_callable=aggregation,
+        task_id='Aggregation',
+        python_callable=aggregation_program,
         dag=dag,
 )
-execute_pyspark_job_task >> aggregation_task
+dataingestion_task >> aggregation_task 
