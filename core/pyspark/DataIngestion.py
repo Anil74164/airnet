@@ -8,6 +8,7 @@ import DjangoSetup
 from core.models import db_DEVICE, db_MANUFACTURER
 from core.Drivers.AirVeda import AirVeda
 from core.Drivers.DriverList import driverList as drivers
+from core.Drivers.Respirer import respirer
 import argparse
 from datetime import datetime,timedelta
 import pytz
@@ -70,7 +71,6 @@ def get_device(deviceList):
 def main_fetch(args=None):
     try:
         if args.start and args.end:
-
             ist_timezone = pytz.timezone("Asia/Kolkata")
             start= ist_timezone.localize(args.start)
             start = start.astimezone(pytz.utc)
@@ -82,6 +82,7 @@ def main_fetch(args=None):
         else:
             end = datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0)
             start = end - timedelta(minutes=15)
+            print(start," ",end)
         deviceList = []
         paramList = []
         print(args) 
@@ -99,19 +100,22 @@ def main_fetch(args=None):
 
         device_Dict = fetchDeviceDict(data)
 
-        print(drivers)
+      
         print(device_Dict)
         for i in device_Dict.keys():
             try:
                 logger.info(f"Processing devices for manufacturer: {i.name}")
-                print(i.name)
+               
                 obj = drivers[i.name](manufacturer_obj=i)
-                print(obj)
+                print(obj)  
+                print("sucess")
                 da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
                 print(da)
+                
                 logger.info(f"Fetched data: {da}")
 
                 obj.standardize_df()
+                print(obj._missing_data_dict)
                 logger.info(f"Standardized DataFrame: {obj._df_all}")
                 logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
                 print(obj._cal_df)

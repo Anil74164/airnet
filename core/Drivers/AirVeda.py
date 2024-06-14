@@ -122,6 +122,8 @@ class AirVeda(AirnetDriverAbs):
                 self._df = pd.concat(self._df_list, axis=1)
                 self._df['device_id'] = dev.device_id
                 self._df_all_list.append(self._df)
+               
+               
             else:
                 logger.warning(f"No data fetched for device {dev.device_id}")
         if self._cal_df_list:
@@ -140,7 +142,7 @@ class AirVeda(AirnetDriverAbs):
         try:
 
             print("inside df create")
-            self.insert_raw_response(req_url=request['_url'], manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
+            self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id, manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
             df = pd.DataFrame(self._http_response.json())
             df = df['readings'].apply(pd.Series)
 
@@ -157,14 +159,14 @@ class AirVeda(AirnetDriverAbs):
             df.set_index('time', inplace=True)
             df.reset_index(drop=True, inplace=True)
             self._df_list.append(df)
-            print(df)
+           
         except Exception as e:
             logger.error(f"Error in creating_df: {e}")
 
     def postprocess(self, deviceObj):
         try:
             if self._df_all_list:
-                self._df_all = pd.concat(self._df_all_list)
+                self._df_all = pd.concat(self._df_all_list) 
             else:
                 self._df_all = pd.DataFrame()
 
@@ -206,7 +208,7 @@ class AirVeda(AirnetDriverAbs):
         try:
             self.get_ColumnReplacement()
             self.handleDF()
-            self.store_std_data()
+            
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
 
@@ -230,7 +232,7 @@ class AirVeda(AirnetDriverAbs):
         cal_df=pd.DataFrame(self._cal_http_response)
         cal_df=cal_df['data'].apply(pd.Series)
         
-        cal_df['device_id'] = deviceObj
+        cal_df['device_id'] = deviceObj.device_id
         self._cal_df_list.append(cal_df)
 
 

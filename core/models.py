@@ -449,4 +449,12 @@ class db_std_data(models.Model):
     status = models.IntegerField(default=0)
     time = models.DateTimeField()
     
-    
+class db_calibration_models(models.Model):
+    id = models.AutoField(primary_key=True)
+    method= models.CharField(max_length=255,null=True)
+    parameters= models.CharField(max_length=1000,null=True)
+    device_id = models.ForeignKey(db_DEVICE, on_delete=models.CASCADE)
+    file_name1= models.CharField(max_length=1000,null=True)
+    dt_time = models.DateTimeField()
+    status = models.IntegerField(default=0)
+    version = models.IntegerField(default=0)

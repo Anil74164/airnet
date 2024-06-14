@@ -27,18 +27,19 @@ class AirnetDriverAbs(ABC):
     time_added = False
     _df_all = None
     _df_all_list = []
-    _missing_data_dict = {}
+    
     _cal_df=None
 
     @abstractmethod
     def __init__(self, manufacturer_obj):
         self.manufacturer_obj = manufacturer_obj
+        self._missing_data_dict = {}
 
     @abstractmethod
     def preprocess(self,start,end,deviceObj):
         pass
 
-    def restGET(self, request, deviceObj):
+    def restGET(self, deviceObj):
         try:
             response = requests.get(self._url)
             return response
@@ -55,7 +56,7 @@ class AirnetDriverAbs(ABC):
     # TODO: START AND END TIME, PARAMETER
     def fetch(self,start,end,param=None, deviceObj=None):
         try:
-            print("fetch")
+            print("fetch",start,end)
             self.preprocess(deviceObj=deviceObj,start=start,end=end)
             self.process(deviceObj=deviceObj,dag_param=param)
             self.postprocess(deviceObj)
@@ -126,7 +127,7 @@ class AirnetDriverAbs(ABC):
             logger.error(f"Error in o3_cov: {e}")
             raise
 
-    def insert_raw_response(self, req_url, manufacturer_name, param):
+    def insert_raw_response(self, req_url,dev_id, manufacturer_name, param):
         try:
             db_AirNet_Raw_Response.objects.create(
                 request_url=req_url, manufacturer=manufacturer_name,
@@ -165,8 +166,10 @@ class AirnetDriverAbs(ABC):
     def store_manufacturer_cal_data(self):
         try:
             for _, row in self._cal_df.iterrows():
+                device_obj = db_DEVICE.objects.get(device_id=row['device_id'])
+                del row['device_id']
                 db_manufacturer_calibrated_data.objects.create(
-                     **row
+                     device_id=device_obj,**row
                 ).save()
         except Exception as e:
             logger.warning(f"Error in store_std_data: {e}")
