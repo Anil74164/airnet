@@ -404,7 +404,9 @@ class db_missing_data(models.Model):
     created_dt = models.DateTimeField(auto_now_add=True)
     req_start_dt = models.DateTimeField()
     req_end_dt = models.DateTimeField()
-    parameter=models.CharField(max_length=255)
+    parameter=models.CharField(max_length=255,null=True)
+    error_code=models.CharField(max_length=255,null=True)
+    
     device_id = models.ForeignKey(db_DEVICE, on_delete=models.CASCADE)
     status = models.IntegerField(default=0)
     received_dt=models.DateTimeField(null=True)

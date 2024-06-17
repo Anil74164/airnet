@@ -33,7 +33,7 @@ user = db_User.objects.get(id=1)  # Assuming there's a user with primary key 1
 # # Save the manufacturer instance to the database
 # manufacturer.save()
 device_model = db_DeviceModel.objects.get(id=1)  # Assuming there's a device model with primary key 1
-manufacturer = db_MANUFACTURER.objects.get(id=4)
+manufacturer = db_MANUFACTURER.objects.get(id=5)
 print(manufacturer)  # Assuming there's a manufacturer with primary key 1
 vendor = db_VENDOR.objects.get(id=1)  # Assuming there's a vendor with primary key 1
 location = db_LOCATION.objects.get(id=1)  # Assuming there's a location with primary key 1
@@ -94,8 +94,8 @@ network = db_Network.objects.get(id=1)  # Assuming there's a network with primar
 
 
 # manufacturer = db_MANUFACTURER(
-#         id=4
-#     name="sensit_ramp",
+#         id=5,
+#     name="sensit_ramp_demo",
 #     auth_url='https://api.sensitconnect.net/users/signin',
 #     api_or_pass="Cstep123!@#",
 #     data_url="https://api.sensitconnect.net/sensors-data/getRAMPDeviceLogBetweenTimePeriod",
@@ -112,45 +112,9 @@ network = db_Network.objects.get(id=1)  # Assuming there's a network with primar
 #     modified_dt=timezone.now(),  # Current timestamp
 #     created_by=user,  # Linking to the user who created this record
 #     modified_by=user  # Linking to the same user who modified this record
-# )
+# ).save()
 
 
-# d_l=[2000,2001]
-# # d_l=[1168,1170,1169,1171,1172]
-# for i in d_l:
-#         device = db_DEVICE(
-#         device_id=i,
-#         serial_no="ABC123",
-#         mac="00:11:22:33:44:55",
-#         sim_manufacturer="jio",
-#         sim_number="1234567890",
-#         address="123 Example St, City, Country",
-#         altitude=123.456,
-#         install_dt=timezone.now(),
-#         approved_by="John Doe",
-#         remarks="Example remarks",
-#         notes="Example notes",
-#         status=1,  # Assuming status 1 represents active
-#         land_use="Residential",
-#         device_model_id=device_model,
-#         manufacturer_id=manufacturer,
-#         vendor_id=vendor,
-#         locations_id=location,
-#         site_id=site,
-#         network_id=network,
-#         create_dt=timezone.now(),  # Current timestamp
-#         modified_dt=timezone.now(),  # Current timestamp
-#         created_by=user,  # Linking to the user who created this record
-#         modified_by=user  # Linking to the same user who modified this record
-#         )
-
-#         # Save the device instance to the database
-#         device.save()
-
-
-d_l= ["2CF4328C5D16", "2CF4328C5DBD", "4C752508CE02","807D3A3774F9","8CAAB5C89083"]
-
-# d_l= ["3C6105F42DC1", "CC50E36112FA", "2CF43219D002", "98F4ABB49814", "4C11AE13AFF5"]
 d_l=[2000,2001]
 # # d_l=[1168,1170,1169,1171,1172]
 for i in d_l:
@@ -166,7 +130,7 @@ for i in d_l:
         approved_by="John Doe",
         remarks="Example remarks",
         notes="Example notes",
-        status=0,  # Assuming status 1 represents active
+        status=1,  # Assuming status 1 represents active
         land_use="Residential",
         device_model_id=device_model,
         manufacturer_id=manufacturer,
@@ -182,3 +146,39 @@ for i in d_l:
 
         # Save the device instance to the database
         device.save()
+
+
+# d_l= ["2CF4328C5D16", "2CF4328C5DBD", "4C752508CE02","807D3A3774F9","8CAAB5C89083"]
+
+# # d_l= ["3C6105F42DC1", "CC50E36112FA", "2CF43219D002", "98F4ABB49814", "4C11AE13AFF5"]
+# d_l=[2000,2001]
+# # # d_l=[1168,1170,1169,1171,1172]
+# for i in d_l:
+#         device = db_DEVICE(
+#         device_id=i,
+#         serial_no="ABC123",
+#         mac="00:11:22:33:44:55",
+#         sim_manufacturer="jio",
+#         sim_number="1234567890",
+#         address="123 Example St, City, Country",
+#         altitude=123.456,
+#         install_dt=timezone.now(),
+#         approved_by="John Doe",
+#         remarks="Example remarks",
+#         notes="Example notes",
+#         status=0,  # Assuming status 1 represents active
+#         land_use="Residential",
+#         device_model_id=device_model,
+#         manufacturer_id=manufacturer,
+#         vendor_id=vendor,
+#         locations_id=location,
+#         site_id=site,
+#         network_id=network,
+#         create_dt=timezone.now(),  # Current timestamp
+#         modified_dt=timezone.now(),  # Current timestamp
+#         created_by=user,  # Linking to the user who created this record
+#         modified_by=user  # Linking to the same user who modified this record
+#         )
+
+#         # Save the device instance to the database
+#         device.save()

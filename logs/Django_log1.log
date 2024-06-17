@@ -1,0 +1,570 @@
+2024-06-14 14:49:58,172 [INFO] DataIngestion 7144 132315725565952 Processing devices for manufacturer: sensit_ramp
+2024-06-14 14:50:17,230 [ERROR] sensit_ramp 7144 132315725565952 Error in preprocess: HTTPSConnectionPool(host='api.sensitconnect.net', port=443): Max retries exceeded with url: /users/signin (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x785710a9ec50>: Failed to resolve 'api.sensitconnect.net' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:50:17,230 [ERROR] AirnetDriverAbs 7144 132315725565952 Error in fetch: 'NoneType' object has no attribute 'strftime'
+2024-06-14 14:50:17,230 [ERROR] DataIngestion 7144 132315725565952 Error processing devices for manufacturer sensit_ramp: 'NoneType' object has no attribute 'strftime'
+2024-06-14 14:50:17,230 [INFO] DataIngestion 7144 132315725565952 Processing devices for manufacturer: respirer
+2024-06-14 14:50:17,231 [INFO] Respirer 7144 132315725565952 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 14:50:34,704 [ERROR] AirnetDriverAbs 7144 132315725565952 Error in restGET: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x785710a9f9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:50:34,704 [ERROR] AirnetDriverAbs 7144 132315725565952 Error in fetch: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x785710a9f9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:50:34,704 [ERROR] DataIngestion 7144 132315725565952 Error processing devices for manufacturer respirer: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x785710a9f9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:51:14,331 [INFO] DataIngestion 7283 138441236586496 Processing devices for manufacturer: sensit_ramp
+2024-06-14 14:51:29,787 [ERROR] sensit_ramp 7283 138441236586496 Error in preprocess: HTTPSConnectionPool(host='api.sensitconnect.net', port=443): Max retries exceeded with url: /users/signin (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7de94592ac20>: Failed to resolve 'api.sensitconnect.net' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:51:29,788 [ERROR] AirnetDriverAbs 7283 138441236586496 Error in fetch: 'NoneType' object has no attribute 'strftime'
+2024-06-14 14:51:29,788 [ERROR] DataIngestion 7283 138441236586496 Error processing devices for manufacturer sensit_ramp: 'NoneType' object has no attribute 'strftime'
+2024-06-14 14:51:29,788 [INFO] DataIngestion 7283 138441236586496 Processing devices for manufacturer: respirer
+2024-06-14 14:51:29,788 [INFO] Respirer 7283 138441236586496 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 14:51:47,153 [ERROR] AirnetDriverAbs 7283 138441236586496 Error in restGET: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7de94592b9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:51:47,153 [ERROR] AirnetDriverAbs 7283 138441236586496 Error in fetch: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7de94592b9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 14:51:47,154 [ERROR] DataIngestion 7283 138441236586496 Error processing devices for manufacturer respirer: HTTPConnectionPool(host='atmos.urbansciences.in', port=80): Max retries exceeded with url: /adp/v4/getDeviceDataParam/imei/3C6105F42DC1/params/no2op1,no2op2,coop1,coop2,o3op1,o3op2,so2op1,so2op2,pm2.5cnc,pm10cnc,temp,humidity,opc_r2_pm1,opc_r2_pm25,opc_r2_pm10/startdate/2024-06-14%2014:30:00/enddate/2024-06-14%2014:45:00/ts/mm/avg/1/api/KLaP6Z6a7B?gaps=1&gap_value=NaN&json=1 (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x7de94592b9a0>: Failed to resolve 'atmos.urbansciences.in' ([Errno -3] Temporary failure in name resolution)"))
+2024-06-14 15:02:48,108 [INFO] DataIngestion 7794 126789571596288 Processing devices for manufacturer: sensit_ramp
+2024-06-14 15:05:03,933 [INFO] sensit_ramp 7794 126789571596288 Start time: 2024-06-14 14:45:00, End time: 2024-06-14 15:00:00
+2024-06-14 15:16:20,628 [INFO] DataIngestion 7794 126789571596288 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-14T14:45:56.000Z       1168        26.50              65.24  ...  12.91128  77.68380     3.96    4.83
+1   2024-06-14T14:46:56.000Z       1168        26.44              65.33  ...  12.91128  77.68380     3.96    4.83
+2   2024-06-14T14:47:57.000Z       1168        26.42              65.38  ...  12.91128  77.68380     3.96    4.83
+3   2024-06-14T14:48:53.000Z       1168        26.41              65.42  ...  12.91128  77.68380     3.96    4.83
+4   2024-06-14T14:49:53.000Z       1168        26.40              65.42  ...  12.91128  77.68380     3.96    3.22
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+10  2024-06-14T14:55:27.000Z       1172        25.90              59.62  ...  13.10185  77.63149     3.92    6.44
+11  2024-06-14T14:56:31.000Z       1172        25.90              63.33  ...  13.10185  77.63149     3.91    4.83
+12  2024-06-14T14:57:26.000Z       1172        25.90              64.42  ...  13.10185  77.63149     3.92    4.83
+13  2024-06-14T14:58:27.000Z       1172        25.90              64.86  ...  13.10185  77.63149     3.92    4.83
+14  2024-06-14T14:59:27.000Z       1172        25.90              65.07  ...  13.10185  77.63149     3.92    6.44
+
+[75 rows x 39 columns]
+2024-06-14 15:16:20,681 [INFO] DataIngestion 7794 126789571596288 Standardized DataFrame:         co    no2    so2    o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   857.54  38.71  44.62  1.68  637.70    616  ...  37.28     0.75      1.05      1.06  2024-06-14T14:45:56.000Z       1168
+1   871.43  36.53  42.42  2.54  640.14    625  ...  36.90     0.86      1.66      1.98  2024-06-14T14:46:56.000Z       1168
+2   886.72  35.93  43.66  2.50  641.63    639  ...  38.58     1.00      1.25      1.26  2024-06-14T14:47:57.000Z       1168
+3   864.82  35.78  42.80  3.18  639.45    616  ...  36.39     0.77      1.48      1.93  2024-06-14T14:48:53.000Z       1168
+4   848.13  36.37  40.17  1.88  640.45    600  ...  37.33     0.78      1.53      1.69  2024-06-14T14:49:53.000Z       1168
+..     ...    ...    ...   ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+10  645.92  42.76  51.31 -6.34  682.53    525  ...  43.37     4.31     11.64     28.03  2024-06-14T14:55:27.000Z       1172
+11  641.85  41.30  58.96 -6.36  681.18    524  ...  42.15     4.47     15.33     52.00  2024-06-14T14:56:31.000Z       1172
+12  637.62  40.60  56.80 -5.92  686.13    518  ...  42.53     5.19     15.47     43.31  2024-06-14T14:57:26.000Z       1172
+13  688.24  41.88  60.86 -5.58  688.04    570  ...  42.92     5.47     19.95    101.84  2024-06-14T14:58:27.000Z       1172
+14  724.67  41.43  63.27 -6.53  689.09    606  ...  44.06     4.61     13.41     54.39  2024-06-14T14:59:27.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-14 15:16:20,681 [INFO] DataIngestion 7794 126789571596288 Missing data dictionary: {}
+2024-06-14 15:16:21,315 [INFO] DataIngestion 7794 126789571596288 Stored standardized data for manufacturer: sensit_ramp
+2024-06-14 15:16:21,315 [INFO] DataIngestion 7794 126789571596288 Processing devices for manufacturer: respirer
+2024-06-14 15:16:21,316 [INFO] Respirer 7794 126789571596288 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 15:20:53,146 [INFO] Respirer 7794 126789571596288 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 15:25:25,836 [ERROR] Respirer 7794 126789571596288 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-14 15:25:25,838 [INFO] Respirer 7794 126789571596288 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 15:26:06,284 [ERROR] Respirer 7794 126789571596288 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-14 15:26:06,284 [INFO] Respirer 7794 126789571596288 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 15:26:08,649 [INFO] Respirer 7794 126789571596288 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-14 15:26:11,147 [INFO] DataIngestion 7794 126789571596288 Fetched data:                           dt_time no2op1 no2op2  coop1  coop2  ... humidity opc_r2_pm1 opc_r2_pm25 opc_r2_pm10      deviceid
+0   Fri, 14 Jun 2024 15:00:00 GMT  234.0  244.0  380.0  289.0  ...     53.4        2.0         6.0        42.0  3C6105F42DC1
+1   Fri, 14 Jun 2024 15:01:00 GMT  234.0  244.0  381.0  288.0  ...     53.9        1.0         6.0        32.0  3C6105F42DC1
+2   Fri, 14 Jun 2024 15:02:00 GMT  235.0  244.0  517.0  292.0  ...     54.1        1.0         7.0        42.0  3C6105F42DC1
+3   Fri, 14 Jun 2024 15:03:00 GMT  235.0  244.0  404.0  290.0  ...     54.5        1.0         7.0        39.0  3C6105F42DC1
+4   Fri, 14 Jun 2024 15:04:00 GMT  235.0  244.0  434.0  288.0  ...     53.8        1.0         6.0        23.0  3C6105F42DC1
+5   Fri, 14 Jun 2024 15:05:00 GMT  235.0  244.0  414.0  288.0  ...     54.3        2.0         6.0        20.0  3C6105F42DC1
+6   Fri, 14 Jun 2024 15:06:00 GMT  235.0  244.0  402.0  289.0  ...     54.4        1.0         6.0        22.0  3C6105F42DC1
+7   Fri, 14 Jun 2024 15:07:00 GMT  234.0  244.0  401.0  290.0  ...     53.8        1.0         7.0        22.0  3C6105F42DC1
+8   Fri, 14 Jun 2024 15:08:00 GMT  234.0  244.0  369.0  288.0  ...     54.1        1.0         6.0        26.0  3C6105F42DC1
+9   Fri, 14 Jun 2024 15:09:00 GMT  233.0  244.0  507.0  292.0  ...     54.6        1.0         6.0        20.0  3C6105F42DC1
+10  Fri, 14 Jun 2024 15:10:00 GMT  234.0  244.0  393.0  291.0  ...     54.8        1.0         6.0        18.0  3C6105F42DC1
+11  Fri, 14 Jun 2024 15:11:00 GMT  234.0  244.0  374.0  290.0  ...     55.5        2.0         7.0        25.0  3C6105F42DC1
+12  Fri, 14 Jun 2024 15:12:00 GMT  234.0  245.0  425.0  290.0  ...     55.0        1.0         6.0        46.0  3C6105F42DC1
+13  Fri, 14 Jun 2024 15:13:00 GMT  234.0  244.0  393.0  288.0  ...     54.5        1.0         6.0        22.0  3C6105F42DC1
+14  Fri, 14 Jun 2024 15:14:00 GMT    NaN    NaN    NaN    NaN  ...      NaN        NaN         NaN         NaN  3C6105F42DC1
+15  Fri, 14 Jun 2024 15:15:00 GMT    NaN    NaN    NaN    NaN  ...      NaN        NaN         NaN         NaN  3C6105F42DC1
+0   Fri, 14 Jun 2024 15:00:00 GMT  216.0  235.0  346.0  290.0  ...      0.0        1.0         6.0        39.0  98F4ABB49814
+1   Fri, 14 Jun 2024 15:01:00 GMT  216.0  235.0  345.0  291.0  ...      0.0        1.0         6.0        22.0  98F4ABB49814
+2   Fri, 14 Jun 2024 15:02:00 GMT  216.0  235.0  344.0  291.0  ...      0.0        1.0         6.0        27.0  98F4ABB49814
+3   Fri, 14 Jun 2024 15:03:00 GMT  216.0  235.0  349.0  291.0  ...      0.0        2.0         7.0        37.0  98F4ABB49814
+4   Fri, 14 Jun 2024 15:04:00 GMT  216.0  235.0  350.0  291.0  ...      0.0        1.0         6.0        23.0  98F4ABB49814
+5   Fri, 14 Jun 2024 15:05:00 GMT  214.0  235.0  351.0  291.0  ...      0.0        2.0         6.0        27.0  98F4ABB49814
+6   Fri, 14 Jun 2024 15:06:00 GMT  216.0  235.0  351.0  291.0  ...      0.0        1.0         7.0        24.0  98F4ABB49814
+7   Fri, 14 Jun 2024 15:07:00 GMT  216.0  235.0  359.0  292.0  ...      0.0        2.0         7.0        21.0  98F4ABB49814
+8   Fri, 14 Jun 2024 15:08:00 GMT  217.0  235.0  370.0  292.0  ...      0.0        2.0         7.0        32.0  98F4ABB49814
+9   Fri, 14 Jun 2024 15:09:00 GMT  216.0  235.0  368.0  290.0  ...      0.0        1.0         7.0        26.0  98F4ABB49814
+10  Fri, 14 Jun 2024 15:10:00 GMT  217.0  235.0  366.0  290.0  ...      0.0        2.0         8.0        42.0  98F4ABB49814
+11  Fri, 14 Jun 2024 15:11:00 GMT  218.0  235.0  356.0  290.0  ...      0.0        2.0         9.0        35.0  98F4ABB49814
+12  Fri, 14 Jun 2024 15:12:00 GMT  217.0  235.0  366.0  290.0  ...      0.0        1.0         7.0        26.0  98F4ABB49814
+13  Fri, 14 Jun 2024 15:13:00 GMT  218.0  235.0  363.0  290.0  ...      0.0        2.0         7.0        48.0  98F4ABB49814
+14  Fri, 14 Jun 2024 15:14:00 GMT  219.0  235.0  372.0  290.0  ...      0.0        2.0         7.0        40.0  98F4ABB49814
+15  Fri, 14 Jun 2024 15:15:00 GMT  218.0  235.0  371.0  289.0  ...      0.0        2.0         9.0        30.0  98F4ABB49814
+0   Fri, 14 Jun 2024 15:00:00 GMT  244.0  230.0  370.0  293.0  ...     53.8        1.0         6.0        28.0  4C11AE13AFF5
+1   Fri, 14 Jun 2024 15:01:00 GMT  245.0  230.0  371.0  294.0  ...     54.1        1.0         4.0         9.0  4C11AE13AFF5
+2   Fri, 14 Jun 2024 15:02:00 GMT  245.0  230.0  373.0  295.0  ...     53.1        1.0         6.0        16.0  4C11AE13AFF5
+3   Fri, 14 Jun 2024 15:03:00 GMT  245.0  230.0  375.0  293.0  ...     52.7        1.0         6.0        20.0  4C11AE13AFF5
+4   Fri, 14 Jun 2024 15:04:00 GMT  244.0  230.0  372.0  293.0  ...     53.2        1.0         5.0        16.0  4C11AE13AFF5
+5   Fri, 14 Jun 2024 15:05:00 GMT  244.0  230.0  376.0  294.0  ...     52.8        1.0         4.0        13.0  4C11AE13AFF5
+6   Fri, 14 Jun 2024 15:06:00 GMT  244.0  230.0  365.0  293.0  ...     53.4        1.0         5.0        14.0  4C11AE13AFF5
+7   Fri, 14 Jun 2024 15:07:00 GMT  244.0  230.0  360.0  293.0  ...     53.2        1.0         5.0        17.0  4C11AE13AFF5
+8   Fri, 14 Jun 2024 15:08:00 GMT  245.0  230.0  366.0  294.0  ...     53.1        1.0         5.0        12.0  4C11AE13AFF5
+9   Fri, 14 Jun 2024 15:09:00 GMT  245.0  230.0  368.0  294.0  ...     53.1        1.0         5.0        18.0  4C11AE13AFF5
+10  Fri, 14 Jun 2024 15:10:00 GMT  245.0  230.0  368.0  295.0  ...     54.0        1.0         5.0        24.0  4C11AE13AFF5
+11  Fri, 14 Jun 2024 15:11:00 GMT  245.0  230.0  374.0  293.0  ...     53.8        1.0         5.0        14.0  4C11AE13AFF5
+12  Fri, 14 Jun 2024 15:12:00 GMT  245.0  230.0  371.0  294.0  ...     53.3        1.0         5.0        13.0  4C11AE13AFF5
+13  Fri, 14 Jun 2024 15:13:00 GMT  245.0  230.0  373.0  294.0  ...     53.8        1.0         5.0        20.0  4C11AE13AFF5
+14  Fri, 14 Jun 2024 15:14:00 GMT  246.0  230.0  375.0  294.0  ...     53.8        1.0         4.0        11.0  4C11AE13AFF5
+15  Fri, 14 Jun 2024 15:15:00 GMT  245.0  230.0  371.0  294.0  ...     53.3        1.0         4.0        20.0  4C11AE13AFF5
+
+[48 rows x 17 columns]
+2024-06-14 15:26:11,150 [ERROR] Respirer 7794 126789571596288 Error in get_ColumnReplacement: unsupported operand type(s) for -: 'str' and 'str'
+2024-06-14 15:26:11,176 [INFO] DataIngestion 7794 126789571596288 Standardized DataFrame:                              time no2op1 no2op2  coop1  coop2  ... relative_humidity pm1_opc pm2_5_opc pm10_opc     device_id
+0   Fri, 14 Jun 2024 15:00:00 GMT  234.0  244.0  380.0  289.0  ...              53.4     2.0       6.0     42.0  3C6105F42DC1
+1   Fri, 14 Jun 2024 15:01:00 GMT  234.0  244.0  381.0  288.0  ...              53.9     1.0       6.0     32.0  3C6105F42DC1
+2   Fri, 14 Jun 2024 15:02:00 GMT  235.0  244.0  517.0  292.0  ...              54.1     1.0       7.0     42.0  3C6105F42DC1
+3   Fri, 14 Jun 2024 15:03:00 GMT  235.0  244.0  404.0  290.0  ...              54.5     1.0       7.0     39.0  3C6105F42DC1
+4   Fri, 14 Jun 2024 15:04:00 GMT  235.0  244.0  434.0  288.0  ...              53.8     1.0       6.0     23.0  3C6105F42DC1
+5   Fri, 14 Jun 2024 15:05:00 GMT  235.0  244.0  414.0  288.0  ...              54.3     2.0       6.0     20.0  3C6105F42DC1
+6   Fri, 14 Jun 2024 15:06:00 GMT  235.0  244.0  402.0  289.0  ...              54.4     1.0       6.0     22.0  3C6105F42DC1
+7   Fri, 14 Jun 2024 15:07:00 GMT  234.0  244.0  401.0  290.0  ...              53.8     1.0       7.0     22.0  3C6105F42DC1
+8   Fri, 14 Jun 2024 15:08:00 GMT  234.0  244.0  369.0  288.0  ...              54.1     1.0       6.0     26.0  3C6105F42DC1
+9   Fri, 14 Jun 2024 15:09:00 GMT  233.0  244.0  507.0  292.0  ...              54.6     1.0       6.0     20.0  3C6105F42DC1
+10  Fri, 14 Jun 2024 15:10:00 GMT  234.0  244.0  393.0  291.0  ...              54.8     1.0       6.0     18.0  3C6105F42DC1
+11  Fri, 14 Jun 2024 15:11:00 GMT  234.0  244.0  374.0  290.0  ...              55.5     2.0       7.0     25.0  3C6105F42DC1
+12  Fri, 14 Jun 2024 15:12:00 GMT  234.0  245.0  425.0  290.0  ...              55.0     1.0       6.0     46.0  3C6105F42DC1
+13  Fri, 14 Jun 2024 15:13:00 GMT  234.0  244.0  393.0  288.0  ...              54.5     1.0       6.0     22.0  3C6105F42DC1
+14  Fri, 14 Jun 2024 15:14:00 GMT    NaN    NaN    NaN    NaN  ...               NaN     NaN       NaN      NaN  3C6105F42DC1
+15  Fri, 14 Jun 2024 15:15:00 GMT    NaN    NaN    NaN    NaN  ...               NaN     NaN       NaN      NaN  3C6105F42DC1
+0   Fri, 14 Jun 2024 15:00:00 GMT  216.0  235.0  346.0  290.0  ...               0.0     1.0       6.0     39.0  98F4ABB49814
+1   Fri, 14 Jun 2024 15:01:00 GMT  216.0  235.0  345.0  291.0  ...               0.0     1.0       6.0     22.0  98F4ABB49814
+2   Fri, 14 Jun 2024 15:02:00 GMT  216.0  235.0  344.0  291.0  ...               0.0     1.0       6.0     27.0  98F4ABB49814
+3   Fri, 14 Jun 2024 15:03:00 GMT  216.0  235.0  349.0  291.0  ...               0.0     2.0       7.0     37.0  98F4ABB49814
+4   Fri, 14 Jun 2024 15:04:00 GMT  216.0  235.0  350.0  291.0  ...               0.0     1.0       6.0     23.0  98F4ABB49814
+5   Fri, 14 Jun 2024 15:05:00 GMT  214.0  235.0  351.0  291.0  ...               0.0     2.0       6.0     27.0  98F4ABB49814
+6   Fri, 14 Jun 2024 15:06:00 GMT  216.0  235.0  351.0  291.0  ...               0.0     1.0       7.0     24.0  98F4ABB49814
+7   Fri, 14 Jun 2024 15:07:00 GMT  216.0  235.0  359.0  292.0  ...               0.0     2.0       7.0     21.0  98F4ABB49814
+8   Fri, 14 Jun 2024 15:08:00 GMT  217.0  235.0  370.0  292.0  ...               0.0     2.0       7.0     32.0  98F4ABB49814
+9   Fri, 14 Jun 2024 15:09:00 GMT  216.0  235.0  368.0  290.0  ...               0.0     1.0       7.0     26.0  98F4ABB49814
+10  Fri, 14 Jun 2024 15:10:00 GMT  217.0  235.0  366.0  290.0  ...               0.0     2.0       8.0     42.0  98F4ABB49814
+11  Fri, 14 Jun 2024 15:11:00 GMT  218.0  235.0  356.0  290.0  ...               0.0     2.0       9.0     35.0  98F4ABB49814
+12  Fri, 14 Jun 2024 15:12:00 GMT  217.0  235.0  366.0  290.0  ...               0.0     1.0       7.0     26.0  98F4ABB49814
+13  Fri, 14 Jun 2024 15:13:00 GMT  218.0  235.0  363.0  290.0  ...               0.0     2.0       7.0     48.0  98F4ABB49814
+14  Fri, 14 Jun 2024 15:14:00 GMT  219.0  235.0  372.0  290.0  ...               0.0     2.0       7.0     40.0  98F4ABB49814
+15  Fri, 14 Jun 2024 15:15:00 GMT  218.0  235.0  371.0  289.0  ...               0.0     2.0       9.0     30.0  98F4ABB49814
+0   Fri, 14 Jun 2024 15:00:00 GMT  244.0  230.0  370.0  293.0  ...              53.8     1.0       6.0     28.0  4C11AE13AFF5
+1   Fri, 14 Jun 2024 15:01:00 GMT  245.0  230.0  371.0  294.0  ...              54.1     1.0       4.0      9.0  4C11AE13AFF5
+2   Fri, 14 Jun 2024 15:02:00 GMT  245.0  230.0  373.0  295.0  ...              53.1     1.0       6.0     16.0  4C11AE13AFF5
+3   Fri, 14 Jun 2024 15:03:00 GMT  245.0  230.0  375.0  293.0  ...              52.7     1.0       6.0     20.0  4C11AE13AFF5
+4   Fri, 14 Jun 2024 15:04:00 GMT  244.0  230.0  372.0  293.0  ...              53.2     1.0       5.0     16.0  4C11AE13AFF5
+5   Fri, 14 Jun 2024 15:05:00 GMT  244.0  230.0  376.0  294.0  ...              52.8     1.0       4.0     13.0  4C11AE13AFF5
+6   Fri, 14 Jun 2024 15:06:00 GMT  244.0  230.0  365.0  293.0  ...              53.4     1.0       5.0     14.0  4C11AE13AFF5
+7   Fri, 14 Jun 2024 15:07:00 GMT  244.0  230.0  360.0  293.0  ...              53.2     1.0       5.0     17.0  4C11AE13AFF5
+8   Fri, 14 Jun 2024 15:08:00 GMT  245.0  230.0  366.0  294.0  ...              53.1     1.0       5.0     12.0  4C11AE13AFF5
+9   Fri, 14 Jun 2024 15:09:00 GMT  245.0  230.0  368.0  294.0  ...              53.1     1.0       5.0     18.0  4C11AE13AFF5
+10  Fri, 14 Jun 2024 15:10:00 GMT  245.0  230.0  368.0  295.0  ...              54.0     1.0       5.0     24.0  4C11AE13AFF5
+11  Fri, 14 Jun 2024 15:11:00 GMT  245.0  230.0  374.0  293.0  ...              53.8     1.0       5.0     14.0  4C11AE13AFF5
+12  Fri, 14 Jun 2024 15:12:00 GMT  245.0  230.0  371.0  294.0  ...              53.3     1.0       5.0     13.0  4C11AE13AFF5
+13  Fri, 14 Jun 2024 15:13:00 GMT  245.0  230.0  373.0  294.0  ...              53.8     1.0       5.0     20.0  4C11AE13AFF5
+14  Fri, 14 Jun 2024 15:14:00 GMT  246.0  230.0  375.0  294.0  ...              53.8     1.0       4.0     11.0  4C11AE13AFF5
+15  Fri, 14 Jun 2024 15:15:00 GMT  245.0  230.0  371.0  294.0  ...              53.3     1.0       4.0     20.0  4C11AE13AFF5
+
+[48 rows x 17 columns]
+2024-06-14 15:26:11,176 [INFO] DataIngestion 7794 126789571596288 Missing data dictionary: {}
+2024-06-14 15:26:11,180 [ERROR] AirnetDriverAbs 7794 126789571596288 Error in store_std_data: db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-14 15:26:11,180 [WARNING] DataIngestion 7794 126789571596288 Error processing devices for manufacturer db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-14 15:26:11,180 [INFO] DataIngestion 7794 126789571596288 Stored standardized data for manufacturer: respirer
+2024-06-15 04:45:11,286 [INFO] DataIngestion 3849 125684773662720 Processing devices for manufacturer: sensit_ramp
+2024-06-15 04:47:29,659 [INFO] sensit_ramp 3849 125684773662720 Start time: 2024-06-15 04:30:00, End time: 2024-06-15 04:45:00
+2024-06-15 04:58:47,409 [INFO] DataIngestion 3849 125684773662720 Fetched data:                         time  device_id  temperature  relative_humidity  wind_speed  ...  so2_act_avg       lat      long  battery  charge
+0   2024-06-15T04:30:10.000Z       1168        26.59              60.14           0  ...           12  12.91128  77.68380     3.84  610.57
+1   2024-06-15T04:31:10.000Z       1168        26.64              59.94           0  ...           12  12.91128  77.68380     3.85  642.79
+2   2024-06-15T04:32:10.000Z       1168        26.68              59.87           0  ...           12  12.91128  77.68380     3.85  663.73
+3   2024-06-15T04:33:10.000Z       1168        26.69              59.76           0  ...           10  12.91128  77.68380     3.85  704.01
+4   2024-06-15T04:34:10.000Z       1168        26.76              59.66           0  ...           12  12.91128  77.68380     3.85  650.84
+..                       ...        ...          ...                ...         ...  ...          ...       ...       ...      ...     ...
+10  2024-06-15T04:40:47.000Z       1172        29.37              55.98           0  ...            9  13.10185  77.63149     4.04  940.82
+11  2024-06-15T04:41:47.000Z       1172        29.41              55.66           0  ...            7  13.10185  77.63149     4.04  942.43
+12  2024-06-15T04:42:48.000Z       1172        29.47              55.23           0  ...            5  13.10185  77.63149     4.04  942.43
+13  2024-06-15T04:43:49.000Z       1172        29.49              54.70           0  ...            5  13.10185  77.63149     4.04  940.82
+14  2024-06-15T04:44:49.000Z       1172        29.50              54.39           0  ...            7  13.10185  77.63149     4.04  939.21
+
+[75 rows x 39 columns]
+2024-06-15 04:58:47,471 [INFO] DataIngestion 3849 125684773662720 Standardized DataFrame:         co    no2    so2     o3     co2  co_nv  so2_nv  ...  pm2_5   pm10  pm1_opc  pm2_5_opc  pm10_opc                      time  device_id
+0   436.26  19.35  -1.48  -1.96  627.60    213      -1  ...  20.98  22.04     0.46       0.72      0.79  2024-06-15T04:30:10.000Z       1168
+1   430.24  18.96  -0.10  -1.68  625.28    210       0  ...  22.47  23.56     0.46       1.73      2.88  2024-06-15T04:31:10.000Z       1168
+2   443.94  19.90   0.15  -1.11  623.28    215       0  ...  22.37  23.69     0.61       0.78      0.78  2024-06-15T04:32:10.000Z       1168
+3   438.40  20.27  -1.54  -1.45  621.25    208      -2  ...  21.27  22.45     0.42       1.73      3.80  2024-06-15T04:33:10.000Z       1168
+4   445.65  20.42   2.06   0.17  621.09    220       1  ...  22.44  24.43     0.57       0.80      0.86  2024-06-15T04:34:10.000Z       1168
+..     ...    ...    ...    ...     ...    ...     ...  ...    ...    ...      ...        ...       ...                       ...        ...
+10  251.61   8.31 -26.40 -10.28  700.16    145      -8  ...  20.13  22.02     1.42       4.73      8.21  2024-06-15T04:40:47.000Z       1172
+11  220.02   8.87 -21.37 -10.16  694.94    119      -8  ...  20.27  21.55     1.95       7.24     32.81  2024-06-15T04:41:47.000Z       1172
+12  208.31   6.73 -30.19 -11.58  696.72    105     -12  ...  20.35  21.91     2.06       6.45     20.80  2024-06-15T04:42:48.000Z       1172
+13  202.97   6.06 -28.20  -8.85  696.90     98     -11  ...  19.98  21.38     1.29       4.85      9.22  2024-06-15T04:43:49.000Z       1172
+14  202.76   5.19 -27.25  -5.11  688.66     91     -10  ...  19.48  20.68     1.29       4.05     20.68  2024-06-15T04:44:49.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-15 04:58:47,473 [INFO] DataIngestion 3849 125684773662720 Missing data dictionary: {}
+2024-06-15 04:58:48,286 [INFO] DataIngestion 3849 125684773662720 Stored standardized data for manufacturer: sensit_ramp
+2024-06-15 04:58:48,286 [INFO] DataIngestion 3849 125684773662720 Processing devices for manufacturer: respirer
+2024-06-15 04:58:48,287 [INFO] Respirer 3849 125684773662720 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:03:18,951 [ERROR] Respirer 3849 125684773662720 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:03:18,951 [INFO] Respirer 3849 125684773662720 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:07:49,209 [ERROR] Respirer 3849 125684773662720 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:07:49,209 [INFO] Respirer 3849 125684773662720 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:08:26,517 [ERROR] Respirer 3849 125684773662720 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:08:26,518 [INFO] Respirer 3849 125684773662720 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:08:28,494 [ERROR] Respirer 3849 125684773662720 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:08:28,495 [INFO] Respirer 3849 125684773662720 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:08:30,072 [ERROR] Respirer 3849 125684773662720 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:08:30,075 [INFO] DataIngestion 3849 125684773662720 Fetched data: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:08:30,078 [INFO] DataIngestion 3849 125684773662720 Standardized DataFrame: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:08:30,078 [INFO] DataIngestion 3849 125684773662720 Missing data dictionary: {}
+2024-06-15 05:08:30,078 [INFO] DataIngestion 3849 125684773662720 Stored standardized data for manufacturer: respirer
+2024-06-15 05:11:40,805 [INFO] DataIngestion 4392 137015095824384 Processing devices for manufacturer: sensit_ramp
+2024-06-15 05:11:42,117 [INFO] sensit_ramp 4392 137015095824384 Start time: 2024-06-15 04:45:00, End time: 2024-06-15 05:00:00
+2024-06-15 05:11:48,271 [INFO] DataIngestion 4392 137015095824384 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-15T04:45:13.000Z       1168        27.06              58.71  ...  12.91128  77.68380     3.87  762.00
+1   2024-06-15T04:46:13.000Z       1168        27.08              58.79  ...  12.91128  77.68380     3.88  736.23
+2   2024-06-15T04:47:13.000Z       1168        27.12              58.70  ...  12.91128  77.68380     3.87  699.17
+3   2024-06-15T04:48:13.000Z       1168        27.17              58.44  ...  12.91128  77.68380     3.88  766.84
+4   2024-06-15T04:49:13.000Z       1168        27.19              58.46  ...  12.91128  77.68380     3.88  742.67
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+10  2024-06-15T04:55:50.000Z       1172        29.61              54.67  ...  13.10185  77.63149     4.05  937.60
+11  2024-06-15T04:56:50.000Z       1172        29.67              54.89  ...  13.10185  77.63149     4.05  937.60
+12  2024-06-15T04:57:50.000Z       1172        29.69              54.94  ...  13.10185  77.63149     4.05  939.21
+13  2024-06-15T04:58:50.000Z       1172        29.73              54.82  ...  13.10185  77.63149     4.05  939.21
+14  2024-06-15T04:59:50.000Z       1172        29.80              54.71  ...  13.10185  77.63149     4.05  935.99
+
+[75 rows x 39 columns]
+2024-06-15 05:11:48,324 [INFO] DataIngestion 4392 137015095824384 Standardized DataFrame:         co    no2    so2     o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   366.30  20.73  -5.62   0.59  624.56    153  ...  22.79     0.51      1.70      2.81  2024-06-15T04:45:13.000Z       1168
+1   403.54  20.69  -5.23  -0.46  629.21    182  ...  22.56     0.35      0.53      0.57  2024-06-15T04:46:13.000Z       1168
+2   412.59  19.81  -3.29  -1.80  626.57    188  ...  22.11     0.31      0.45      0.47  2024-06-15T04:47:13.000Z       1168
+3   433.88  19.79  -6.06  -1.55  626.78    205  ...  24.25     0.43      0.78      0.94  2024-06-15T04:48:13.000Z       1168
+4   419.42  19.98  -3.67   0.09  625.15    192  ...  23.24     0.37      0.42      0.42  2024-06-15T04:49:13.000Z       1168
+..     ...    ...    ...    ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+10  282.95  16.59 -21.04  -3.63  696.68    156  ...  23.36     2.74     10.01     23.15  2024-06-15T04:55:50.000Z       1172
+11  281.79  14.63 -10.20  -8.77  692.73    159  ...  24.41     2.68     12.48     27.43  2024-06-15T04:56:50.000Z       1172
+12  310.06  16.54 -10.11  -8.49  694.54    191  ...  25.24     3.23     14.96    149.52  2024-06-15T04:57:50.000Z       1172
+13  330.96  15.26 -17.10 -12.97  691.79    209  ...  26.53     4.07     15.05     48.60  2024-06-15T04:58:50.000Z       1172
+14  314.34  16.26 -16.41 -12.02  702.36    194  ...  27.52     2.78     11.40     29.81  2024-06-15T04:59:50.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-15 05:11:48,325 [INFO] DataIngestion 4392 137015095824384 Missing data dictionary: {}
+2024-06-15 05:11:48,935 [INFO] DataIngestion 4392 137015095824384 Stored standardized data for manufacturer: sensit_ramp
+2024-06-15 05:11:48,935 [INFO] DataIngestion 4392 137015095824384 Processing devices for manufacturer: respirer
+2024-06-15 05:11:48,936 [INFO] Respirer 4392 137015095824384 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:11:50,622 [ERROR] Respirer 4392 137015095824384 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:11:50,623 [INFO] Respirer 4392 137015095824384 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:11:52,521 [ERROR] Respirer 4392 137015095824384 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:11:52,522 [INFO] Respirer 4392 137015095824384 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:11:54,754 [ERROR] Respirer 4392 137015095824384 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:11:54,755 [INFO] Respirer 4392 137015095824384 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:11:56,929 [ERROR] Respirer 4392 137015095824384 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:11:56,930 [INFO] Respirer 4392 137015095824384 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:11:58,328 [ERROR] Respirer 4392 137015095824384 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:11:58,330 [INFO] DataIngestion 4392 137015095824384 Fetched data: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:11:58,331 [INFO] DataIngestion 4392 137015095824384 Standardized DataFrame: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:11:58,331 [INFO] DataIngestion 4392 137015095824384 Missing data dictionary: {}
+2024-06-15 05:11:58,331 [INFO] DataIngestion 4392 137015095824384 Stored standardized data for manufacturer: respirer
+2024-06-15 05:25:35,864 [INFO] DataIngestion 4805 123551260426240 Processing devices for manufacturer: sensit_ramp
+2024-06-15 05:25:36,855 [INFO] sensit_ramp 4805 123551260426240 Start time: 2024-06-15 05:00:00, End time: 2024-06-15 05:15:00
+2024-06-15 05:25:43,628 [INFO] DataIngestion 4805 123551260426240 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-15T05:00:14.000Z       1168        27.66              57.30  ...  12.91128  77.68380     3.90  802.28
+1   2024-06-15T05:01:14.000Z       1168        27.70              57.21  ...  12.91128  77.68380     3.90  816.78
+2   2024-06-15T05:02:14.000Z       1168        27.77              57.15  ...  12.91128  77.68380     3.91  840.94
+3   2024-06-15T05:03:14.000Z       1168        27.83              57.09  ...  12.91128  77.68380     3.91  820.00
+4   2024-06-15T05:04:15.000Z       1168        27.88              56.99  ...  12.91128  77.68380     3.91  811.94
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+10  2024-06-15T05:10:47.000Z       1172        30.40              51.62  ...  13.10185  77.63149     4.06  935.99
+11  2024-06-15T05:11:47.000Z       1172        30.40              51.56  ...  13.10185  77.63149     4.06  935.99
+12  2024-06-15T05:12:47.000Z       1172        30.40              51.54  ...  13.10185  77.63149     4.06  935.99
+13  2024-06-15T05:13:47.000Z       1172        30.40              51.62  ...  13.10185  77.63149     4.06  934.38
+14  2024-06-15T05:14:47.000Z       1172        30.40              51.60  ...  13.10185  77.63149     4.06  932.77
+
+[75 rows x 39 columns]
+2024-06-15 05:25:43,665 [INFO] DataIngestion 4805 123551260426240 Standardized DataFrame:         co    no2    so2    o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   399.11  19.49  -2.38  0.39  609.47    181  ...  20.41     0.74      1.93      2.42  2024-06-15T05:00:14.000Z       1168
+1   470.56  21.00   0.06  0.15  608.67    249  ...  23.37     0.62      2.30      3.76  2024-06-15T05:01:14.000Z       1168
+2   465.62  19.93  -2.45 -1.55  607.58    245  ...  22.10     0.33      1.08      2.91  2024-06-15T05:02:14.000Z       1168
+3   477.02  25.49  -2.13 -5.05  612.75    257  ...  21.71     0.41      1.32      2.22  2024-06-15T05:03:14.000Z       1168
+4   482.62  25.29  -3.08 -4.29  611.71    257  ...  21.71     0.32      0.38      0.39  2024-06-15T05:04:15.000Z       1168
+..     ...    ...    ...   ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+10  195.71   5.33 -37.89 -3.28  693.83     80  ...  19.17     1.99      8.40     31.51  2024-06-15T05:10:47.000Z       1172
+11  200.50   5.86 -36.97 -2.23  694.09     86  ...  19.77     1.90      7.16     48.78  2024-06-15T05:11:47.000Z       1172
+12  200.76   6.79 -37.67 -1.03  692.91     86  ...  20.11     1.97      7.18     23.91  2024-06-15T05:12:47.000Z       1172
+13  192.74   7.71 -38.78 -4.33  686.09     82  ...  19.35     1.88      6.91     21.18  2024-06-15T05:13:47.000Z       1172
+14  200.00   8.84 -38.51 -4.08  692.46     88  ...  19.47     1.90      7.99     23.68  2024-06-15T05:14:47.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-15 05:25:43,665 [INFO] DataIngestion 4805 123551260426240 Missing data dictionary: {}
+2024-06-15 05:25:44,311 [INFO] DataIngestion 4805 123551260426240 Stored standardized data for manufacturer: sensit_ramp
+2024-06-15 05:25:44,311 [INFO] DataIngestion 4805 123551260426240 Processing devices for manufacturer: respirer
+2024-06-15 05:25:44,312 [INFO] Respirer 4805 123551260426240 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:25:45,798 [ERROR] Respirer 4805 123551260426240 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:25:45,798 [INFO] Respirer 4805 123551260426240 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:25:47,348 [ERROR] Respirer 4805 123551260426240 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:25:47,348 [INFO] Respirer 4805 123551260426240 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:25:48,785 [ERROR] Respirer 4805 123551260426240 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:25:48,785 [INFO] Respirer 4805 123551260426240 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:25:50,525 [ERROR] Respirer 4805 123551260426240 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:25:50,526 [INFO] Respirer 4805 123551260426240 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-15 05:25:52,066 [ERROR] Respirer 4805 123551260426240 Error in creating_df: If using all scalar values, you must pass an index
+2024-06-15 05:25:52,068 [INFO] DataIngestion 4805 123551260426240 Fetched data: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:25:52,069 [INFO] DataIngestion 4805 123551260426240 Standardized DataFrame: Empty DataFrame
+Columns: []
+Index: []
+2024-06-15 05:25:52,069 [INFO] DataIngestion 4805 123551260426240 Missing data dictionary: {}
+2024-06-15 05:25:52,069 [INFO] DataIngestion 4805 123551260426240 Stored standardized data for manufacturer: respirer
+2024-06-17 05:05:29,653 [INFO] DataIngestion 4055 140369935839232 Processing devices for manufacturer: sensit_ramp
+2024-06-17 05:05:30,628 [INFO] sensit_ramp 4055 140369935839232 Start time: 2024-06-17 04:45:00, End time: 2024-06-17 05:00:00
+2024-06-17 05:05:36,226 [INFO] DataIngestion 4055 140369935839232 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-17T04:45:49.000Z       1168        28.85              59.57  ...  12.91128  77.68380     3.89  979.49
+1   2024-06-17T04:46:44.000Z       1168        28.88              59.50  ...  12.91128  77.68380     3.90  977.88
+2   2024-06-17T04:47:44.000Z       1168        28.89              59.45  ...  12.91128  77.68380     3.91  976.27
+3   2024-06-17T04:48:45.000Z       1168        28.95              59.35  ...  12.91128  77.68380     3.91  977.88
+4   2024-06-17T04:49:45.000Z       1168        29.02              59.21  ...  12.91128  77.68380     3.91  976.27
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+10  2024-06-17T04:55:33.000Z       1172        30.40              56.53  ...  13.10185  77.63149     4.04  940.82
+11  2024-06-17T04:56:34.000Z       1172        30.40              56.50  ...  13.10185  77.63149     4.04  940.82
+12  2024-06-17T04:57:34.000Z       1172        30.40              56.49  ...  13.10185  77.63149     4.04  940.82
+13  2024-06-17T04:58:34.000Z       1172        30.40              56.54  ...  13.10185  77.63149     4.04  939.21
+14  2024-06-17T04:59:34.000Z       1172        30.44              56.74  ...  13.10185  77.63149     4.04  939.21
+
+[75 rows x 39 columns]
+2024-06-17 05:05:36,283 [INFO] DataIngestion 4055 140369935839232 Standardized DataFrame:         co    no2    so2    o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   822.14  32.65  18.53 -7.22  626.59    652  ...  26.13     0.34      0.57      0.66  2024-06-17T04:45:49.000Z       1168
+1   787.74  32.74  14.51 -8.06  629.42    619  ...  24.47     0.27      0.57      0.92  2024-06-17T04:46:44.000Z       1168
+2   703.09  29.96   8.16 -4.88  629.38    537  ...  22.25     0.35      0.40      0.40  2024-06-17T04:47:44.000Z       1168
+3   556.87  28.16   4.77 -2.56  621.03    395  ...  20.63     0.32      0.62      3.35  2024-06-17T04:48:45.000Z       1168
+4   508.00  25.16   2.08 -1.68  619.23    348  ...  19.08     0.39      0.56      0.57  2024-06-17T04:49:45.000Z       1168
+..     ...    ...    ...   ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+10  242.65  20.58 -18.82  5.00  705.40    162  ...  14.74     1.83      4.31     12.14  2024-06-17T04:55:33.000Z       1172
+11  248.24  19.08 -19.12  6.38  707.41    169  ...  14.69     2.28      8.31     24.69  2024-06-17T04:56:34.000Z       1172
+12  249.13  19.50 -15.47  6.98  710.44    173  ...  15.73     1.79      3.75     10.56  2024-06-17T04:57:34.000Z       1172
+13  260.00  21.41 -17.07  7.66  705.18    182  ...  17.00     1.93      5.90     11.88  2024-06-17T04:58:34.000Z       1172
+14  282.89  21.28 -13.63  7.75  703.12    211  ...  18.36     1.81      6.92     34.75  2024-06-17T04:59:34.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-17 05:05:36,284 [INFO] DataIngestion 4055 140369935839232 Missing data dictionary: {}
+2024-06-17 05:05:36,879 [INFO] DataIngestion 4055 140369935839232 Stored standardized data for manufacturer: sensit_ramp
+2024-06-17 05:05:36,879 [INFO] DataIngestion 4055 140369935839232 Processing devices for manufacturer: respirer
+2024-06-17 05:05:36,880 [INFO] Respirer 4055 140369935839232 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 05:05:39,012 [INFO] Respirer 4055 140369935839232 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 05:05:40,952 [INFO] Respirer 4055 140369935839232 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 05:05:42,998 [INFO] Respirer 4055 140369935839232 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 05:05:45,048 [INFO] Respirer 4055 140369935839232 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 05:05:47,123 [INFO] DataIngestion 4055 140369935839232 Fetched data:                           dt_time no2op1 no2op2  coop1  coop2  ... humidity opc_r2_pm1 opc_r2_pm25 opc_r2_pm10      deviceid
+0   Mon, 17 Jun 2024 04:45:00 GMT  235.0  246.0  352.0  305.0  ...     97.1        1.0         5.0        17.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 04:46:00 GMT  235.0  246.0  355.0  306.0  ...     96.6        1.0         5.0        13.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 04:47:00 GMT  235.0  246.0  355.0  306.0  ...     97.8        1.0         5.0        21.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 04:48:00 GMT  235.0  246.0  355.0  307.0  ...     98.2        1.0         5.0        14.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 04:49:00 GMT  235.0  246.0  351.0  306.0  ...     97.7        1.0         5.0        15.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...      ...        ...         ...         ...           ...
+11  Mon, 17 Jun 2024 04:56:00 GMT  246.0  231.0  372.0  302.0  ...     74.1        1.0         3.0         8.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 04:57:00 GMT  246.0  231.0  372.0  302.0  ...     74.8        1.0         3.0         8.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 04:58:00 GMT  246.0  231.0  371.0  302.0  ...     74.3        1.0         3.0         9.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 04:59:00 GMT  246.0  231.0  372.0  301.0  ...     74.8        1.0         3.0         4.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 05:00:00 GMT  246.0  231.0  374.0  302.0  ...     75.1        1.0         3.0        10.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 05:05:47,126 [ERROR] Respirer 4055 140369935839232 Error in get_ColumnReplacement: cannot convert the series to <class 'int'>
+2024-06-17 05:05:47,156 [INFO] DataIngestion 4055 140369935839232 Standardized DataFrame:                              time no2op1 no2op2  coop1  coop2  ... relative_humidity pm1_opc pm2_5_opc pm10_opc     device_id
+0   Mon, 17 Jun 2024 04:45:00 GMT  235.0  246.0  352.0  305.0  ...              97.1     1.0       5.0     17.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 04:46:00 GMT  235.0  246.0  355.0  306.0  ...              96.6     1.0       5.0     13.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 04:47:00 GMT  235.0  246.0  355.0  306.0  ...              97.8     1.0       5.0     21.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 04:48:00 GMT  235.0  246.0  355.0  307.0  ...              98.2     1.0       5.0     14.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 04:49:00 GMT  235.0  246.0  351.0  306.0  ...              97.7     1.0       5.0     15.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...               ...     ...       ...      ...           ...
+11  Mon, 17 Jun 2024 04:56:00 GMT  246.0  231.0  372.0  302.0  ...              74.1     1.0       3.0      8.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 04:57:00 GMT  246.0  231.0  372.0  302.0  ...              74.8     1.0       3.0      8.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 04:58:00 GMT  246.0  231.0  371.0  302.0  ...              74.3     1.0       3.0      9.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 04:59:00 GMT  246.0  231.0  372.0  301.0  ...              74.8     1.0       3.0      4.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 05:00:00 GMT  246.0  231.0  374.0  302.0  ...              75.1     1.0       3.0     10.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 05:05:47,157 [INFO] DataIngestion 4055 140369935839232 Missing data dictionary: {}
+2024-06-17 05:05:47,159 [ERROR] AirnetDriverAbs 4055 140369935839232 Error in store_std_data: db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 05:05:47,159 [WARNING] DataIngestion 4055 140369935839232 Error processing devices for manufacturer db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 05:05:47,159 [INFO] DataIngestion 4055 140369935839232 Stored standardized data for manufacturer: respirer
+2024-06-17 07:14:04,296 [INFO] DataIngestion 8306 133779072176128 Processing devices for manufacturer: sensit_ramp
+2024-06-17 07:14:05,596 [INFO] sensit_ramp 8306 133779072176128 Start time: 2024-06-17 06:45:00, End time: 2024-06-17 07:00:00
+2024-06-17 07:14:11,769 [INFO] DataIngestion 8306 133779072176128 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-17T06:45:53.000Z       1168        34.58              48.92  ...  12.91128  77.68380     4.04  881.22
+1   2024-06-17T06:46:53.000Z       1168        34.64              48.78  ...  12.91128  77.68380     4.04  915.05
+2   2024-06-17T06:47:54.000Z       1168        34.68              48.62  ...  12.91128  77.68380     4.05  950.49
+3   2024-06-17T06:48:54.000Z       1168        34.70              48.54  ...  12.91128  77.68380     4.05  950.49
+4   2024-06-17T06:49:54.000Z       1168        34.77              48.73  ...  12.91128  77.68380     4.05  952.10
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+10  2024-06-17T06:55:47.000Z       1172        32.30              52.62  ...  13.10185  77.63149     4.09  916.66
+11  2024-06-17T06:56:47.000Z       1172        32.30              53.00  ...  13.10185  77.63149     4.09  916.66
+12  2024-06-17T06:57:43.000Z       1172        32.30              53.11  ...  13.10185  77.63149     4.09  916.66
+13  2024-06-17T06:58:43.000Z       1172        32.30              53.09  ...  13.10185  77.63149     4.09  916.66
+14  2024-06-17T06:59:43.000Z       1172        32.30              52.91  ...  13.10185  77.63149     4.09  919.88
+
+[75 rows x 39 columns]
+2024-06-17 07:14:11,824 [INFO] DataIngestion 8306 133779072176128 Standardized DataFrame:         co    no2    so2     o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   187.05  12.07 -22.14  14.00  559.57    112  ...  11.14     0.11      0.12      0.12  2024-06-17T06:45:53.000Z       1168
+1   181.91  10.22 -24.61  13.90  555.96    113  ...  11.29     0.11      0.24      0.28  2024-06-17T06:46:53.000Z       1168
+2   160.19  11.31 -26.96  14.48  559.43    112  ...  11.25     0.11      0.11      0.11  2024-06-17T06:47:54.000Z       1168
+3   148.31  12.19 -27.03  14.40  556.52     99  ...  11.43     0.24      0.28      0.28  2024-06-17T06:48:54.000Z       1168
+4   189.56  16.66 -25.60  12.69  553.06    126  ...  14.74     0.09      0.10      0.10  2024-06-17T06:49:54.000Z       1168
+..     ...    ...    ...    ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+10  198.05  19.27 -16.60  13.33  708.05    128  ...   8.83     1.92      6.63     29.90  2024-06-17T06:55:47.000Z       1172
+11  251.70  25.14 -11.50  12.83  705.89    174  ...  10.47     1.39      6.76     18.42  2024-06-17T06:56:47.000Z       1172
+12  244.41  21.65 -12.15   9.24  710.96    167  ...   9.40     1.68      4.47      7.45  2024-06-17T06:57:43.000Z       1172
+13  236.14  20.42 -16.81  10.30  711.43    158  ...   8.57     0.99      4.03     10.60  2024-06-17T06:58:43.000Z       1172
+14  224.02  17.28 -25.56   8.22  707.37    139  ...   7.91     0.72      3.55     19.78  2024-06-17T06:59:43.000Z       1172
+
+[75 rows x 20 columns]
+2024-06-17 07:14:11,824 [INFO] DataIngestion 8306 133779072176128 Missing data dictionary: {}
+2024-06-17 07:14:12,573 [INFO] DataIngestion 8306 133779072176128 Stored standardized data for manufacturer: sensit_ramp
+2024-06-17 07:14:12,574 [INFO] DataIngestion 8306 133779072176128 Processing devices for manufacturer: respirer
+2024-06-17 07:14:12,574 [INFO] Respirer 8306 133779072176128 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 07:14:14,685 [INFO] Respirer 8306 133779072176128 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 07:14:16,824 [INFO] Respirer 8306 133779072176128 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 07:14:18,880 [INFO] Respirer 8306 133779072176128 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 07:14:21,034 [INFO] Respirer 8306 133779072176128 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 07:14:23,111 [INFO] DataIngestion 8306 133779072176128 Fetched data:                           dt_time no2op1 no2op2  coop1  coop2  ... humidity opc_r2_pm1 opc_r2_pm25 opc_r2_pm10      deviceid
+0   Mon, 17 Jun 2024 06:45:00 GMT  236.0  246.0  429.0  312.0  ...     99.6        3.0        10.0        24.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 06:46:00 GMT  236.0  247.0  424.0  311.0  ...     99.2        3.0        10.0        22.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 06:47:00 GMT  236.0  246.0  416.0  311.0  ...     98.9        3.0         9.0        16.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 06:48:00 GMT  236.0  246.0  496.0  311.0  ...     98.9        3.0        10.0        29.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 06:49:00 GMT  236.0  246.0  463.0  314.0  ...     98.9        3.0         9.0        23.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...      ...        ...         ...         ...           ...
+11  Mon, 17 Jun 2024 06:56:00 GMT  246.0  231.0  422.0  306.0  ...     74.4        1.0         5.0        12.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 06:57:00 GMT  247.0  231.0  434.0  305.0  ...     74.3        1.0         6.0        18.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 06:58:00 GMT  247.0  231.0  423.0  305.0  ...     74.3        1.0         6.0        34.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 06:59:00 GMT  246.0  232.0  410.0  305.0  ...     74.1        1.0         7.0        16.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 07:00:00 GMT  247.0  231.0  408.0  306.0  ...     74.5        1.0         6.0        17.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 07:14:23,129 [ERROR] Respirer 8306 133779072176128 Error in get_ColumnReplacement: cannot convert the series to <class 'int'>
+2024-06-17 07:14:23,197 [INFO] DataIngestion 8306 133779072176128 Standardized DataFrame:                              time no2op1 no2op2  coop1  coop2  ... relative_humidity pm1_opc pm2_5_opc pm10_opc     device_id
+0   Mon, 17 Jun 2024 06:45:00 GMT  236.0  246.0  429.0  312.0  ...              99.6     3.0      10.0     24.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 06:46:00 GMT  236.0  247.0  424.0  311.0  ...              99.2     3.0      10.0     22.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 06:47:00 GMT  236.0  246.0  416.0  311.0  ...              98.9     3.0       9.0     16.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 06:48:00 GMT  236.0  246.0  496.0  311.0  ...              98.9     3.0      10.0     29.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 06:49:00 GMT  236.0  246.0  463.0  314.0  ...              98.9     3.0       9.0     23.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...               ...     ...       ...      ...           ...
+11  Mon, 17 Jun 2024 06:56:00 GMT  246.0  231.0  422.0  306.0  ...              74.4     1.0       5.0     12.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 06:57:00 GMT  247.0  231.0  434.0  305.0  ...              74.3     1.0       6.0     18.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 06:58:00 GMT  247.0  231.0  423.0  305.0  ...              74.3     1.0       6.0     34.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 06:59:00 GMT  246.0  232.0  410.0  305.0  ...              74.1     1.0       7.0     16.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 07:00:00 GMT  247.0  231.0  408.0  306.0  ...              74.5     1.0       6.0     17.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 07:14:23,199 [INFO] DataIngestion 8306 133779072176128 Missing data dictionary: {}
+2024-06-17 07:14:23,237 [ERROR] AirnetDriverAbs 8306 133779072176128 Error in store_std_data: db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 07:14:23,237 [WARNING] DataIngestion 8306 133779072176128 Error processing devices for manufacturer db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 07:14:23,237 [INFO] DataIngestion 8306 133779072176128 Stored standardized data for manufacturer: respirer
+2024-06-17 10:34:30,623 [ERROR] DataIngestion 4919 131427262181376 Error in main processing: db_DEVICE matching query does not exist.
+2024-06-17 10:35:39,526 [ERROR] DataIngestion 5099 126483741343744 Error in main processing: db_DEVICE matching query does not exist.
+2024-06-17 10:38:03,970 [ERROR] DataIngestion 5280 129194232438784 Error in main processing: db_DEVICE matching query does not exist.
+2024-06-17 10:39:54,565 [INFO] DataIngestion 5464 130957707223040 Processing devices for manufacturer: airveda
+2024-06-17 10:39:55,211 [INFO] AirVeda 5464 130957707223040 Start time: 2024-06-17 10:15:00, End time: 2024-06-17 10:30:00
+2024-06-17 10:39:55,582 [INFO] AirVeda 5464 130957707223040 Processing parameters: ['o10', 'o4', 'so10']
+2024-06-17 10:39:55,853 [ERROR] AirnetDriverAbs 5464 130957707223040 Error in store_missing_data_info: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:55,853 [ERROR] AirVeda 5464 130957707223040 Error in creating_df: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:56,094 [ERROR] AirnetDriverAbs 5464 130957707223040 Error in store_missing_data_info: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:56,094 [ERROR] AirVeda 5464 130957707223040 Error in creating_df: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:56,337 [ERROR] AirnetDriverAbs 5464 130957707223040 Error in store_missing_data_info: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:56,337 [ERROR] AirVeda 5464 130957707223040 Error in creating_df: Cannot assign "'1210230117'": "db_missing_data.device_id" must be a "db_DEVICE" instance.
+2024-06-17 10:39:56,337 [WARNING] AirVeda 5464 130957707223040 No data fetched for device 1210230117
+2024-06-17 10:39:57,294 [ERROR] AirnetDriverAbs 5464 130957707223040 Error in fetch: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:39:57,294 [ERROR] DataIngestion 5464 130957707223040 Error processing devices for manufacturer airveda: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:44:39,327 [INFO] DataIngestion 6197 126560272461824 Processing devices for manufacturer: airveda
+2024-06-17 10:44:40,225 [INFO] AirVeda 6197 126560272461824 Start time: 2024-06-17 10:15:00, End time: 2024-06-17 10:30:00
+2024-06-17 10:44:40,621 [INFO] AirVeda 6197 126560272461824 Processing parameters: ['o10', 'o4', 'so10']
+2024-06-17 10:44:41,483 [WARNING] AirVeda 6197 126560272461824 No data fetched for device 1210230117
+2024-06-17 10:44:42,371 [ERROR] AirnetDriverAbs 6197 126560272461824 Error in fetch: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:44:42,372 [ERROR] DataIngestion 6197 126560272461824 Error processing devices for manufacturer airveda: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:47:40,694 [INFO] DataIngestion 6514 126892669014016 Processing devices for manufacturer: airveda
+2024-06-17 10:47:41,324 [INFO] AirVeda 6514 126892669014016 Start time: 2024-06-17 10:30:00, End time: 2024-06-17 10:45:00
+2024-06-17 10:47:41,649 [INFO] AirVeda 6514 126892669014016 Processing parameters: ['o10', 'o4', 'so10']
+2024-06-17 10:47:42,364 [WARNING] AirVeda 6514 126892669014016 No data fetched for device 1210230117
+2024-06-17 10:47:43,206 [ERROR] AirnetDriverAbs 6514 126892669014016 Error in fetch: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:47:43,206 [ERROR] DataIngestion 6514 126892669014016 Error processing devices for manufacturer airveda: AirnetDriverAbs.store_missing_data_info() missing 2 required positional arguments: 'dev_obj' and 'store_param'
+2024-06-17 10:48:39,118 [INFO] DataIngestion 6690 125716247101440 Processing devices for manufacturer: airveda
+2024-06-17 10:48:39,684 [INFO] AirVeda 6690 125716247101440 Start time: 2024-06-17 10:30:00, End time: 2024-06-17 10:45:00
+2024-06-17 10:48:40,008 [INFO] AirVeda 6690 125716247101440 Processing parameters: ['o10', 'o4', 'so10']
+2024-06-17 10:48:40,727 [WARNING] AirVeda 6690 125716247101440 No data fetched for device 1210230117
+2024-06-17 10:48:41,659 [INFO] DataIngestion 6690 125716247101440 Fetched data: Empty DataFrame
+Columns: []
+Index: []
+2024-06-17 10:48:41,659 [INFO] DataIngestion 6690 125716247101440 Standardized DataFrame: Empty DataFrame
+Columns: []
+Index: []
+2024-06-17 10:48:41,660 [INFO] DataIngestion 6690 125716247101440 Missing data dictionary: {}
+2024-06-17 10:48:41,675 [INFO] DataIngestion 6690 125716247101440 Stored standardized data for manufacturer: airveda
+2024-06-17 11:01:43,121 [INFO] DataIngestion 7535 128198126399488 Processing devices for manufacturer: sensit_ramp
+2024-06-17 11:01:44,414 [INFO] sensit_ramp 7535 128198126399488 Start time: 2024-06-17 10:45:00, End time: 2024-06-17 11:00:00
+2024-06-17 11:01:50,776 [INFO] DataIngestion 7535 128198126399488 Fetched data:                         time  device_id  temperature  relative_humidity  ...       lat      long  battery  charge
+0   2024-06-17T10:45:17.000Z       1168        35.44              46.60  ...  12.91128  77.68380     4.09  610.57
+1   2024-06-17T10:46:18.000Z       1168        35.38              46.85  ...  12.91128  77.68380     4.10  831.28
+2   2024-06-17T10:47:18.000Z       1168        35.30              47.28  ...  12.91128  77.68380     4.11  921.49
+3   2024-06-17T10:48:18.000Z       1168        35.23              47.61  ...  12.91128  77.68380     4.09  637.96
+4   2024-06-17T10:49:18.000Z       1168        35.18              47.70  ...  12.91128  77.68380     4.09  499.41
+..                       ...        ...          ...                ...  ...       ...       ...      ...     ...
+4   2024-06-17T10:49:08.000Z       1172        31.61              53.81  ...  13.10185  77.63149     4.07  612.18
+5   2024-06-17T10:50:08.000Z       1172        31.56              53.86  ...  13.10185  77.63149     4.07  608.96
+6   2024-06-17T10:51:08.000Z       1172        31.52              54.11  ...  13.10185  77.63149     4.07  599.29
+7   2024-06-17T10:52:08.000Z       1172        31.51              53.99  ...  13.10185  77.63149     4.07  600.90
+8   2024-06-17T10:53:08.000Z       1172        31.50              53.93  ...  13.10185  77.63149     4.07  615.40
+
+[63 rows x 39 columns]
+2024-06-17 11:01:50,833 [INFO] DataIngestion 7535 128198126399488 Standardized DataFrame:         co    no2    so2     o3     co2  co_nv  ...   pm10  pm1_opc pm2_5_opc  pm10_opc                      time  device_id
+0   598.69  33.92   2.38  17.81  554.34    586  ...  12.81     0.21      0.48      0.61  2024-06-17T10:45:17.000Z       1168
+1   746.75  43.61   6.54  15.43  559.87    735  ...  13.98     0.19      0.22      0.22  2024-06-17T10:46:18.000Z       1168
+2   537.93  36.10   4.32  26.25  563.50    525  ...  12.48     0.15      0.17      0.20  2024-06-17T10:47:18.000Z       1168
+3   364.35  29.79   0.83  30.65  559.71    341  ...  11.04     0.19      0.19      0.19  2024-06-17T10:48:18.000Z       1168
+4   283.82  26.23   0.41  33.89  550.55    251  ...  11.25     0.13      0.13      0.13  2024-06-17T10:49:18.000Z       1168
+..     ...    ...    ...    ...     ...    ...  ...    ...      ...       ...       ...                       ...        ...
+4   214.99  26.28  12.31  22.79  670.24    151  ...   8.47     1.24      3.55      8.56  2024-06-17T10:49:08.000Z       1172
+5   220.70  30.26  11.34  19.67  666.98    156  ...   8.69     1.12      3.39     21.92  2024-06-17T10:50:08.000Z       1172
+6   225.47  27.00  16.49  20.78  673.73    169  ...   9.09     0.88      1.73     17.37  2024-06-17T10:51:08.000Z       1172
+7   226.58  27.33   9.17  25.10  673.09    168  ...   9.01     1.04      2.72      8.18  2024-06-17T10:52:08.000Z       1172
+8   220.85  29.38   2.52  25.92  672.37    163  ...   9.50     0.69      2.47     16.82  2024-06-17T10:53:08.000Z       1172
+
+[63 rows x 20 columns]
+2024-06-17 11:01:50,833 [INFO] DataIngestion 7535 128198126399488 Missing data dictionary: {}
+2024-06-17 11:01:51,470 [INFO] DataIngestion 7535 128198126399488 Stored standardized data for manufacturer: sensit_ramp
+2024-06-17 11:01:51,470 [INFO] DataIngestion 7535 128198126399488 Processing devices for manufacturer: respirer
+2024-06-17 11:01:51,471 [INFO] Respirer 7535 128198126399488 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 11:01:53,292 [INFO] Respirer 7535 128198126399488 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 11:01:55,338 [INFO] Respirer 7535 128198126399488 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 11:01:57,181 [INFO] Respirer 7535 128198126399488 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 11:01:59,083 [INFO] Respirer 7535 128198126399488 Processing parameters: ['no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2', 'pm2.5cnc', 'pm10cnc', 'temp', 'humidity', 'opc_r2_pm1', 'opc_r2_pm25', 'opc_r2_pm10']
+2024-06-17 11:02:00,832 [INFO] DataIngestion 7535 128198126399488 Fetched data:                           dt_time no2op1 no2op2  coop1  coop2  ... humidity opc_r2_pm1 opc_r2_pm25 opc_r2_pm10      deviceid
+0   Mon, 17 Jun 2024 10:45:00 GMT  234.0  246.0  375.0  314.0  ...     71.7        2.0         7.0        33.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 10:46:00 GMT  234.0  245.0  388.0  315.0  ...     70.8        2.0         9.0        46.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 10:47:00 GMT  235.0  245.0  427.0  313.0  ...     70.6        2.0         8.0        32.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 10:48:00 GMT  235.0  246.0  443.0  314.0  ...     71.1        1.0         7.0        44.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 10:49:00 GMT  235.0  245.0  486.0  315.0  ...     70.0        2.0         7.0        42.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...      ...        ...         ...         ...           ...
+11  Mon, 17 Jun 2024 10:56:00 GMT  246.0  230.0  407.0  296.0  ...     56.0        1.0         4.0        12.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 10:57:00 GMT  246.0  230.0  405.0  295.0  ...     55.6        1.0         5.0        10.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 10:58:00 GMT  246.0  230.0  400.0  295.0  ...     55.4        1.0         5.0        15.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 10:59:00 GMT  247.0  230.0  408.0  294.0  ...     55.0        1.0         4.0        10.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 11:00:00 GMT  245.0  230.0  396.0  293.0  ...     55.5        1.0         5.0        15.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 11:02:00,858 [ERROR] Respirer 7535 128198126399488 Error in get_ColumnReplacement: cannot convert the series to <class 'int'>
+2024-06-17 11:02:00,910 [INFO] DataIngestion 7535 128198126399488 Standardized DataFrame:                              time no2op1 no2op2  coop1  coop2  ... relative_humidity pm1_opc pm2_5_opc pm10_opc     device_id
+0   Mon, 17 Jun 2024 10:45:00 GMT  234.0  246.0  375.0  314.0  ...              71.7     2.0       7.0     33.0  3C6105F42DC1
+1   Mon, 17 Jun 2024 10:46:00 GMT  234.0  245.0  388.0  315.0  ...              70.8     2.0       9.0     46.0  3C6105F42DC1
+2   Mon, 17 Jun 2024 10:47:00 GMT  235.0  245.0  427.0  313.0  ...              70.6     2.0       8.0     32.0  3C6105F42DC1
+3   Mon, 17 Jun 2024 10:48:00 GMT  235.0  246.0  443.0  314.0  ...              71.1     1.0       7.0     44.0  3C6105F42DC1
+4   Mon, 17 Jun 2024 10:49:00 GMT  235.0  245.0  486.0  315.0  ...              70.0     2.0       7.0     42.0  3C6105F42DC1
+..                            ...    ...    ...    ...    ...  ...               ...     ...       ...      ...           ...
+11  Mon, 17 Jun 2024 10:56:00 GMT  246.0  230.0  407.0  296.0  ...              56.0     1.0       4.0     12.0  4C11AE13AFF5
+12  Mon, 17 Jun 2024 10:57:00 GMT  246.0  230.0  405.0  295.0  ...              55.6     1.0       5.0     10.0  4C11AE13AFF5
+13  Mon, 17 Jun 2024 10:58:00 GMT  246.0  230.0  400.0  295.0  ...              55.4     1.0       5.0     15.0  4C11AE13AFF5
+14  Mon, 17 Jun 2024 10:59:00 GMT  247.0  230.0  408.0  294.0  ...              55.0     1.0       4.0     10.0  4C11AE13AFF5
+15  Mon, 17 Jun 2024 11:00:00 GMT  245.0  230.0  396.0  293.0  ...              55.5     1.0       5.0     15.0  4C11AE13AFF5
+
+[80 rows x 17 columns]
+2024-06-17 11:02:00,910 [INFO] DataIngestion 7535 128198126399488 Missing data dictionary: {}
+2024-06-17 11:02:00,913 [ERROR] AirnetDriverAbs 7535 128198126399488 Error in store_std_data: db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 11:02:00,913 [WARNING] DataIngestion 7535 128198126399488 Error processing devices for manufacturer db_std_data() got unexpected keyword arguments: 'no2op1', 'no2op2', 'coop1', 'coop2', 'o3op1', 'o3op2', 'so2op1', 'so2op2'
+2024-06-17 11:02:00,913 [INFO] DataIngestion 7535 128198126399488 Stored standardized data for manufacturer: respirer

@@ -147,7 +147,7 @@ class AirVeda(AirnetDriverAbs):
             df = df['readings'].apply(pd.Series)
 
             if df.empty:
-                self.add_missing_data(device=deviceObj, param=request['param'], error_code=self._http_response.status_code)
+                self.store_missing_data_info(dev_obj=deviceObj,store_param=request['param'])
                 return
 
             df['time'] = pd.to_datetime(df['time'], format="%Y-%m-%d %H:%M:%S")

@@ -1,4 +1,4 @@
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession # type: ignore
 import json
 import os
 import pandas
@@ -9,6 +9,7 @@ from core.models import db_DEVICE, db_MANUFACTURER
 from core.Drivers.AirVeda import AirVeda
 from core.Drivers.DriverList import driverList as drivers
 from core.Drivers.Respirer import respirer
+
 import argparse
 from datetime import datetime,timedelta
 import pytz

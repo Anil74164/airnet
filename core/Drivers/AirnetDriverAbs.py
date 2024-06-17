@@ -60,7 +60,7 @@ class AirnetDriverAbs(ABC):
             self.preprocess(deviceObj=deviceObj,start=start,end=end)
             self.process(deviceObj=deviceObj,dag_param=param)
             self.postprocess(deviceObj)
-            self.store_missing_data_info()
+            # self.store_missing_data_info()
             return self._df_all
         except Exception as e:
             logger.error(f"Error in fetch: {e}")
@@ -137,15 +137,16 @@ class AirnetDriverAbs(ABC):
             logger.error(f"Error in insert_raw_response: {e}")
             raise
 
-    def store_missing_data_info(self):
+    def store_missing_data_info(self,dev_obj,store_param):
         try:
-            for i in self._missing_data_dict:
-                db_missing_data.objects.create(
-                    req_start_dt=self.start_time,
-                    req_end_dt=self.end_time,
-                    parameter=','.join(map(str, self._missing_data_dict[i])),
-                    device_id=i,
-                ).save()
+            
+            db_missing_data.objects.create(
+                req_start_dt=self.start_time,
+                req_end_dt=self.end_time,
+                parameter=store_param,
+                device_id=dev_obj,
+                error_code=self._http_response.status_code
+            ).save()
         except Exception as e:
             logger.error(f"Error in store_missing_data_info: {e}")
             raise

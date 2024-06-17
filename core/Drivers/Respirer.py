@@ -152,7 +152,7 @@ class respirer(AirnetDriverAbs):
                     print("SAAAAAAAAAAAAAAAAAAAa")
                     print(self._df_all[col1])
                     print(self._df_all[col2])
-                    self._df_all[column] = self._df_all[col1] - self._df_all[col2]
+                    self._df_all[column] = int(self._df_all[col1]) - int(self._df_all[col2])
                     
                     self._df_all.drop(columns=[col1, col2], inplace=True) 
         except Exception as e:
