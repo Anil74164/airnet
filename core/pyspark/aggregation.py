@@ -7,19 +7,33 @@ import pytz
 
 def main():
     try:
+        ist_timezone = pytz.timezone('Asia/Kolkata')
         rounded_minute = (datetime.now().minute // 15) * 15
-        end_time = datetime.now().replace(minute=rounded_minute, second=0, microsecond=0)
+        # end_time = datetime.now().replace(minute=rounded_minute, second=0, microsecond=0)
+        # start_time = end_time - timedelta(minutes=15)
+        end_time = datetime(2024,5,19,18,45,0)
         start_time = end_time - timedelta(minutes=15)
-
+        end_time=end_time.astimezone(ist_timezone)
+        start_time=start_time.astimezone(ist_timezone)
+        print(rounded_minute)
+        
+        
+        print(start_time)
+        print(end_time)
         
         
         queryset = db_std_data.objects.filter(time__range=(start_time, end_time)).values()
         data = list(queryset)
+        print("aaaaaaaaaa")
         df = pd.DataFrame(data)
+        print(df)
         
         if len(df)>0:
-            selected_cols1 = ['pm2_5_r','pm10_r','so2_nv','no2_nv','o3_nv','co_nv','device_id_id','time']
-            selected_df1 = df[selected_cols1]
+            
+            # selected_df1 = df[selected_cols1]
+            print(df.columns)
+            print(df['time'])
+            selected_df1 =df.drop(columns=['id'])
             counts = len(selected_df1)
             print(counts)
             avg_df = selected_df1.groupby(['device_id_id']).mean().reset_index()
@@ -30,6 +44,11 @@ def main():
                 avg_df=avg_df[['start_time','end_time','device_id_id']]
 
             store_aggregated_data(avg_df)
+            avg_df.to_csv("data4.csv")
+            print(avg_df)
+            
+            print(avg_df.columns)
+
         else:
             print(f"There is no data for {start_time} and {end_time}")
         

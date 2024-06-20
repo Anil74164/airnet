@@ -5,7 +5,7 @@ import pandas
 import sys
 import logging
 import DjangoSetup
-from core.models import db_DEVICE, db_MANUFACTURER
+from core.models import db_DEVICE, db_MANUFACTURER,db_missing_data
 from core.Drivers.AirVeda import AirVeda
 from core.Drivers.DriverList import driverList as drivers
 from core.Drivers.Respirer import respirer
@@ -45,6 +45,34 @@ def get_options():
             logger.error("Invalid date format:"+args.end)
     
     return args
+
+
+def update_missing_data_status(device_id, pollutant, start_time, end_time):
+    try:
+        logger.info("hnjkm,")
+        ist_timezone = pytz.timezone('Asia/Kolkata')
+        end_time=end_time.astimezone(ist_timezone)
+        start_time=start_time.astimezone(ist_timezone)
+        missing_data_entry = db_missing_data.objects.filter(
+            device_id=device_id,
+            parameter=pollutant,
+            req_start_dt=start_time,
+            req_end_dt=end_time,
+            status=0  # Only update if status is 0 (not already received)
+        ).first()
+        logger.info(missing_data_entry)
+          # Get the first matching entry
+        if missing_data_entry:
+            missing_data_entry.status = 1
+            missing_data_entry.received_dt = datetime.now()
+            missing_data_entry.save()
+            logger.info(f"Marked status as 1 for missing data entry: {missing_data_entry}")
+            return missing_data_entry
+    except db_missing_data.DoesNotExist:
+        pass
+    except Exception as e:
+        logger.error(f"Error updating missing data status: {e}")
+
 
 def get_all_devices():
     all_device = db_DEVICE.get_active_devices()
@@ -100,32 +128,49 @@ def main_fetch(args=None):
 
 
         device_Dict = fetchDeviceDict(data)
-
-      
+        print("aaaaaaaaaaaaaaaa")
+        print(paramList)
+        print(drivers)
         print(device_Dict)
         for i in device_Dict.keys():
             try:
-                logger.info(f"Processing devices for manufacturer: {i.name}")
-               
-                obj = drivers[i.name](manufacturer_obj=i)
-                print(obj)  
-                print("sucess")
-                da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
-                print(da)
+                if i.name in drivers:    
+                    logger.info(f"Processing devices for manufacturer: {i.name}")
                 
-                logger.info(f"Fetched data: {da}")
+                    obj = drivers[i.name](manufacturer_obj=i)
+                    print(obj)  
+                    print("sucess")
+                    da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
+                    print(da)
+                    print(da.columns)
+                    da.to_csv('data.csv')
+                    
+                    logger.info(f"Fetched data: {da}")
 
-                obj.standardize_df()
-                print(obj._missing_data_dict)
-                logger.info(f"Standardized DataFrame: {obj._df_all}")
-                logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
-                print(obj._cal_df)
-                try:
-                    obj.store_std_data()
-                except Exception as e:
-                    logger.warning(f"Error processing devices for manufacturer {e}")
-                logger.info(f"Stored standardized data for manufacturer: {i.name}")
+                    obj.standardize_df()
+                    print(obj._missing_data_dict)
+                    logger.info(f"Standardized DataFrame: {obj._df_all}")
+                    logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
+                    logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
 
+                    for device in device_Dict[i]:
+                        logger.info(device_Dict[i])
+                        for param in paramList:
+                            logger.info(paramList)
+                            updated_entry = update_missing_data_status(device, param, start, end)
+                            
+                            if updated_entry:
+                                logger.info(f"Updated status for missing data entry: {updated_entry}")
+
+
+                    print(obj._cal_df)
+                    try:
+                        obj.store_std_data()
+
+                    except Exception as e:
+                        logger.warning(f"Error processing devices for manufacturer {e}")
+                    logger.info(f"Stored standardized data for manufacturer: {i.name}")
+                    
             except Exception as e:
                 logger.error(f"Error processing devices for manufacturer {i.name}: {e}")
                 continue

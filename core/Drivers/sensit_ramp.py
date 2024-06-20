@@ -128,6 +128,7 @@ class sensit_ramp(AirnetDriverAbs):
             print("inside df create")
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id,manufacturer_name=deviceObj.manufacturer_id.name, param=None)
             data = self._http_response.json()['data']
+            print(data)
             data_batch=[]
             for record in data:
                 time = record.get('date', None)
@@ -149,32 +150,20 @@ class sensit_ramp(AirnetDriverAbs):
                 co2 = record.get('CO2', None)
                 o3 = record.get('O3', None)
                 so2 = record.get('SO2', None)
-                no = record.get('NO', None)
                 no2 = record.get('NO2', None)
 
                 raw_val = record.get('raw')
                 # print(raw_val)
-                if deviceObj.device_id in ('2000', '2001'):  # For demo devices
-                    co_channel_num = 1
-                    no_channel_num = 2
-                    no2_channel_num = 3
-                    o3_channel_num = 4
-                    co_aux_avg, co_act_avg = self.filter_raw_gas(raw_val, co_channel_num)
-                    no_aux_avg, no_act_avg = self.filter_raw_gas(raw_val, no_channel_num)
-                    no2_aux_avg, no2_act_avg = self.filter_raw_gas(raw_val, no2_channel_num)
-                    o3_aux_avg, o3_act_avg = self.filter_raw_gas(raw_val, o3_channel_num)
-                    so2_channel_num, so2_aux_avg, so2_act_avg = None, None, None
-
-                else:
-                    co_channel_num = 1
-                    so2_channel_num = 2
-                    no2_channel_num = 3
-                    o3_channel_num = 4
-                    co_aux_avg, co_act_avg = self.filter_raw_gas(raw_val, co_channel_num)
-                    so2_aux_avg, so2_act_avg = self.filter_raw_gas(raw_val, so2_channel_num)
-                    no2_aux_avg, no2_act_avg = self.filter_raw_gas(raw_val, no2_channel_num)
-                    o3_aux_avg, o3_act_avg = self.filter_raw_gas(raw_val, o3_channel_num)
-                    no_channel_num, no_aux_avg, no_act_avg = None, None, None
+               
+                co_channel_num = 1
+                so2_channel_num = 2
+                no2_channel_num = 3
+                o3_channel_num = 4
+                co_aux_avg, co_act_avg = self.filter_raw_gas(raw_val, co_channel_num)
+                so2_aux_avg, so2_act_avg = self.filter_raw_gas(raw_val, so2_channel_num)
+                no2_aux_avg, no2_act_avg = self.filter_raw_gas(raw_val, no2_channel_num)
+                o3_aux_avg, o3_act_avg = self.filter_raw_gas(raw_val, o3_channel_num)
+                
 
                 lat = record.get('lat', None)
                 long = record.get('long', None)
@@ -187,11 +176,11 @@ class sensit_ramp(AirnetDriverAbs):
                         'pm1': pt_pm1, 'pm2_5': pt_pm2_5, 'pm10': pt_pm10,
                         'pm1_opc': opc_pm1, 'pm2_5_opc': opc_pm2_5, 'pm10_opc': opc_pm10,
                         'opc_temp': opc_temp, 'opc_humidity': opc_humidity,
-                        'co': co, 'co2': co2, 'o3': o3, 'so2': so2, 'no': no, 'no2': no2,
-                        'co_channel_num': co_channel_num, 'no_channel_num': no_channel_num,
+                        'co': co, 'co2': co2, 'o3': o3, 'so2': so2,  'no2': no2,
+                        'co_channel_num': co_channel_num, 
                         'no2_channel_num': no2_channel_num, 'o3_channel_num': o3_channel_num,
                         'so2_channel_num': so2_channel_num, 'co_aux_avg': co_aux_avg, 'co_act_avg': co_act_avg,
-                        'no_aux_avg': no_aux_avg, 'no_act_avg': no_act_avg, 'no2_aux_avg': no2_aux_avg,
+                        'no2_aux_avg': no2_aux_avg,
                         'no2_act_avg': no2_act_avg, 'o3_aux_avg': o3_aux_avg, 'o3_act_avg': o3_act_avg,
                         'so2_aux_avg': so2_aux_avg, 'so2_act_avg': so2_act_avg,
                         'lat': lat, 'long': long, 'battery': battery, 'charge': charge
@@ -214,12 +203,7 @@ class sensit_ramp(AirnetDriverAbs):
             print(cal.columns)
             for column in df.columns:
                 if null_counts[column]==len(df):
-                    if deviceObj.device_id in ('2000', '2001'):
-                        if column not in ('so2_channel_num', 'so2_aux_avg', 'so2_act_avg','so2'):
-                            self.store_missing_data_info(dev_obj=deviceObj,store_param=column)
-                    else:
-                        if column not in ('no_channel_num', 'no_aux_avg', 'no_act_avg','no'):
-                            self.store_missing_data_info(dev_obj=deviceObj,store_param=column)
+                    self.store_missing_data_info(dev_obj=deviceObj,store_param=column)
 
             print(cal)
             self._cal_df_list.append(cal)
@@ -247,13 +231,13 @@ class sensit_ramp(AirnetDriverAbs):
 
     def get_ColumnReplacement(self):
         try:
-            _changeColumns = {'value_pm25_base': 'pm2_5_r', 'value_pm10_base': 'pm10_r'}
+            _changeColumns = {}
             diff_column = {
                 'so2_nv': ['so2_act_avg', 'so2_aux_avg'],
                 'no2_nv':['no2_act_avg', 'no2_aux_avg'],
                 'o3_nv': ['o3_act_avg', 'o3_aux_avg'],
                 'co_nv': ['co_act_avg', 'co_aux_avg'],
-                'no_nv': ['no_act_avg', 'no_aux_avg']
+                
             }
     
             for column in _changeColumns:
@@ -269,17 +253,23 @@ class sensit_ramp(AirnetDriverAbs):
             logger.error(f"Error in get_ColumnReplacement: {e}")
 
     def handleDF(self):
-        select_columns=['co','no2','so2','o3','co2','co_nv','so2_nv','no2_nv','no_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
-        self._df_all=self._df_all[select_columns]
+            select_columns=['co','no2','so2','o3','co2','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
+            self._df_all=self._df_all[select_columns]
+            self._df_all['time'] = pd.to_datetime(self._df_all['time'])
+            self._df_all['time'] = self._df_all['time'].dt.tz_convert('Asia/Kolkata')
+            
 
     def standardize_df(self):
         try:
-            self.get_ColumnReplacement()
-            self.handleDF()
-            print(self._df_all)
+            if not self._df_all.empty:
+
+                self.get_ColumnReplacement()
+                self.handleDF()
+                print(self._df_all)
+                print(self._df_all.columns)
             
         except Exception as e:
-            logger.error(f"Error in standardization_df: {e}")
+            logger.error(f"Error in standardize_df: {e}")
 
     
     def filter_raw_gas(self, raw_dict, channel_num):

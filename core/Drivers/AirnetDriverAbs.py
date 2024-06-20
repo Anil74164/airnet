@@ -39,9 +39,10 @@ class AirnetDriverAbs(ABC):
     def preprocess(self,start,end,deviceObj):
         pass
 
-    def restGET(self, deviceObj):
+    def restGET(self, req,deviceObj):
         try:
-            response = requests.get(self._url)
+            #response = requests.get(req['url'],params=req['headers'], headers=req['payload'],verify=False)
+            response = requests.get(req['url'])
             return response
         except Exception as e:
             logger.error(f"Error in restGET: {e}")
@@ -49,11 +50,11 @@ class AirnetDriverAbs(ABC):
 
     def restPOST(self, request, deviceObj):
         try:
-            return requests.post(request['_url'], data=request['_payload'], headers=request['_headers'])
+            return requests.post(request['_url'], json=request['_payload'], headers=request['_headers'])
         except Exception as e:
             logger.error(f"Error in restPOST: {e}")
             raise
-    # TODO: START AND END TIME, PARAMETER
+   
     def fetch(self,start,end,param=None, deviceObj=None):
         try:
             print("fetch",start,end)
@@ -81,16 +82,16 @@ class AirnetDriverAbs(ABC):
     def handleDF(self):
         pass
 
-    def add_missing_data(self, device, param, error_code):
-        try:
-            if device in self._missing_data_dict.keys():
-                self._missing_data_dict[device].append({param: error_code})
-            else:
-                self._missing_data_dict[device] = []
-                self._missing_data_dict[device].append({param: error_code})
-        except Exception as e:
-            logger.error(f"Error in add_missing_data: {e}")
-            raise
+    # def add_missing_data(self, device, param, error_code):
+    #     try:
+    #         if device in self._missing_data_dict.keys():
+    #             self._missing_data_dict[device].append({param: error_code})
+    #         else:
+    #             self._missing_data_dict[device] = []
+    #             self._missing_data_dict[device].append({param: error_code})
+    #     except Exception as e:
+    #         logger.error(f"Error in add_missing_data: {e}")
+    #         raise
 
     def co2_cov(self, key):
         try:

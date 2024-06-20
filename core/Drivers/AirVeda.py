@@ -92,8 +92,7 @@ class AirVeda(AirnetDriverAbs):
                 paramListStr = dev.parameters
                 paramList = paramListStr.split(",")
 
-            paramList.append("o4")
-            paramList.append("so10")
+           
             print(paramList)
             logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
@@ -145,6 +144,7 @@ class AirVeda(AirnetDriverAbs):
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id, manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
             df = pd.DataFrame(self._http_response.json())
             df = df['readings'].apply(pd.Series)
+            print(df)
 
             if df.empty:
                 self.store_missing_data_info(dev_obj=deviceObj,store_param=request['param'])
@@ -197,17 +197,20 @@ class AirVeda(AirnetDriverAbs):
 
     def handleDF(self):
         try:
-            dict1 = {'co2': 'co2_cov', 'no2': 'no2_cov', 'so2': 'so2_cov', 'no': 'no_cov', 'o3': 'o3_cov'}
-            for column in self._df_all.columns:
-                if column in dict1:
-                    self.dict1[column](self._df_all, column)
+            # dict1 = {'co2': 'co2_cov', 'no2': 'no2_cov', 'so2': 'so2_cov', 'no': 'no_cov', 'o3': 'o3_cov'}
+            # for column in self._df_all.columns:
+            #     if column in dict1:
+            #         self.dict1[column](self._df_all, column)
+            self._df_all['time'] = pd.to_datetime(self._df_all['time'], errors='coerce')
+            self._df_all['time'] = self._df_all['time'].dt.tz_localize('UTC').dt.tz_convert('Asia/Kolkata')
         except Exception as e:
             logger.error(f"Error in handleDF: {e}")
 
     def standardize_df(self):
         try:
-            self.get_ColumnReplacement()
-            self.handleDF()
+            if not self._df_all.empty:
+                self.get_ColumnReplacement()
+                self.handleDF()
             
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
