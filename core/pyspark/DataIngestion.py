@@ -50,9 +50,14 @@ def get_options():
 def update_missing_data_status(device_id, pollutant, start_time, end_time):
     try:
         logger.info("hnjkm,")
+        logger.info(start_time)
+        logger.info(end_time)
+        
         ist_timezone = pytz.timezone('Asia/Kolkata')
         end_time=end_time.astimezone(ist_timezone)
         start_time=start_time.astimezone(ist_timezone)
+        logger.info(start_time)
+        logger.info(end_time)
         missing_data_entry = db_missing_data.objects.filter(
             device_id=device_id,
             parameter=pollutant,
@@ -100,12 +105,14 @@ def get_device(deviceList):
 def main_fetch(args=None):
     try:
         if args.start and args.end:
-            ist_timezone = pytz.timezone("Asia/Kolkata")
-            start= ist_timezone.localize(args.start)
-            start = start.astimezone(pytz.utc)
-            end= ist_timezone.localize(args.end)
-            end = end.astimezone(pytz.utc)
-         
+
+            # ist_timezone = pytz.timezone("Asia/Kolkata")
+            # start= ist_timezone.localize(args.start)
+            # start = start.astimezone(pytz.utc)
+            # end= ist_timezone.localize(args.end)
+            # end = end.astimezone(pytz.utc)
+            start=args.start
+            end=args.end
             print(type(start))
             print(start)
         else:

@@ -7,8 +7,8 @@ from core.Drivers.aurassure import aurassure
 from core.Drivers.aeron import aeron 
 
 driverList = {
-    #"airveda" : AirVeda,
-    "respirer": respirer,
+    "airveda" : AirVeda,
+    # "respirer": respirer,
     # "sensit_ramp": sensit_ramp,
     # "sensit_ramp_demo": sensit_ramp_demo,
     # "aurassure":aurassure,
