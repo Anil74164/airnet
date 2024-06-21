@@ -93,19 +93,20 @@ class aeron(AirnetDriverAbs):
             # logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
             self.time_added = False
-            dt=date(2024,6,15)
+            dt=date(2024,6,14)
             print(type(dt))
             #print(self.device_id)
             req = {
                     
                     'payload': {
-                        'Host': 'getiotservice.aeronsystems.com:9007',
+                        'Host': self.manufacturer_obj.host,
                         'Authorization': 'Bearer ' + self.id_token,
-                        'Accept': 'application/json'
+                        'Accept': self.manufacturer_obj.accept
                     },
                     'headers': {'usn': '240091703829123', 'date': dt},
-                    'url': "https://getiotservice.aeronsystems.com:9007/v1.0/getdataondate"
+                    'url': self.manufacturer_obj.data_url
                 }
+            
             
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
 
@@ -204,15 +205,17 @@ class aeron(AirnetDriverAbs):
                 self.store_missing_data_info(dev_obj=deviceObj,store_param=None)
  
                 return
-
-            cal=df[['o3_ppb','so2_ppb','no2_ppb','co_ppm','o3','so2','no2','co','time','device_id']]
-            
+            df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+            df.drop(columns=['date', 'time'], inplace=True)
+            print(df.columns)
+            cal=df[['o3_ppb','so2_ppb','no2_ppb','co_ppm','o3','so2','no2','co','datetime','device_id']]
+            df.drop(columns=['o3','so2','no2','co'], inplace=True)
             print(df.columns)
             null_counts = df.isnull().sum()
             print(df)
             print(null_counts)  
             
-            print(null_counts['time'])
+            
             print(len(df))
             print(cal.columns)
             for column in df.columns:
@@ -238,14 +241,13 @@ class aeron(AirnetDriverAbs):
             else:
                 self._cal_df = pd.DataFrame()
  
-            self.store_manufacturer_cal_data()
  
         except Exception as e:
             logger.error(f"Error in postprocess: {e}")
  
     def get_ColumnReplacement(self):
         try:
-            _changeColumns = {'o3_ppb':'o3','so2_ppb':'so2','no2_ppb':'no2','co_ppm':'co','humidity':'relative_humidity','temp':'temperature','pm10_alpha':'pm10','pm25_alpha':'pm2_5','pm1_alpha':'pm1','pm10_tera':'pm10_opc','pm25_tera':'pm2_5_opc','pm1_tera':'pm1_opc'}
+            _changeColumns = {'o3_ppb':'o3','so2_ppb':'so2','no2_ppb':'no2','co_ppm':'co','humidity':'relative_humidity','temp':'temperature','pm10_alpha':'pm10','pm25_alpha':'pm2_5','pm1_alpha':'pm1','pm10_tera':'pm10_opc','pm25_tera':'pm2_5_opc','pm1_tera':'pm1_opc','datetime':'time','pressure':'barometric_pressure'}
             diff_column = {
                 'so2_nv': ['so2_we', 'so2_aux'],
                 'no2_nv':['no2_we', 'no2_aux'],
@@ -259,11 +261,7 @@ class aeron(AirnetDriverAbs):
                     self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
 
     
-            for column in _changeColumns:
-                if column in self._df_all.columns:
-                    self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
-
-            self._df_all['time'] = pd.to_datetime(self._df_all['date'].astype(str) + ' ' + self._df_all['time'], format='%Y%m%d%H%M%S %Y-%m-%d %H:%M:%S', errors='coerce')
+            self._cal_df.rename(columns={'datetime':'time' }, inplace=True)
 
  
             for column in diff_column:
@@ -275,7 +273,7 @@ class aeron(AirnetDriverAbs):
             logger.error(f"Error in get_ColumnReplacement: {e}")
  
     def handleDF(self):
-            select_columns=['co','no2','so2','o3','co2','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
+            select_columns=['co','no2','so2','o3','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','barometric_pressure','time','device_id']
             self._df_all=self._df_all[select_columns]
  
     def standardize_df(self):
@@ -286,6 +284,7 @@ class aeron(AirnetDriverAbs):
                 print(self._df_all)
                 self.handleDF()
                 print(self._df_all.columns)
+            self.store_manufacturer_cal_data()
             
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
@@ -298,3 +297,5 @@ class aeron(AirnetDriverAbs):
         aux_avg = channel[0].get('aux_avg', None)
         act_avg = channel[0].get('act_avg', None)
         return aux_avg, act_avg
+    
+
