@@ -96,7 +96,7 @@ class aurassure(AirnetDriverAbs):
                                 "Content-Type": self.manufacturer_obj.content_type},
                     '_url': self.manufacturer_obj.data_url
                 }
-                
+                req['_payload']=json.dumps(req['_payload'])
                 # print(req)    
                 response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
                 self._http_response = response

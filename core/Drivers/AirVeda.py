@@ -92,7 +92,6 @@ class AirVeda(AirnetDriverAbs):
                 paramListStr = dev.parameters
                 paramList = paramListStr.split(",")
 
-           
             print(paramList)
             logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
@@ -109,7 +108,8 @@ class AirVeda(AirnetDriverAbs):
                         'endTime': self.end_time.strftime(self.fmt)
                     },
                     '_headers': {'Authorization': 'Bearer ' + self.id_token},
-                    '_url': self.manufacturer_obj.data_url
+                    '_url': self.manufacturer_obj.data_url,
+                    'json_payload':None
                 }
                 
                 response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
@@ -133,7 +133,9 @@ class AirVeda(AirnetDriverAbs):
                 self._cal_df=self._cal_df.drop(['battery'],axis=1)
         else:
             self._cal_df = pd.DataFrame()
-
+        print("ccccccccccccccccccccccc")
+        print(self._cal_df)
+        self._cal_df
         self.store_manufacturer_cal_data()
 
 
@@ -177,7 +179,7 @@ class AirVeda(AirnetDriverAbs):
 
     def get_ColumnReplacement(self):
         try:
-            _changeColumns = {'value_pm25_base': 'pm2_5_r', 'value_pm10_base': 'pm10_r'}
+            _changeColumns = {'value_pm25_base': 'pm2_5_r', 'value_pm10_base': 'pm10_r','humidity' : 'relative_humidity'}
             diff_column = {
                 'so2_nv': ['WorkingElectrodeVoltage_so2Voltages', 'AuxilliaryElectrodeVoltage_so2Voltages'],
                 'no2_nv': ['WorkingElectrodeVoltage_no2Voltages', 'AuxilliaryElectrodeVoltage_no2Voltages'],
@@ -185,6 +187,8 @@ class AirVeda(AirnetDriverAbs):
                 'co_nv': ['WorkingElectrodeVoltage_coVoltages', 'AuxilliaryElectrodeVoltage_coVoltages']
             }
             for column in _changeColumns:
+                print(self._df_all.columns)
+                print("zzzzzzzzz")
                 if column in self._df_all.columns:
                     self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
 
@@ -203,6 +207,19 @@ class AirVeda(AirnetDriverAbs):
             #         self.dict1[column](self._df_all, column)
             self._df_all['time'] = pd.to_datetime(self._df_all['time'], errors='coerce')
             self._df_all['time'] = self._df_all['time'].dt.tz_localize('UTC').dt.tz_convert('Asia/Kolkata')
+            
+            if not self._df_all.empty and not self._cal_df.empty    : 
+                join_df=self._df_all
+                
+                print(join_df)
+                self._df_all = pd.merge(join_df, self._cal_df, on=['device_id','time'], how='inner')
+                print(self._df_all.columns)
+                self._df_all=self._df_all.drop(['pm25','ozone','pm10','co','so2','no2'], axis=1)
+                self._df_all.rename(columns={'humidity': 'relative_humidity'}, inplace=True)
+            print("aaaaaaaaaaaaaaaaaaa")
+            print(self._df_all.columns)
+            
+          
         except Exception as e:
             logger.error(f"Error in handleDF: {e}")
 
@@ -211,6 +228,7 @@ class AirVeda(AirnetDriverAbs):
             if not self._df_all.empty:
                 self.get_ColumnReplacement()
                 self.handleDF()
+
             
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
@@ -236,6 +254,23 @@ class AirVeda(AirnetDriverAbs):
         cal_df=cal_df['data'].apply(pd.Series)
         
         cal_df['device_id'] = deviceObj.device_id
+        
+
+        cal_df['time'] = pd.to_datetime(cal_df['time'])
+        
+        # Set 'datetime' column as the index
+        cal_df.set_index('time', inplace=True)
+
+        # Define the start and end times
+        
+
+        # Filter the DataFrame between the start and end times
+        cal_df= cal_df.loc[self.start_time:self.end_time]
+        cal_df.reset_index(inplace=True)
+        cal_df['time'] = pd.to_datetime(cal_df['time'], errors='coerce')
+        cal_df['time'] = cal_df['time'].dt.tz_localize('UTC').dt.tz_convert('Asia/Kolkata')
+        print(cal_df)
+        print(cal_df.columns)
         self._cal_df_list.append(cal_df)
 
 

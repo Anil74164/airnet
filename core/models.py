@@ -188,7 +188,7 @@ class db_DEVICE(models.Model):
     
     address = models.TextField(max_length=1000)
     parameters = models.CharField(max_length=1000)
-    
+    is_reference_grade=models.BooleanField(default=False)
     altitude = models.DecimalField(max_digits=9,decimal_places=6)
     install_dt = models.DateTimeField()
     approved_by =models.CharField(max_length=255)
@@ -212,7 +212,8 @@ class db_DEVICE(models.Model):
         return db_DEVICE.objects.all()
     @staticmethod
     def get_active_devices():
-        return db_DEVICE.objects.filter(status=1)
+        m=db_MANUFACTURER.objects.get(name='aeron')
+        return db_DEVICE.objects.filter(status=1).exclude(manufacturer_id=m.id)
     
     
 class db_Parameter(models.Model):
@@ -321,7 +322,10 @@ class db_AQData(models.Model):
     pm1 = models.FloatField(null=True)
     no_nv=models.FloatField(null=True)
     status = models.IntegerField()
-    date_time = models.DateTimeField()
+    time = models.DateTimeField()
+    class Meta:
+        unique_together = ('device_id', 'time')
+    
     
     
  
@@ -364,6 +368,8 @@ class db_AirNet_Aggregated(models.Model):
     time = models.DateTimeField(null=True)
     start_time=models.DateTimeField()
     end_time=models.DateTimeField()
+    class Meta:
+        unique_together = ('device_id', 'start_time','end_time')
     
 class db_manufacturer_calibrated_data(models.Model):
     time = models.DateTimeField()
@@ -382,7 +388,9 @@ class db_manufacturer_calibrated_data(models.Model):
     ozone=models.FloatField(null=True)
     temperature=models.FloatField(null=True)
     humidity=models.FloatField(null=True)
-      
+    class Meta:
+        unique_together = ('device_id', 'time')
+    
 
 
 class db_AQDataExt(models.Model):
@@ -455,6 +463,9 @@ class db_std_data(models.Model):
     no_nv=models.FloatField(null=True)
     status = models.IntegerField(default=0)
     time = models.DateTimeField()
+
+    class Meta:
+        unique_together = ('device_id', 'time')
     
 class db_calibration_models(models.Model):
     id = models.AutoField(primary_key=True)
@@ -465,3 +476,26 @@ class db_calibration_models(models.Model):
     dt_time = models.DateTimeField()
     status = models.IntegerField(default=0)
     version = models.IntegerField(default=0)
+
+class db_audit_trail(models.Model):
+    id = models.AutoField(primary_key=True)
+    dt_time = models.DateTimeField(auto_now_add=True)
+    activity_code= models.CharField(max_length=50)
+    activity_desc= models.CharField(max_length=1000)
+    param1= models.CharField(max_length=255,null=True)
+    param2= models.CharField(max_length=255,null=True)
+    param3= models.CharField(max_length=255,null=True)
+    severity= models.CharField(max_length=255)
+    user_id=models.ForeignKey(db_User,on_delete=models.CASCADE,null=True,related_name='Audit_user')
+
+    @staticmethod
+    def log(act_code,act_desc,severity,user,param_1=None,param_2=None,param_3=None):
+        db_audit_trail.objects.create(
+            activity_code=act_code,
+            activity_desc=act_desc,
+            severity=severity,
+            user_id=user,
+            param1=param_1,
+            param2=param_2,
+            param3=param_3
+        ).save()

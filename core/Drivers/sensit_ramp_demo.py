@@ -253,9 +253,18 @@ class sensit_ramp_demo(AirnetDriverAbs):
     def handleDF(self):
         select_columns=['co','no2','o3','co2','co_nv','no2_nv','no_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
         self._df_all=self._df_all[select_columns]
+        dict1 = {'co': self.co_cov}
+        for column in dict1:
+            if column in self._df_all:
+                self._df_all=dict1[column](self._df_all,column)
         self._df_all['time'] = pd.to_datetime(self._df_all['time'])
         self._df_all['time'] = self._df_all['time'].dt.tz_convert('Asia/Kolkata')
-            
+        if not self._cal_df.empty:
+                self._cal_df['time'] = pd.to_datetime(self._cal_df['time'])
+                self._cal_df['time'] = self._cal_df['time'].dt.tz_convert('Asia/Kolkata')
+                for column in dict1:
+                    if column in self._cal_df:
+                        self._cal_df=dict1[column](self._cal_df,column)
     def standardize_df(self):
         try:
             if not self._df_all.empty:

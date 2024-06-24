@@ -5,14 +5,16 @@ from core.Drivers.sensit_ramp import sensit_ramp
 from core.Drivers.sensit_ramp_demo import sensit_ramp_demo
 from core.Drivers.aurassure import aurassure
 from core.Drivers.aeron import aeron 
+from core.Drivers.aqms import aqms
 
 driverList = {
     "airveda" : AirVeda,
-    # "respirer": respirer,
-    # "sensit_ramp": sensit_ramp,
-    # "sensit_ramp_demo": sensit_ramp_demo,
-    # "aurassure":aurassure,
-    # "aeron":aeron
+    "respirer": respirer,
+    "sensit_ramp": sensit_ramp,
+    "sensit_ramp_demo": sensit_ramp_demo,
+    "aurassure":aurassure,
+    "aeron":aeron,
+    "aqms":aqms
 }
 
 

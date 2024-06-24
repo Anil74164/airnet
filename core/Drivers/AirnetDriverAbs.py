@@ -7,7 +7,7 @@ from datetime import datetime
 import logging
 import DjangoSetup
 from RawData.models import db_AirNet_Raw_Response
-from core.models import db_missing_data, db_std_data, db_DEVICE,db_manufacturer_calibrated_data
+from core.models import db_missing_data, db_std_data, db_DEVICE,db_manufacturer_calibrated_data,db_AirNet_Aggregated
 logger=logging.getLogger('workspace')
 import pytz
 
@@ -41,8 +41,8 @@ class AirnetDriverAbs(ABC):
 
     def restGET(self, req,deviceObj):
         try:
-            #response = requests.get(req['url'],params=req['headers'], headers=req['payload'],verify=False)
-            response = requests.get(req['url'])
+            response = requests.get(req['url'],params=req['headers'], headers=req['payload'],verify=False)
+            # response = requests.get(req['url'])
             return response
         except Exception as e:
             logger.error(f"Error in restGET: {e}")
@@ -50,7 +50,7 @@ class AirnetDriverAbs(ABC):
 
     def restPOST(self, request, deviceObj):
         try:
-            return requests.post(request['_url'], json=request['_payload'], headers=request['_headers'])
+            return requests.post(request['_url'],data=request['_payload'],headers=request['_headers'])
         except Exception as e:
             logger.error(f"Error in restPOST: {e}")
             raise
@@ -61,6 +61,7 @@ class AirnetDriverAbs(ABC):
             self.preprocess(deviceObj=deviceObj,start=start,end=end)
             self.process(deviceObj=deviceObj,dag_param=param)
             self.postprocess(deviceObj)
+        
             # self.store_missing_data_info()
             return self._df_all
         except Exception as e:
@@ -120,6 +121,14 @@ class AirnetDriverAbs(ABC):
         except Exception as e:
             logger.error(f"Error in no_cov: {e}")
             raise
+        
+    def co_cov(self, df,key):
+        try:
+            df[key] = df[key] * 0.001
+            return df
+        except Exception as e:
+            logger.error(f"Error in no_cov: {e}")
+            raise
 
     def o3_cov(self, key):
         try:
@@ -164,6 +173,16 @@ class AirnetDriverAbs(ABC):
         except Exception as e:
             logger.error(f"Error in store_std_data: {e}")
             raise
+        
+    def store_aggregated_data(self,df):
+        try:
+            for _, row in df.iterrows():
+                db_AirNet_Aggregated.objects.create(
+                    **row
+                ).save()
+        except Exception as e:
+            print(f"An error occurred while storing aggregated data: {str(e)}")
+
 
     def store_manufacturer_cal_data(self):
         try:
@@ -174,6 +193,6 @@ class AirnetDriverAbs(ABC):
                      device_id=device_obj,**row
                 ).save()
         except Exception as e:
-            logger.warning(f"Error in store_std_data: {e}")
+            logger.warning(f"Error in store_manu_cal_data: {e}")
             raise
     

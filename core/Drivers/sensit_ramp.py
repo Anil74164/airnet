@@ -128,7 +128,7 @@ class sensit_ramp(AirnetDriverAbs):
             print("inside df create")
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id,manufacturer_name=deviceObj.manufacturer_id.name, param=None)
             data = self._http_response.json()['data']
-            print(data)
+            # print(data)
             data_batch=[]
             for record in data:
                 time = record.get('date', None)
@@ -224,7 +224,6 @@ class sensit_ramp(AirnetDriverAbs):
             else:
                 self._cal_df = pd.DataFrame()
 
-            self.store_manufacturer_cal_data()
 
         except Exception as e:
             logger.error(f"Error in postprocess: {e}")
@@ -255,8 +254,20 @@ class sensit_ramp(AirnetDriverAbs):
     def handleDF(self):
             select_columns=['co','no2','so2','o3','co2','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
             self._df_all=self._df_all[select_columns]
+            dict1 = {'co': self.co_cov}
+            print(self._df_all) 
+            for column in dict1:
+                if column in self._df_all:
+                    self._df_all=dict1[column](self._df_all,column)
+            print(self._df_all)
             self._df_all['time'] = pd.to_datetime(self._df_all['time'])
             self._df_all['time'] = self._df_all['time'].dt.tz_convert('Asia/Kolkata')
+            if not self._cal_df.empty:
+                self._cal_df['time'] = pd.to_datetime(self._cal_df['time'])
+                self._cal_df['time'] = self._cal_df['time'].dt.tz_convert('Asia/Kolkata')
+                for column in dict1:
+                    if column in self._cal_df:
+                        self._cal_df=dict1[column](self._cal_df,column)
             
 
     def standardize_df(self):
@@ -267,6 +278,7 @@ class sensit_ramp(AirnetDriverAbs):
                 self.handleDF()
                 print(self._df_all)
                 print(self._df_all.columns)
+            self.store_manufacturer_cal_data()
             
         except Exception as e:
             logger.error(f"Error in standardize_df: {e}")

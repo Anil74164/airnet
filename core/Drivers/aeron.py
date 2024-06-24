@@ -108,6 +108,7 @@ class aeron(AirnetDriverAbs):
                 }
             
             
+            
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
 
             self._http_response = response
@@ -275,6 +276,21 @@ class aeron(AirnetDriverAbs):
     def handleDF(self):
             select_columns=['co','no2','so2','o3','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','barometric_pressure','time','device_id']
             self._df_all=self._df_all[select_columns]
+            df_all_avg=self._df_all
+            print("HANDLE DF")
+   
+
+
+            df_all_avg['start_time'] = self._df_all['time'].dt.floor('15T')
+            df_all_avg['end_time'] = self._df_all['start_time'] + pd.Timedelta(minutes=15)
+            
+            df_grouped = df_all_avg.groupby(['device_id', 'start_time', 'end_time']).mean().reset_index()
+            df_grouped['time'] = df_grouped['start_time']
+            df_grouped.to_csv("data6.csv")
+            print(df_grouped)
+            self.store_aggregated_data(df_grouped)
+            
+            
  
     def standardize_df(self):
         try:

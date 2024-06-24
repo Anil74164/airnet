@@ -242,20 +242,72 @@ network = db_Network.objects.get(id=1)  # Assuming there's a network with primar
 #         device.save()
 
 
-manufacturer = db_MANUFACTURER(
-    id=7,
-    name="aeron",
-    auth_url='https://getiotservice.aeronsystems.com:9007/v1.0/gettoken',
-    username='Aeron_Bangalore@2023',
-    api_or_pass='54b8c1c01b',
-    grant_type='password',
-    client_name='aeronapi',
-    client_secret='bm9yZWEyMDEy',
-    host='getiotservice.aeronsystems.com:9007',
-    data_url="https://getiotservice.aeronsystems.com:9007/v1.0/getdataondate",
-    accept='application/json',
+# manufacturer = db_MANUFACTURER(
+#     id=7,
+#     name="aeron",
+#     auth_url='https://getiotservice.aeronsystems.com:9007/v1.0/gettoken',
+#     username='Aeron_Bangalore@2023',
+#     api_or_pass='54b8c1c01b',
+#     grant_type='password',
+#     client_name='aeronapi',
+#     client_secret='bm9yZWEyMDEy',
+#     host='getiotservice.aeronsystems.com:9007',
+#     data_url="https://getiotservice.aeronsystems.com:9007/v1.0/getdataondate",
+#     accept='application/json',
     
-    content_type='application/x-www-form-urlencoded',
+#     content_type='application/x-www-form-urlencoded',
+#     address="123 Example St, City, Country",
+#     person_name="John Doe",
+#     person_email="john@example.com",
+#     person_Contact="+1234567890",
+#     status=0,  # Assuming status 1 represents active
+#     notes="Example notes about the manufacturer",
+#     create_dt=timezone.now(),  # Current timestamp
+#     modified_dt=timezone.now(),  # Current timestamp
+#     created_by=user,  # Linking to the user who created this record
+#     modified_by=user  # Linking to the same user who modified this record
+# )
+# manufacturer.save()
+
+# d_l=['240091703829123', '240091702635515', '240091702293515', '240091703249662', '240091701926904']
+# for i in d_l:
+#         device = db_DEVICE(
+#         device_id=i,
+#         serial_no="ABC123",
+#         mac="00:11:22:33:44:55",
+#         sim_manufacturer="jio",
+#         sim_number="1234567890",
+#         address="123 Example St, City, Country",
+#         altitude=123.456,
+#         install_dt=timezone.now(),
+#         approved_by="John Doe",
+#         remarks="Example remarks",
+#         notes="Example notes",
+        
+#         status=1,  # Assuming status 1 represents active
+#         land_use="Residential",
+#         device_model_id=device_model,
+#         manufacturer_id=manufacturer,
+#         vendor_id=vendor,
+#         locations_id=location,
+#         site_id=site,
+#         network_id=network,
+#         create_dt=timezone.now(),  # Current timestamp
+#         modified_dt=timezone.now(),  # Current timestamp
+#         created_by=user,  # Linking to the user who created this record
+#         modified_by=user  # Linking to the same user who modified this record
+#         )
+
+#         # Save the device instance to the database
+#         device.save()
+
+
+manufacturer = db_MANUFACTURER(
+    id=8,
+    name="aqms",
+    data_url="https://datalogger.vasthienviro.com/",
+    content_type='application/json',
+    
     address="123 Example St, City, Country",
     person_name="John Doe",
     person_email="john@example.com",
@@ -269,7 +321,7 @@ manufacturer = db_MANUFACTURER(
 )
 manufacturer.save()
 
-d_l=['240091703829123', '240091702635515', '240091702293515', '240091703249662', '240091701926904']
+d_l=['1599','1598']
 for i in d_l:
         device = db_DEVICE(
         device_id=i,

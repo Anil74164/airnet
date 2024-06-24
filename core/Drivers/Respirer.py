@@ -74,7 +74,9 @@ class respirer(AirnetDriverAbs):
             print(self._authentication['password'])
             
             req={
-                'url' : (self._authentication['base_url'] + self.device_id + '/params/' + paramListStr + '/startdate/' + self.start_time.strftime(self.fmt) +'/enddate/' + self.end_time.strftime(self.fmt) + '/ts/mm/avg/1/api/' + self._authentication['password'] + "?gaps=1&gap_value=NaN&json=1")
+                'url' : (self._authentication['base_url'] + self.device_id + '/params/' + paramListStr + '/startdate/' + self.start_time.strftime(self.fmt) +'/enddate/' + self.end_time.strftime(self.fmt) + '/ts/mm/avg/1/api/' + self._authentication['password'] + "?gaps=1&gap_value=NaN&json=1"),
+                'headers':None,
+                'payload':None
             }
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req,deviceObj)
             print(response.json())
@@ -169,10 +171,11 @@ class respirer(AirnetDriverAbs):
     
     def standardize_df(self):
         try:
-            print(self._df_all)
-            self.get_ColumnReplacement()
-            self.handleDF()
-            print(self._df_all.columns)
+            if not self._df_all.empty:
+                print(self._df_all)
+                self.get_ColumnReplacement()
+                self.handleDF()
+                print(self._df_all.columns)
             
             
         except Exception as e:
@@ -182,7 +185,9 @@ class respirer(AirnetDriverAbs):
 
     
     def handleDF(self):
-        pass
+        self._df_all['time']=self._df_all['time'].dt.tz_localize("GMT")
+        self._df_all['time']=self._df_all['time'].dt.tz_convert("Asia/Kolkata")
+        
  
     
         

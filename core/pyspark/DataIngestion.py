@@ -135,12 +135,13 @@ def main_fetch(args=None):
 
 
         device_Dict = fetchDeviceDict(data)
-        print("aaaaaaaaaaaaaaaa")
+      
         print(paramList)
         print(drivers)
         print(device_Dict)
         for i in device_Dict.keys():
             try:
+                print(i.name)
                 if i.name in drivers:    
                     logger.info(f"Processing devices for manufacturer: {i.name}")
                 
@@ -150,26 +151,34 @@ def main_fetch(args=None):
                     da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
                     print(da)
                     print(da.columns)
-                    da.to_csv('data.csv')
+                    
                     
                     logger.info(f"Fetched data: {da}")
 
                     obj.standardize_df()
+                    obj._df_all.to_csv('data.csv')
                     print(obj._missing_data_dict)
                     logger.info(f"Standardized DataFrame: {obj._df_all}")
                     logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
-                    logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
-
-                    for device in device_Dict[i]:
-                        logger.info(device_Dict[i])
-                        for param in paramList:
-                            logger.info(paramList)
-                            updated_entry = update_missing_data_status(device, param, start, end)
-                            
-                            if updated_entry:
-                                logger.info(f"Updated status for missing data entry: {updated_entry}")
-
-
+                    print(obj._df_all)
+                    if not obj._df_all.empty:
+                        for device in device_Dict[i]:
+                            logger.info(device_Dict[i])
+                            print("azxscdfvgbasdfrgthyjjkASD")
+                            if paramList:
+                                for param in paramList:
+                                    print("azxscdfvgbasdfrgthyjjkASD")      
+                                    logger.info(paramList)
+                                    updated_entry = update_missing_data_status(device, param, start, end)
+                                    
+                                    if updated_entry:
+                                        logger.info(f"Updated status for missing data entry: {updated_entry}")
+                            else:
+                                    logger.info(paramList)
+                                    updated_entry = update_missing_data_status(device_id=device,start_time=start,end_time=end,pollutant=None)
+                                    
+                                    if updated_entry:
+                                        logger.info(f"Updated status for missing data entry: {updated_entry}")
                     print(obj._cal_df)
                     try:
                         obj.store_std_data()
@@ -198,5 +207,6 @@ if __name__ == "__main__":
     # sys.argv = test_args
 
     args = get_options()
+    print(args)
     main_fetch( args )
 
