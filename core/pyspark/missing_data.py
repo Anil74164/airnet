@@ -12,7 +12,7 @@ try:
     # Fetch all data from db_missing_data where status is 0
     all_missing_data = db_missing_data.objects.filter(status=0)
     data = list(all_missing_data)  # Convert queryset to list
-    print(data)
+    
     
     # Iterate through each missing data record
     for i in data:

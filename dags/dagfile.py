@@ -1,8 +1,13 @@
+
+
+
 import time
 from airflow import DAG
+import DjangoSetup
 from airflow.operators.python import PythonOperator
 from airflow.utils.task_group import TaskGroup
 from datetime import datetime, timedelta
+from core.pyspark.DataIngestion import main_fetch
 import os
 import logging
  
@@ -20,13 +25,19 @@ def timeit(func):
         return result
     return wrapper
  
+
+def get_fetch_window():
+    now = datetime.now()
+    rounded_minute = (now.minute // 15) * 15
+    endDt = now.replace(minute=rounded_minute, second=0, microsecond=0)
+    startDt = endDt - timedelta(minutes=15)
+
+    return startDt, endDt #as a tuple
+
 @timeit
 def dataingestion_program(**kwargs):
     try:
-        now = datetime.now()
-        rounded_minute = (now.minute // 15) * 15
-        endDt = now.replace(minute=rounded_minute, second=0, microsecond=0)
-        startDt = endDt - timedelta(minutes=15)
+        startDt,endDt=get_fetch_window()
         
         startDt_str = startDt.strftime('%Y%m%d%H%M%S')
         endDt_str = endDt.strftime('%Y%m%d%H%M%S')
@@ -44,7 +55,12 @@ def dataingestion_program(**kwargs):
 @timeit
 def aggregation_program(**kwargs):
     try:
-        command = "spark-submit --master local[*] ./core/pyspark/aggregation.py"
+        startDt,endDt=get_fetch_window()
+        
+        startDt_str = startDt.strftime('%Y%m%d%H%M%S')
+        endDt_str = endDt.strftime('%Y%m%d%H%M%S')
+
+        command = f"spark-submit --master local[*] ./core/pyspark/aggregation.py -s {startDt_str} -e {endDt_str}"
         result = os.system(command)
         
         if result != 0:
@@ -53,6 +69,27 @@ def aggregation_program(**kwargs):
             logger.info("Command executed successfully")
     except OSError as e:
         logger.error(f"OSError: {e.strerror}")
+
+
+
+def calibration_program():
+    try:
+        startDt,endDt=get_fetch_window()
+        
+        startDt_str = startDt.strftime('%Y%m%d%H%M%S')
+        endDt_str = endDt.strftime('%Y%m%d%H%M%S')
+        
+        command = f"spark-submit --master local[*] ./core/pyspark/calibrate.py -s {startDt_str} -e {endDt_str}"
+        result = os.system(command)
+        
+        if result != 0:
+            logger.error(f"Command failed with exit code {result}")
+        else:
+            logger.info("Command executed successfully")
+    except OSError as e:
+        logger.error(f"OSError: {e.strerror}")
+
+
  
 default_args = {
     'owner': 'airflow',
@@ -83,4 +120,10 @@ aggregation_task = PythonOperator(
         python_callable=aggregation_program,
         dag=dag,
 )
-dataingestion_task >> aggregation_task 
+
+cstep_calibration=PythonOperator(
+    task_id='Calibration',
+    python_callable=calibration_program,
+    dag=dag,
+)
+dataingestion_task >> aggregation_task >> cstep_calibration

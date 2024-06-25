@@ -36,7 +36,7 @@ class respirer(AirnetDriverAbs):
  
  
     def preprocess(self,start,end,deviceObj):
-        print(" Respire preprocess")
+        
         try:
             self._authentication = {
                 'base_url': self.manufacturer_obj.data_url,
@@ -50,7 +50,7 @@ class respirer(AirnetDriverAbs):
             logger.error(f"Error in preprocess: {e}")
  
     def process(self, deviceObj,dag_param):
-        print("respirer process")
+        
         
         for dev in deviceObj:
             self.device_id = dev.device_id
@@ -61,7 +61,7 @@ class respirer(AirnetDriverAbs):
             else:
                 paramListStr = dev.parameters
                 # paramList = paramListStr.split(",")
-            print(paramListStr)
+           
             logger.info(f"Processing parameters: {paramListStr}")
             self._df_list = []
             self.time_added = False
@@ -69,9 +69,7 @@ class respirer(AirnetDriverAbs):
             #     print(self._authentication['base_url'])
             #     print(self.device_id)
             #     print(param)
-            print(self.start_time.strftime(self.fmt))
-            print(self.end_time.strftime(self.fmt))
-            print(self._authentication['password'])
+        
             
             req={
                 'url' : (self._authentication['base_url'] + self.device_id + '/params/' + paramListStr + '/startdate/' + self.start_time.strftime(self.fmt) +'/enddate/' + self.end_time.strftime(self.fmt) + '/ts/mm/avg/1/api/' + self._authentication['password'] + "?gaps=1&gap_value=NaN&json=1"),
@@ -79,7 +77,7 @@ class respirer(AirnetDriverAbs):
                 'payload':None
             }
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req,deviceObj)
-            print(response.json())
+            
             self._http_response = response
     
 
@@ -96,10 +94,7 @@ class respirer(AirnetDriverAbs):
  
     def creating_df(self, deviceObj,req,param):
         try:
-            print(param)
-        
-            print(deviceObj.device_id)
-            print(deviceObj.manufacturer_id.name)
+   
            
             
         
@@ -120,7 +115,7 @@ class respirer(AirnetDriverAbs):
             
             # df.set_index('time', inplace=True)
             df.reset_index(drop=True, inplace=True)
-            print(df.columns)
+           
             self._df_all_list.append(df)
         except Exception as e:
             logger.error(f"Error in creating_df: {e}")
@@ -150,21 +145,16 @@ class respirer(AirnetDriverAbs):
 
             for column in diff_column:
                col1, col2 = diff_column[column]
-               print(col1)
-               print(col2)
-               print(self._df_all.columns)
+          
                if col1 in self._df_all.columns and col2 in self._df_all.columns:
-                    print("SAAAAAAAAAAAAAAAAAAAa")
-                    print(self._df_all[col1])
-                    print(self._df_all[col2])
+                   
                     self._df_all[col1] = pd.to_numeric(self._df_all[col1], errors='coerce')
                     self._df_all[col2] = pd.to_numeric(self._df_all[col2], errors='coerce')
                     self._df_all[column] = self._df_all[col1] - self._df_all[col2]
                     
                     self._df_all.drop(columns=[col1, col2], inplace=True) 
             self._df_all['time'] = pd.to_datetime(self._df_all['time'])
-            print("aaaaaaaaaaaaaaaaaaaaaa")
-            print(self._df_all)
+            
         except Exception as e:
             logger.error(f"Error in get_ColumnReplacement: {e}")
  
@@ -172,10 +162,10 @@ class respirer(AirnetDriverAbs):
     def standardize_df(self):
         try:
             if not self._df_all.empty:
-                print(self._df_all)
+               
                 self.get_ColumnReplacement()
                 self.handleDF()
-                print(self._df_all.columns)
+              
             
             
         except Exception as e:

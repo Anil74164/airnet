@@ -99,7 +99,7 @@ class aqms(AirnetDriverAbs):
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
  
             self._http_response = response.json()
-            print(response.json())
+      
             self.creating_df(dev, req)
  
             
@@ -114,7 +114,7 @@ class aqms(AirnetDriverAbs):
     def creating_df(self, deviceObj, request):
         try:
  
-            print("inside df create")
+           
             #self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id, manufacturer_name=deviceObj.manufacturer_id.name, param=None)
             json_data = json.dumps(self._http_response)
             data = json.loads(json_data)
@@ -124,18 +124,17 @@ class aqms(AirnetDriverAbs):
      
             df = pd.DataFrame(columns=param, data=report_data)
           
-            print(df)
-            print(df.columns)
+      
             if self.met_df.empty:
-                print("met")
+               
                 self.met_df=df
                 self.met_df['device_id']=deviceObj.device_id
                  
-                print(self.met_df)
+                
             else:
-                print("par")
+                
                 self.par_df=df
-                print(self.par_df)
+                
             
             
         
@@ -155,12 +154,9 @@ class aqms(AirnetDriverAbs):
  
     def postprocess(self, deviceObj):
         try:
-                print("badksadjm")
-                print(self.met_df)
-                print(self.par_df)
+               
                 self._df_all = pd.merge(self.met_df, self.par_df, on=['DateTime'], how='inner')
-                print(self._df_all.columns)
-                print(self._df_all)
+                
             
         
  
@@ -180,7 +176,7 @@ class aqms(AirnetDriverAbs):
                 if column in self._df_all.columns:
                     print('sndxfmc.g')
                     self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
-            print(self._df_all)
+        
  
             # for column in diff_column:
             #     if diff_column[column][0] in self._df_all.columns:
@@ -196,7 +192,7 @@ class aqms(AirnetDriverAbs):
             if not self._df_all.empty:
                 self.get_ColumnReplacement()
                 self.handleDF()
-                print(self._df_all.columns)
+                
             
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")

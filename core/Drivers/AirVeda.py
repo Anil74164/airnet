@@ -50,14 +50,13 @@ class AirVeda(AirnetDriverAbs):
 
 
     def preprocess(self,start,end,deviceObj):
-        print("preprocess")
+     
         try:
             self._authentication = {
                 'email': self.manufacturer_obj.email,
                 'password': self.manufacturer_obj.api_or_pass
             }
-            print(self._authentication)
-            print(self.manufacturer_obj.auth_url)
+        
             response = requests.post(self.manufacturer_obj.auth_url, data=self._authentication)
             response_data = response.json()
             
@@ -68,21 +67,17 @@ class AirVeda(AirnetDriverAbs):
             # start = end - timedelta(minutes=15) 
             self.start_time=start
             self.end_time=end
-            print(self.start_time)
-            print(self.end_time)
+         
             # self.start_time = self.start_time.astimezone(pytz.utc)
             # self.end_time = self.end_time.astimezone(pytz.utc)
-            print(self.start_time)
-            print(self.end_time)
+          
             
             logger.info(f"Start time: {self.start_time}, End time: {self.end_time}")
         except Exception as e:
             logger.error(f"Error in preprocess: {e}")
 
     def process(self, deviceObj,dag_param):
-        print("process")
-        print(deviceObj)
-        print(dag_param)
+       
         for dev in deviceObj:
             self.fetch_cal(deviceObj=dev)
             self.device_id = dev.device_id
@@ -92,7 +87,7 @@ class AirVeda(AirnetDriverAbs):
                 paramListStr = dev.parameters
                 paramList = paramListStr.split(",")
 
-            print(paramList)
+          
             logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
             self.time_added = False
@@ -133,20 +128,18 @@ class AirVeda(AirnetDriverAbs):
                 self._cal_df=self._cal_df.drop(['battery'],axis=1)
         else:
             self._cal_df = pd.DataFrame()
-        print("ccccccccccccccccccccccc")
-        print(self._cal_df)
+    
         self._cal_df
-        self.store_manufacturer_cal_data()
 
 
     def creating_df(self, deviceObj, request):
         try:
 
-            print("inside df create")
+           
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id, manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
             df = pd.DataFrame(self._http_response.json())
             df = df['readings'].apply(pd.Series)
-            print(df)
+         
 
             if df.empty:
                 self.store_missing_data_info(dev_obj=deviceObj,store_param=request['param'])
@@ -187,8 +180,7 @@ class AirVeda(AirnetDriverAbs):
                 'co_nv': ['WorkingElectrodeVoltage_coVoltages', 'AuxilliaryElectrodeVoltage_coVoltages']
             }
             for column in _changeColumns:
-                print(self._df_all.columns)
-                print("zzzzzzzzz")
+             
                 if column in self._df_all.columns:
                     self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
 
@@ -211,13 +203,12 @@ class AirVeda(AirnetDriverAbs):
             if not self._df_all.empty and not self._cal_df.empty    : 
                 join_df=self._df_all
                 
-                print(join_df)
+                
                 self._df_all = pd.merge(join_df, self._cal_df, on=['device_id','time'], how='inner')
-                print(self._df_all.columns)
+                
                 self._df_all=self._df_all.drop(['pm25','ozone','pm10','co','so2','no2'], axis=1)
                 self._df_all.rename(columns={'humidity': 'relative_humidity'}, inplace=True)
-            print("aaaaaaaaaaaaaaaaaaa")
-            print(self._df_all.columns)
+       
             
           
         except Exception as e:
@@ -228,6 +219,7 @@ class AirVeda(AirnetDriverAbs):
             if not self._df_all.empty:
                 self.get_ColumnReplacement()
                 self.handleDF()
+            self.store_manufacturer_cal_data()
 
             
         except Exception as e:
@@ -269,8 +261,7 @@ class AirVeda(AirnetDriverAbs):
         cal_df.reset_index(inplace=True)
         cal_df['time'] = pd.to_datetime(cal_df['time'], errors='coerce')
         cal_df['time'] = cal_df['time'].dt.tz_localize('UTC').dt.tz_convert('Asia/Kolkata')
-        print(cal_df)
-        print(cal_df.columns)
+       
         self._cal_df_list.append(cal_df)
 
 

@@ -51,8 +51,7 @@ class aeron(AirnetDriverAbs):
         try:
             self.start_time=start
             self.end_time=end
-            print(start)
-            print(end)
+            
             self._auth_url = self.manufacturer_obj.auth_url
             self._authentication= {
             'username': self.manufacturer_obj.username,
@@ -67,12 +66,12 @@ class aeron(AirnetDriverAbs):
             'Authorization': 'Basic ' + b64encode(f'{client_name}:{client_secret}'.encode()).decode(),
             'Accept': self.manufacturer_obj.accept
             }
-            print("yes")
+         
             response = requests.post(self._auth_url, data=self._authentication, headers=self._headers, verify=False)
             response_data = response.json()
-            print(response_data)
+        
             self.id_token = response_data['access_token']
-            print(self.id_token)
+       
  
             
             logger.info(f"Start time: {self.start_time}, End time: {self.end_time}")
@@ -80,7 +79,7 @@ class aeron(AirnetDriverAbs):
             logger.error(f"Error in preprocess: {e}")
  
     def process(self, deviceObj,dag_param):
-        print("process")
+      
         for dev in deviceObj:
             
             self.device_id = dev.device_id
@@ -97,11 +96,8 @@ class aeron(AirnetDriverAbs):
             self._df_list = []
             self.time_added = False
             dt=self.end_time.date()
-            print(type(dt))
-            print(dt)
-            
-            print(dt)
-            #print(self.device_id)
+          
+          
             req = {
                     
                     'payload': {
@@ -137,7 +133,7 @@ class aeron(AirnetDriverAbs):
     def creating_df(self, deviceObj, request):
         try:
  
-            print("inside df create")
+      
             self.insert_raw_response(req_url=request['url'],dev_id=deviceObj.device_id,manufacturer_name=deviceObj.manufacturer_id.name, param=None)
             response_json= self._http_response.json()
             # print(response_json)
@@ -207,29 +203,23 @@ class aeron(AirnetDriverAbs):
                          'latitude': latitude, 'longitude': longitude
                          })
             df=pd.DataFrame(data_batch)
-            print(df)
+         
             if df.empty:
                 self.store_missing_data_info(dev_obj=deviceObj,store_param=None)
  
                 return
             df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
             df.drop(columns=['date', 'time'], inplace=True)
-            print(df.columns)
+         
             cal=df[['o3_ppb','so2_ppb','no2_ppb','co_ppm','o3','so2','no2','co','datetime','device_id']]
             df.drop(columns=['o3','so2','no2','co'], inplace=True)
-            print(df.columns)
+         
             null_counts = df.isnull().sum()
-            print(df)
-            print(null_counts)  
-            
-            
-            print(len(df))
-            print(cal.columns)
+       
             for column in df.columns:
                 if null_counts[column]==len(df):
                     self.store_missing_data_info(dev_obj=deviceObj,store_param=column)
- 
-            print(cal)
+          
             self._cal_df_list.append(cal)
             self._df_all_list.append(df)
                     
@@ -281,32 +271,21 @@ class aeron(AirnetDriverAbs):
  
     def handleDF(self):
             select_columns=['co','no2','so2','o3','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','barometric_pressure','time','device_id']
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoooooooo")
-            print(self._df_all.columns)
+           
             self._df_all=self._df_all[select_columns]
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeeeeeee")
-            print(self._df_all.columns)
+          
             df_all_avg=self._df_all.copy()
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuuuuuuu")
-            print(self._df_all.columns)
-            print("HANDLE DF")
-   
-
 
             df_all_avg['start_time'] = df_all_avg['time'].dt.floor('15T')
             df_all_avg['end_time'] = df_all_avg['start_time'] + pd.Timedelta(minutes=15)
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-            print(self._df_all.columns)
+           
             df_grouped = df_all_avg.groupby(['device_id', 'start_time', 'end_time']).mean().reset_index()
             df_grouped['time'] = df_grouped['start_time']
-            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvvvvv")
-            print(self._df_all.columns)
-            df_grouped.to_csv("data6.csv")
-            print(df_grouped)
+          
             self.store_aggregated_data(df_grouped)
             # if 'start_time' in self._df_all.columns:
             #     self._df_all.drop 
-            print(self._df_all.columns)
+          
             
             
  
@@ -317,7 +296,6 @@ class aeron(AirnetDriverAbs):
                 self.get_ColumnReplacement()
                 print(self._df_all)
                 self.handleDF()
-                print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                 print(self._df_all.columns)
             self.store_manufacturer_cal_data()
             

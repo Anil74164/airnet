@@ -303,27 +303,22 @@ def main_fetch(args=None):
  
  
         device_Dict = fetchDeviceDict(data)
-        print("aaaaaaaaaaaaaaaa")
-        print(paramList)
-        print(drivers)
-        print(device_Dict)
+        
+   
         for i in device_Dict.keys():
             try:
                 if i.name in drivers:    
                     logger.info(f"Processing devices for manufacturer: {i.name}")
                 
                     obj = drivers[i.name](manufacturer_obj=i)
-                    print(obj)  
-                    print("sucess")
                     da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
-                    print(da)
-                    print(da.columns)
+           
                     da.to_csv('data.csv')
                     
                     logger.info(f"Fetched data: {da}")
  
                     obj.standardize_df()
-                    print(obj._missing_data_dict)
+                
                     logger.info(f"Standardized DataFrame: {obj._df_all}")
                     logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
                     logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
@@ -338,9 +333,9 @@ def main_fetch(args=None):
                                 logger.info(f"Updated status for missing data entry: {updated_entry}")
  
  
-                    print(obj._cal_df)
+             
                     try:
-                        obj.store_std_data()
+                        obj.store_std_data(manufacturer=i.name)
  
                     except Exception as e:
                         logger.warning(f"Error processing devices for manufacturer {e}")

@@ -185,7 +185,7 @@ class AirnetDriverAbs(ABC):
                     device_id=device_obj,**row
                 ).save()
         except Exception as e:
-            print(f"An error occurred while storing aggregated data: {str(e)}")
+            logger.error(f"An error occurred while storing aggregated data: {str(e)}")
 
 
     def store_manufacturer_cal_data(self):

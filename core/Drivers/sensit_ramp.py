@@ -47,14 +47,13 @@ class sensit_ramp(AirnetDriverAbs):
 
 
     def preprocess(self,start,end,deviceObj):
-        #print("preprocess",start,end)
+      
         try:
             self._authentication = {
                 'email': self.manufacturer_obj.email,
                 'password': self.manufacturer_obj.api_or_pass
             }
-            #print(self._authentication)
-            #print(self.manufacturer_obj.auth_url)
+            
             response = requests.post(self.manufacturer_obj.auth_url, data=self._authentication)
             response_data = response.json()
             
@@ -65,21 +64,17 @@ class sensit_ramp(AirnetDriverAbs):
             # start = end - timedelta(minutes=15) 
             self.start_time=start
             self.end_time=end
-            #print(self.start_time)
-            #print(self.end_time)
+       
             # self.start_time = self.start_time.astimezone(pytz.utc)
             # self.end_time = self.end_time.astimezone(pytz.utc)
-            #print(self.start_time)
-            #print(self.end_time)
+      
             
             logger.info(f"Start time: {self.start_time}, End time: {self.end_time}")
         except Exception as e:
             logger.error(f"Error in preprocess: {e}")
 
     def process(self, deviceObj,dag_param):
-        #print("process")
-        #print(deviceObj)
-        #print(dag_param)
+      
         for dev in deviceObj:
             
             self.device_id = dev.device_id
@@ -91,12 +86,12 @@ class sensit_ramp(AirnetDriverAbs):
 
             # paramList.append("o4")
             # paramList.append("so10")
-            # print(paramList)
+      
             # logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
             self.time_added = False
 
-            #print(self.device_id)
+            
             req = {
                 '_payload': {
                     'DeviceId': self.device_id,
@@ -110,7 +105,7 @@ class sensit_ramp(AirnetDriverAbs):
             response = self.restPOST(req, deviceObj) if self._fetch_method == 'POST' else self.restGET(req, deviceObj)
 
             self._http_response = response
-            #print(response.json())
+        
             self.creating_df(dev, req)
 
             # if self._df_list:
@@ -125,10 +120,10 @@ class sensit_ramp(AirnetDriverAbs):
     def creating_df(self, deviceObj, request):
         try:
 
-            print("inside df create")
+           
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id,manufacturer_name=deviceObj.manufacturer_id.name, param=None)
             data = self._http_response.json()['data']
-            # print(data)
+         
             data_batch=[]
             for record in data:
                 time = record.get('date', None)
@@ -153,7 +148,7 @@ class sensit_ramp(AirnetDriverAbs):
                 no2 = record.get('NO2', None)
 
                 raw_val = record.get('raw')
-                # print(raw_val)
+              
                
                 co_channel_num = 1
                 so2_channel_num = 2
@@ -193,19 +188,14 @@ class sensit_ramp(AirnetDriverAbs):
 
             cal=df[['co','o3','so2','no2','time','device_id']]
             
-            print(df.columns)
-            null_counts = df.isnull().sum()
-            print(df)
-            print(null_counts)  
             
-            print(null_counts['time'])
-            print(len(df))
-            print(cal.columns)
+            null_counts = df.isnull().sum()
+          
             for column in df.columns:
                 if null_counts[column]==len(df):
                     self.store_missing_data_info(dev_obj=deviceObj,store_param=column)
 
-            print(cal)
+         
             self._cal_df_list.append(cal)
             self._df_all_list.append(df)
                     
@@ -255,11 +245,11 @@ class sensit_ramp(AirnetDriverAbs):
             select_columns=['co','no2','so2','o3','co2','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','time','device_id']
             self._df_all=self._df_all[select_columns]
             dict1 = {'co': self.co_cov}
-            print(self._df_all) 
+           
             for column in dict1:
                 if column in self._df_all:
                     self._df_all=dict1[column](self._df_all,column)
-            print(self._df_all)
+         
             self._df_all['time'] = pd.to_datetime(self._df_all['time'])
             self._df_all['time'] = self._df_all['time'].dt.tz_convert('Asia/Kolkata')
             if not self._cal_df.empty:
@@ -276,8 +266,7 @@ class sensit_ramp(AirnetDriverAbs):
 
                 self.get_ColumnReplacement()
                 self.handleDF()
-                print(self._df_all)
-                print(self._df_all.columns)
+             
             self.store_manufacturer_cal_data()
             
         except Exception as e:

@@ -50,14 +50,13 @@ class aurassure(AirnetDriverAbs):
  
  
     def preprocess(self, start ,end,deviceObj):
-        print("preprocess")
+        
         try:
             self.end_time = end
             self.start_time = start
             self.end_time_unix= time.mktime(self.end_time.timetuple())
             self.start_time_unix = time.mktime(self.start_time.timetuple())
-            print(self.end_time)
-            print(self.start_time)
+          
             logger.info(f"Start time: {self.start_time}, End time: {self.end_time}")
         except Exception as e:
             logger.error(f"Error in preprocess: {e}")
@@ -116,11 +115,9 @@ class aurassure(AirnetDriverAbs):
     def creating_df(self, deviceObj, request):
         try:
             self.insert_raw_response(req_url=request['_url'],dev_id=deviceObj.device_id, manufacturer_name=deviceObj.manufacturer_id.name, param=request['param'])
-            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
-            print(self._http_response.json())
+          
             df = pd.DataFrame(self._http_response.json()['data'])
-            print(df)
+         
             # df = df['data'].apply(pd.Series)
             if df.empty:
                 self.store_missing_data_info(dev_obj=deviceObj,store_param=request['param'])
@@ -133,7 +130,7 @@ class aurassure(AirnetDriverAbs):
             df.set_index('time', inplace=True)
             df.reset_index(drop=True, inplace=True)
             df = df.drop(columns=['parameter_values','thing_id'])
-            print(df)
+        
             self._df_list.append(df)
         except Exception as e:
             logger.error(f"Error in creating_df: {e}")
