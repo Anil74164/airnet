@@ -60,7 +60,6 @@ class aqms(AirnetDriverAbs):
         self.start_time=self.start_time.astimezone(ist_timezone)
  
     def process(self, deviceObj,dag_param):
- 
         
         for dev in deviceObj:
             json_data = {
@@ -174,7 +173,7 @@ class aqms(AirnetDriverAbs):
             # }
             for column in _changeColumns:
                 if column in self._df_all.columns:
-                    print('sndxfmc.g')
+                    
                     self._df_all.rename(columns={column: _changeColumns[column]}, inplace=True)
         
  

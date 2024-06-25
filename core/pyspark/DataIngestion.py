@@ -273,14 +273,14 @@ def main_fetch(args=None):
     try:
         if args.start and args.end:
  
-            ist_timezone = pytz.timezone("Asia/Kolkata")
-            start= ist_timezone.localize(args.start)
-            start = start.astimezone(pytz.utc)
-            end= ist_timezone.localize(args.end)
-            end = end.astimezone(pytz.utc)
+            # ist_timezone = pytz.timezone("Asia/Kolkata")
+            # start= ist_timezone.localize(args.start)
+            start = args.start.astimezone(pytz.utc)
+            # end= ist_timezone.localize(args.end)
+            end = args.end.astimezone(pytz.utc)
             
-            start=args.start
-            end=args.end
+            # start=args.start
+            # end=args.end
             print(type(start))
             print(start)
         else:
