@@ -49,7 +49,10 @@ class aeron(AirnetDriverAbs):
     def preprocess(self,start,end,deviceObj):
         print("preprocess")
         try:
-            
+            self.start_time=start
+            self.end_time=end
+            print(start)
+            print(end)
             self._auth_url = self.manufacturer_obj.auth_url
             self._authentication= {
             'username': self.manufacturer_obj.username,
@@ -93,8 +96,11 @@ class aeron(AirnetDriverAbs):
             # logger.info(f"Processing parameters: {paramList}")
             self._df_list = []
             self.time_added = False
-            dt=date(2024,6,14)
+            dt=self.end_time.date()
             print(type(dt))
+            print(dt)
+            
+            print(dt)
             #print(self.device_id)
             req = {
                     
@@ -275,20 +281,32 @@ class aeron(AirnetDriverAbs):
  
     def handleDF(self):
             select_columns=['co','no2','so2','o3','co_nv','so2_nv','no2_nv','o3_nv','temperature','relative_humidity','pm1','pm2_5','pm10','pm1_opc','pm2_5_opc','pm10_opc','barometric_pressure','time','device_id']
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoooooooo")
+            print(self._df_all.columns)
             self._df_all=self._df_all[select_columns]
-            df_all_avg=self._df_all
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeeeeeee")
+            print(self._df_all.columns)
+            df_all_avg=self._df_all.copy()
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuuuuuuu")
+            print(self._df_all.columns)
             print("HANDLE DF")
    
 
 
-            df_all_avg['start_time'] = self._df_all['time'].dt.floor('15T')
-            df_all_avg['end_time'] = self._df_all['start_time'] + pd.Timedelta(minutes=15)
-            
+            df_all_avg['start_time'] = df_all_avg['time'].dt.floor('15T')
+            df_all_avg['end_time'] = df_all_avg['start_time'] + pd.Timedelta(minutes=15)
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            print(self._df_all.columns)
             df_grouped = df_all_avg.groupby(['device_id', 'start_time', 'end_time']).mean().reset_index()
             df_grouped['time'] = df_grouped['start_time']
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvvvvv")
+            print(self._df_all.columns)
             df_grouped.to_csv("data6.csv")
             print(df_grouped)
             self.store_aggregated_data(df_grouped)
+            # if 'start_time' in self._df_all.columns:
+            #     self._df_all.drop 
+            print(self._df_all.columns)
             
             
  
@@ -299,6 +317,7 @@ class aeron(AirnetDriverAbs):
                 self.get_ColumnReplacement()
                 print(self._df_all)
                 self.handleDF()
+                print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
                 print(self._df_all.columns)
             self.store_manufacturer_cal_data()
             

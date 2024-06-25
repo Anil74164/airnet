@@ -166,8 +166,9 @@ class aurassure(AirnetDriverAbs):
  
     def standardize_df(self):
         try:
-            self.get_ColumnReplacement()
-            self.handleDF()
+            if not self._df_all.empty:
+                self.get_ColumnReplacement()
+                self.handleDF()
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
  

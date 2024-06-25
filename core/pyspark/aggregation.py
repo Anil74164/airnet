@@ -4,13 +4,14 @@ from core.models import db_std_data, db_AirNet_Aggregated
 from datetime import datetime, timedelta 
 import pandas as pd
 import pytz
+from core.pyspark.common import *
 
-def main():
+def main(args=None):
     try:
         ist_timezone = pytz.timezone('Asia/Kolkata')
         rounded_minute = (datetime.now().minute // 15) * 15
-        end_time = datetime(2024,5,20,0,15,0)
-        # end_time = datetime.now().replace(minute=rounded_minute, second=0, microsecond=0)
+        # end_time = datetime(2024,5,20,0,15,0)
+        end_time = datetime.now().replace(minute=rounded_minute, second=0, microsecond=0)
         start_time = end_time - timedelta(minutes=15)
         #start_time = end_time - timedelta(minutes=15)
         end_time=end_time.astimezone(ist_timezone)
@@ -73,4 +74,17 @@ def store_aggregated_data(df):
         print(f"An error occurred while storing aggregated data: {str(e)}")
 
 if __name__ == "__main__":
-    main()
+    spark_init()
+    # test_args = [
+    #         'DataIngestion.py'
+    #         '-d', '1210230117',
+    #         '-d', '1210230136',
+    #         '-p', 'pm10_base',
+    #     ]
+    
+    # sys.argv = test_args
+
+    args = get_options()
+    print(args)
+    main( args )
+    

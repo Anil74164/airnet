@@ -214,6 +214,7 @@ class db_DEVICE(models.Model):
     def get_active_devices():
         m=db_MANUFACTURER.objects.get(name='aeron')
         return db_DEVICE.objects.filter(status=1).exclude(manufacturer_id=m.id)
+        # return db_DEVICE.objects.filter(status=1)
     
     
 class db_Parameter(models.Model):

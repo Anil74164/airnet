@@ -161,7 +161,7 @@ class AirnetDriverAbs(ABC):
             logger.error(f"Error in store_missing_data_info: {e}")
             raise
 
-    def store_std_data(self):
+    def store_std_data(self,manufacturer):
         try:
             
             for _, row in self._df_all.iterrows():
@@ -170,15 +170,19 @@ class AirnetDriverAbs(ABC):
                 db_std_data.objects.create(
                     device_id=device_obj, **row
                 ).save()
+                logger.info(f"Stored standardized data for manufacturer: {manufacturer}")
         except Exception as e:
             logger.error(f"Error in store_std_data: {e}")
             raise
         
     def store_aggregated_data(self,df):
         try:
+            print("aggre")
             for _, row in df.iterrows():
+                device_obj = db_DEVICE.objects.get(device_id=row['device_id'])
+                del row['device_id']
                 db_AirNet_Aggregated.objects.create(
-                    **row
+                    device_id=device_obj,**row
                 ).save()
         except Exception as e:
             print(f"An error occurred while storing aggregated data: {str(e)}")

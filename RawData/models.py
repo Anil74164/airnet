@@ -25,9 +25,7 @@ class db_AirNet_Raw(models.Model):
 
     # httpCode=models.CharField(max_length=255,null=True)
     processed_dt=models.DateTimeField(null=True)
-   
-    
-    
+
     @staticmethod
     def getRawData():
         return db_AirNet_Raw.objects.all()

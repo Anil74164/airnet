@@ -1,6 +1,6 @@
 from airflow import DAG
 import DjangoSetup
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from core.pyspark.DataIngestion import main_fetch
 from core.models import db_DEVICE,db_MANUFACTURER

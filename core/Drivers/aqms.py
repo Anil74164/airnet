@@ -53,8 +53,11 @@ class aqms(AirnetDriverAbs):
  
  
     def preprocess(self,start,end,deviceObj):
-        self.start_time= datetime(2024, 6, 14, 5, 0, 0)
-        self.end_time= datetime(2024, 6, 14, 7, 0, 0)
+        self.start_time= start
+        self.end_time= end
+        ist_timezone = pytz.timezone('Asia/Kolkata')
+        self.end_time=self.end_time.astimezone(ist_timezone)
+        self.start_time=self.start_time.astimezone(ist_timezone)
  
     def process(self, deviceObj,dag_param):
  
@@ -126,6 +129,7 @@ class aqms(AirnetDriverAbs):
             if self.met_df.empty:
                 print("met")
                 self.met_df=df
+                self.met_df['device_id']=deviceObj.device_id
                  
                 print(self.met_df)
             else:
@@ -165,7 +169,7 @@ class aqms(AirnetDriverAbs):
  
     def get_ColumnReplacement(self):
         try:
-            _changeColumns = {'Ambient_Temp': 'Temperature', 'Humidity': 'Relative_Humidity','DateTime':'time'}
+            _changeColumns = {'Ambient_Temp': 'temperature', 'Humidity': 'relative_humidity','DateTime':'time','WIND_SPEED':'wind_speed','RAIN_FALL':'rain_fall','WIND_DIRECTION':'wind_direction','Barometric_Pressure':'barometric_pressure','PM10':'pm10','CO':'co','SO2':'so2','NO':'no','NO2':'no2','O3':'o3','PM2.5':'pm2_5','NOx':'nox'}
             # diff_column = {
             #     'so2_nv': ['WorkingElectrodeVoltage_so2Voltages', 'AuxilliaryElectrodeVoltage_so2Voltages'],
             #     'no2_nv': ['WorkingElectrodeVoltage_no2Voltages', 'AuxilliaryElectrodeVoltage_no2Voltages'],
@@ -186,12 +190,13 @@ class aqms(AirnetDriverAbs):
             logger.error(f"Error in get_ColumnReplacement: {e}")
  
     def handleDF(self):
-        pass
+        self._df_all['time'] = pd.to_datetime(self._df_all['time']).dt.tz_localize('Asia/Kolkata')
     def standardize_df(self):
         try:
             if not self._df_all.empty:
                 self.get_ColumnReplacement()
                 self.handleDF()
+                print(self._df_all.columns)
             
         except Exception as e:
             logger.error(f"Error in standardization_df: {e}")
