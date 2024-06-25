@@ -283,6 +283,7 @@ def main_fetch(args=None):
             # end=args.end
             print(type(start))
             print(start)
+            print("oneeeeeee")
         else:
             end = datetime.now().replace(minute=(datetime.now().minute // 15) * 15, second=0, microsecond=0)
             start = end - timedelta(minutes=15)
@@ -311,15 +312,15 @@ def main_fetch(args=None):
                     logger.info(f"Processing devices for manufacturer: {i.name}")
                 
                     obj = drivers[i.name](manufacturer_obj=i)
+                    
                     da = obj.fetch(deviceObj=device_Dict[i],start=start,end=end,param=paramList)
-           
-                    da.to_csv('data.csv')
                     
                     logger.info(f"Fetched data: {da}")
  
                     obj.standardize_df()
                 
                     logger.info(f"Standardized DataFrame: {obj._df_all}")
+                    logger.info(f"Cal DataFrame: {obj._cal_df}")
                     logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
                     logger.info(f"Missing data dictionary: {obj._missing_data_dict}")
  

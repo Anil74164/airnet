@@ -58,6 +58,7 @@ class AirnetDriverAbs(ABC):
     def fetch(self,start,end,param=None, deviceObj=None):
         try:
             print("fetch",start,end)
+            
             self.preprocess(deviceObj=deviceObj,start=start,end=end)
             self.process(deviceObj=deviceObj,dag_param=param)
             self.postprocess(deviceObj)

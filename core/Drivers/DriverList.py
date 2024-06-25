@@ -9,12 +9,12 @@ from core.Drivers.aqms import aqms
 
 driverList = {
     "airveda" : AirVeda,
-    "respirer": respirer,
-    "sensit_ramp": sensit_ramp,
-    "sensit_ramp_demo": sensit_ramp_demo,
-    "aurassure":aurassure,
-    "aeron":aeron,
-    "aqms":aqms
+    # "respirer": respirer,
+    # "sensit_ramp": sensit_ramp,
+    # "sensit_ramp_demo": sensit_ramp_demo,
+    # "aurassure":aurassure,
+    # "aeron":aeron,
+    # "aqms":aqms
 }
 
 
